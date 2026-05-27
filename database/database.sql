@@ -155,7 +155,7 @@ CREATE TABLE ViewHistory(
     ViewHistoryID  UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID() PRIMARY KEY,
     UserID UNIQUEIDENTIFIER NOT NULL REFERENCES UserAccount(UserID),
     VideoID UNIQUEIDENTIFIER NOT NULL REFERENCES Video(VideoID),
-    CompletionRate DECIMAL NOT NULL DEFAULT 0.0,
+    CompletionRate DECIMAL(5,2) NOT NULL DEFAULT 0.0,
 	WatchedSeconds INT NULL,-- reanudar el video donde lo dejo el user
     LastViewedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
     CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
@@ -225,7 +225,7 @@ CREATE TABLE PlaylistContributor(
     PlaylistID UNIQUEIDENTIFIER NOT NULL REFERENCES Playlist(PlaylistID),
     UserID UNIQUEIDENTIFIER NOT NULL REFERENCES UserAccount(UserID),
     AddedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
-    CONSTRAINT PK_PlaylistContribuitor PRIMARY KEY (PlaylistID, UserID)
+    CONSTRAINT PK_PlaylistContributor PRIMARY KEY (PlaylistID, UserID)
 );
 GO
 
@@ -285,7 +285,7 @@ CREATE TABLE MembershipPlan(
     MonthlyPrice DECIMAL(10,2) NOT NULL,
     CoinsReward INT NOT NULL DEFAULT 0,
     MaxCommunities INT NOT NULL DEFAULT 1,
-    MaxVideosPerCommunity INT NOT NULL DEFAULT 10;
+    MaxVideosPerCommunity INT NOT NULL DEFAULT 10,
     CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
     UpdatedAt DATETIME2 NULL,
     DeletedAt DATETIME2 NULL
@@ -349,27 +349,27 @@ GO
 INSERT INTO EmailTemplates (Name, Subject, Body) VALUES
 ('USER_REGISTER',
  'Bienvenido a YoutubeClone',
- 'Tu cuenta fue creada. Tu contrase√±a es: <strong>{{password}}</strong>'),
+ 'Tu cuenta fue creada. Tu contraseÒa es: <strong>{{password}}</strong>'),
 
 ('AUTH_LOGIN_SUCCESS',
- 'Inicio de sesi√≥n exitoso',
- 'Iniciaste sesi√≥n el <strong>{{datetime}}</strong>'),
+ 'Inicio de sesiÛn exitoso',
+ 'Iniciaste sesiÛn el <strong>{{datetime}}</strong>'),
 
 ('AUTH_LOGIN_FAILED',
- 'Intento de inicio de sesi√≥n fallido',
- 'Se intent  iniciar sesi√≥n en tu cuenta. Si no fuiste t√∫ , contacta al administrador.'),
+ 'Intento de inicio de sesiÛn fallido',
+ 'Se intent  iniciar sesiÛn en tu cuenta. Si no fuiste t˙ , contacta al administrador.'),
 
 ('AUTH_REGISTER_EMAIL_VERIFICATION',
-'Verificaci√≥n de correo - YoutubeClone',
-'Hola, para continuar con su proceso de registro, necesita validar su correo electr√≥nico, haciendo clic en el siguiente <a href="{{url}}">enlace</a>.'),
+'VerificaciÛn de correo - YoutubeClone',
+'Hola, para continuar con su proceso de registro, necesita validar su correo electrÛnico, haciendo clic en el siguiente <a href="{{url}}">enlace</a>.'),
 
 ('AUTH_RECOVER_PASSWORD_OTP',
-'Recuperaci√≥n de contrase√±a - YoutubeClone',
-'Hola, el siguiente c√≥digo le permitir√° completar el proceso de cambio de contrase√±a para su cuenta: <strong>{{otp}}</strong>'),
+'RecuperaciÛn de contraseÒa - YoutubeClone',
+'Hola, el siguiente cÛdigo le permitir· completar el proceso de cambio de contraseÒa para su cuenta: <strong>{{otp}}</strong>'),
 
 ('AUTH_PASSWORD_CHANGED',
-'Contrase√±a cambiada con √©xito', 
-'Su contrase√±a ha sido cambiada exitosamente.');
+'ContraseÒa cambiada con Èxito', 
+'Su contraseÒa ha sido cambiada exitosamente.');
 GO
 
 -- ============================================================
@@ -382,14 +382,14 @@ DECLARE @RoleCreator   UNIQUEIDENTIFIER = NEWID();
 DECLARE @RoleUser      UNIQUEIDENTIFIER = NEWID();
 
 INSERT INTO Roles (RoleID, Name, Description) VALUES
-(@RoleSystem,  'Sistema',               'Rol interno. Ejecuta procesos automatizados como env o de correos y asignaci√≥n inicial de roles. No asignable manualmente.'),
+(@RoleSystem,  'Sistema',               'Rol interno. Ejecuta procesos automatizados como env o de correos y asignaciÛn inicial de roles. No asignable manualmente.'),
 (@RoleAdmin,   'Administrador',         'Modera contenido de la plataforma. Puede eliminar videos, suspender canales, verificar creadores y gestionar comentarios.'),
 (@RoleCreator, 'Creador de Contenido',  'Puede subir y gestionar sus propios videos, administrar su canal y crear playlists.'),
 (@RoleUser,    'Usuario',               'Puede ver videos, reaccionar, comentar, suscribirse a canales y gestionar su historial y playlists personales.');
 GO
 
 -- ============================================================
--- DML: Cat√°logo de permisos
+-- DML: Cat·logo de permisos
 -- ============================================================
 
 INSERT INTO Permission (PermissionID, Code, Module, Action, Name, Description)
@@ -458,28 +458,28 @@ WHERE r.Name = 'Usuario';
 GO
 
 -- ============================================================
---  DML: Planes de membres√≠a
+--  DML: Planes de membresÌa
 -- ============================================================
 INSERT INTO MembershipPlan (DisplayName, Description, MonthlyPrice, CoinsReward, MaxCommunities, MaxVideosPerCommunity)
 VALUES
 (
     'Free',
-    'Permite crear hasta 1 comunidad con un m√°ximo de 10 videos. No incluye monedas.',
+    'Permite crear hasta 1 comunidad con un m·ximo de 10 videos. No incluye monedas.',
     0.00, 0, 1, 10
 ),
 (
-    'B√°sico',
-    'Permite crear hasta 3 comunidades con un m√°ximo de 20 videos en cada una. Incluye 100 monedas instantaneamente.',
+    'B·sico',
+    'Permite crear hasta 3 comunidades con un m·ximo de 20 videos en cada una. Incluye 100 monedas instantaneamente.',
     4.99, 100, 3, 20
 ),
 (
     'Premium',
-    'Permite crear hasta 5 comunidades con un m√°ximo de 25 videos en cada una. Incluye 200 monedas instantaneamente.',
+    'Permite crear hasta 5 comunidades con un m·ximo de 25 videos en cada una. Incluye 200 monedas instantaneamente.',
     9.99, 200, 5, 25
 ),
 (
     'Creator Pass',
-    'Permite crear hasta 10 comunidades con un m√°ximo de 30 videos en cada una. Incluye 400 monedas instantaneamente.',
+    'Permite crear hasta 10 comunidades con un m·ximo de 30 videos en cada una. Incluye 400 monedas instantaneamente.',
     19.99, 400, 10, 30
 );
 GO
@@ -487,19 +487,19 @@ GO
 -- ============================================================
 --  DML: Paquetes de monedas (CoinPackage)
 -- ============================================================
--- Estos tambi√©n estaban vac√≠os, los incluyo para completar el sistema:
+-- Estos tambiÈn estaban vacÌos, los incluyo para completar el sistema:
 
 INSERT INTO CoinPackage (DisplayName, CoinAmount, Price)
 VALUES
     ('Bolsillo',    100,   0.99),
-    ('Est√°ndar',    500,   3.99),
+    ('Est·ndar',    500,   3.99),
     ('Popular',    1200,   7.99),
     ('Generoso',   2500,  14.99),
     ('Mega Pack',  6000,  29.99);
 GO
 
 -- ============================================================
---  DML: Tipos de reacci√≥n (ReactionType)
+--  DML: Tipos de reacciÛn (ReactionType)
 -- ============================================================
 
 INSERT INTO ReactionType (DisplayName) VALUES
@@ -521,7 +521,7 @@ GO
 -- ============================================================
 
 INSERT INTO VideoAccessibility (DisplayName) VALUES
-    ('P√∫blico'),
+    ('P˙blico'),
     ('No listado'),
     ('Privado');
 GO
