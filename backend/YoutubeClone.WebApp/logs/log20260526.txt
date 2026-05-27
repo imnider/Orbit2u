@@ -1,0 +1,729 @@
+2026-05-26 09:35:38.573 -05:00 [INF] User profile is available. Using 'C:\Users\viamatica\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-26 09:35:38.890 -05:00 [INF] Executed DbCommand (217ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-26 09:35:39.019 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-26 09:35:39.112 -05:00 [INF] Executed DbCommand (134ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-26 09:35:39.174 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-26 09:35:39.176 -05:00 [INF] Hosting environment: Development
+2026-05-26 09:35:39.178 -05:00 [INF] Content root path: C:\Users\viamatica\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-05-26 09:37:50.393 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar - null null
+2026-05-26 09:37:50.777 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-26 09:37:53.868 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:37:53.942 -05:00 [INF] Executing RedirectResult, redirecting to scalar/.
+2026-05-26 09:37:53.945 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:37:54.015 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar - 302 null null 3623.8039ms
+2026-05-26 09:37:54.028 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:37:54.041 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:37:54.155 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:37:54.241 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:37:54.243 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:37:54.244 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:37:54.245 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 216.5207ms
+2026-05-26 09:37:54.245 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:37:54.245 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:37:54.253 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:37:54.266 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 20.9759ms
+2026-05-26 09:37:54.253 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:37:54.324 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:37:54.324 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:37:54.330 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:37:54.332 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 88.1298ms
+2026-05-26 09:37:54.346 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:37:54.350 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 200 1012335 text/javascript 107.4056ms
+2026-05-26 09:37:54.475 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 229.5618ms
+2026-05-26 09:37:54.591 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:37:54.596 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:37:54.808 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:37:54.812 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 220.8706ms
+2026-05-26 09:37:55.491 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:37:55.495 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:37:55.498 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:37:55.501 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:37:55.503 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 200 533 image/svg+xml 12.2558ms
+2026-05-26 09:40:33.777 -05:00 [INF] User profile is available. Using 'C:\Users\viamatica\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-26 09:40:33.858 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-26 09:40:33.886 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-26 09:40:33.888 -05:00 [INF] Hosting environment: Development
+2026-05-26 09:40:33.889 -05:00 [INF] Content root path: C:\Users\viamatica\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-05-26 09:40:34.445 -05:00 [INF] Executed DbCommand (142ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-26 09:40:34.604 -05:00 [INF] Executed DbCommand (118ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-26 09:40:41.162 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:40:41.299 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-26 09:40:41.338 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:40:41.462 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:40:41.483 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:40:41.493 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 333.1199ms
+2026-05-26 09:40:41.498 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:40:41.498 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:40:41.500 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:40:41.508 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:40:41.515 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:40:41.521 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:40:41.531 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 23.414ms
+2026-05-26 09:40:41.539 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:40:41.539 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:40:41.554 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:40:41.559 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 61.1608ms
+2026-05-26 09:40:41.577 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 77.0092ms
+2026-05-26 09:40:41.585 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:40:41.592 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 200 1012335 text/javascript 94.105ms
+2026-05-26 09:40:41.648 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:40:41.654 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:40:41.694 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:40:41.700 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:40:41.703 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:40:41.705 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:40:41.707 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 200 533 image/svg+xml 13.2274ms
+2026-05-26 09:40:41.874 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:40:41.877 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 229.0372ms
+2026-05-26 09:41:24.850 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:24.860 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:24.864 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:24.867 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:24.869 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 18.9863ms
+2026-05-26 09:41:24.885 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:24.885 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:24.885 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:24.885 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:24.888 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:24.890 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 5.4378ms
+2026-05-26 09:41:24.893 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:24.896 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:24.901 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:24.902 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:24.903 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.4762ms
+2026-05-26 09:41:24.903 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:24.905 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 20.1649ms
+2026-05-26 09:41:24.909 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 24.4625ms
+2026-05-26 09:41:24.991 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:24.997 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:25.027 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:25.029 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 37.8563ms
+2026-05-26 09:41:25.162 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:41:25.166 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:25.168 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:25.170 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:25.173 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 304 null null 10.3016ms
+2026-05-26 09:41:25.893 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:25.898 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:25.902 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:25.904 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:25.905 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 11.6427ms
+2026-05-26 09:41:25.918 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:25.918 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:25.918 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:25.918 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:25.920 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 2.7438ms
+2026-05-26 09:41:25.923 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:25.927 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:25.928 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.6292ms
+2026-05-26 09:41:25.932 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:25.932 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:25.939 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:25.939 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:25.940 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 22.3485ms
+2026-05-26 09:41:25.941 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 23.3759ms
+2026-05-26 09:41:25.979 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:25.983 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:26.007 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:26.009 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 29.468ms
+2026-05-26 09:41:26.164 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:41:26.171 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:26.173 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:26.175 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:26.176 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 304 null null 12.2676ms
+2026-05-26 09:41:26.517 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:26.524 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:26.526 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:26.528 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:26.530 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 13.4452ms
+2026-05-26 09:41:26.545 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:26.546 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:26.546 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:26.547 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:26.547 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:26.549 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 3.1355ms
+2026-05-26 09:41:26.552 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:26.555 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:26.557 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.538ms
+2026-05-26 09:41:26.560 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:26.561 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:26.564 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:26.565 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 20.6501ms
+2026-05-26 09:41:26.566 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 19.9744ms
+2026-05-26 09:41:26.601 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:26.605 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:26.618 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:26.621 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 19.7449ms
+2026-05-26 09:41:26.780 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:41:26.785 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:26.787 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:26.788 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:26.790 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 304 null null 9.2982ms
+2026-05-26 09:41:32.386 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:32.391 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:32.393 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:32.394 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:32.395 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 9.0537ms
+2026-05-26 09:41:32.411 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:32.411 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:32.411 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:32.411 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:32.414 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 2.7839ms
+2026-05-26 09:41:32.418 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:32.420 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:32.426 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.283ms
+2026-05-26 09:41:32.428 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:32.429 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:32.433 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:32.434 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:32.435 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 23.5763ms
+2026-05-26 09:41:32.436 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 24.862ms
+2026-05-26 09:41:32.480 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:32.483 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:32.495 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:32.497 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 17.4325ms
+2026-05-26 09:41:32.667 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:41:32.671 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:32.672 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:32.673 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:32.674 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 304 null null 7.1562ms
+2026-05-26 09:41:33.092 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:33.100 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:33.104 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:33.106 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:33.108 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 15.7754ms
+2026-05-26 09:41:33.122 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:33.122 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:33.122 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:33.122 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:33.124 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 2.4043ms
+2026-05-26 09:41:33.127 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:33.130 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:33.135 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.4906ms
+2026-05-26 09:41:33.137 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:33.139 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:33.142 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:33.143 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:33.145 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 22.7792ms
+2026-05-26 09:41:33.146 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 24.1061ms
+2026-05-26 09:41:33.182 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:33.185 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:33.196 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:33.202 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 20.3582ms
+2026-05-26 09:41:33.372 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:41:33.374 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:33.376 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:33.377 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:33.380 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 304 null null 8.6027ms
+2026-05-26 09:41:33.450 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:33.455 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:33.458 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:33.459 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:33.461 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 11.1312ms
+2026-05-26 09:41:33.483 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:33.485 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:33.485 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:33.485 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:33.487 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:33.489 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 4.002ms
+2026-05-26 09:41:33.494 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:33.494 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.5205ms
+2026-05-26 09:41:33.497 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:33.507 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:33.514 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:33.515 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:33.516 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 33.8076ms
+2026-05-26 09:41:33.518 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 33.6731ms
+2026-05-26 09:41:33.555 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:33.558 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:33.566 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:33.568 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 12.778ms
+2026-05-26 09:41:33.737 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:33.741 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:33.742 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:33.743 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:33.745 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 8.5092ms
+2026-05-26 09:41:33.758 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:33.758 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:33.758 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:33.758 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:33.760 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 2.1947ms
+2026-05-26 09:41:33.763 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:33.765 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:33.769 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.4707ms
+2026-05-26 09:41:33.771 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:33.772 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:33.780 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:33.781 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:33.782 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 24.2409ms
+2026-05-26 09:41:33.783 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 25.2675ms
+2026-05-26 09:41:33.818 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:33.820 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:33.828 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:33.831 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 12.9765ms
+2026-05-26 09:41:34.007 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:34.013 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:34.015 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:34.016 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:34.019 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 11.3674ms
+2026-05-26 09:41:34.038 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:34.041 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:34.041 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:34.041 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:34.041 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:34.045 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 4.3374ms
+2026-05-26 09:41:34.049 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:34.052 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:34.055 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.7388ms
+2026-05-26 09:41:34.058 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:34.059 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:34.063 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:34.064 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 26.3762ms
+2026-05-26 09:41:34.065 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 24.5159ms
+2026-05-26 09:41:34.105 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:34.108 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:34.116 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:34.118 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 12.6765ms
+2026-05-26 09:41:34.300 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:34.304 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:34.305 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:41:34.306 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:34.308 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:34.309 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:34.310 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:34.313 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 13.4292ms
+2026-05-26 09:41:34.314 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:34.320 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 499 null null 14.6931ms
+2026-05-26 09:41:34.325 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:34.325 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:34.326 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:34.326 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:34.329 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 3.2531ms
+2026-05-26 09:41:34.331 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:34.334 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:34.338 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.9546ms
+2026-05-26 09:41:34.340 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:34.342 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:34.346 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:34.347 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:34.348 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 22.7769ms
+2026-05-26 09:41:34.349 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 23.7619ms
+2026-05-26 09:41:34.385 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:34.389 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:34.415 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:34.416 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 30.7618ms
+2026-05-26 09:41:34.540 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:34.545 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:34.547 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:34.548 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:34.549 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 9.2152ms
+2026-05-26 09:41:34.580 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:34.580 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:34.580 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:34.580 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:34.582 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 2.8976ms
+2026-05-26 09:41:34.585 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:34.587 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:34.594 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.0133ms
+2026-05-26 09:41:34.600 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:34.602 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:34.609 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:34.611 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:34.613 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 33.5661ms
+2026-05-26 09:41:34.615 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 34.8156ms
+2026-05-26 09:41:34.655 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:34.658 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:34.666 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:34.668 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 13.7066ms
+2026-05-26 09:41:34.831 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:34.836 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:34.838 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:34.839 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:34.840 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 9.0041ms
+2026-05-26 09:41:34.856 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:34.856 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:34.856 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:34.856 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:34.859 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 2.8001ms
+2026-05-26 09:41:34.861 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:34.864 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:34.868 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.7046ms
+2026-05-26 09:41:34.870 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:34.871 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:34.877 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:34.879 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:34.880 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 23.9488ms
+2026-05-26 09:41:34.881 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 24.8101ms
+2026-05-26 09:41:34.916 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:34.919 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:34.928 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:34.929 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 13.4568ms
+2026-05-26 09:41:35.098 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:41:35.102 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:35.105 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:35.111 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:35.113 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 200 533 image/svg+xml 15.3356ms
+2026-05-26 09:41:35.133 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:41:35.139 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:35.141 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:41:35.142 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:41:35.144 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 11.1688ms
+2026-05-26 09:41:35.159 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:41:35.159 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:41:35.159 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:41:35.159 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:41:35.162 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:35.164 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:35.168 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 8.6877ms
+2026-05-26 09:41:35.171 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:35.172 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:35.173 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.7164ms
+2026-05-26 09:41:35.180 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:41:35.181 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:41:35.185 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 26.8642ms
+2026-05-26 09:41:35.187 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 27.7013ms
+2026-05-26 09:41:35.224 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:41:35.227 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:35.238 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:41:35.239 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 14.9402ms
+2026-05-26 09:41:35.413 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:41:35.417 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:35.418 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:41:35.419 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:41:35.420 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 304 null null 7.2433ms
+2026-05-26 09:44:32.192 -05:00 [INF] User profile is available. Using 'C:\Users\viamatica\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-26 09:44:32.367 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-26 09:44:32.425 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-26 09:44:32.427 -05:00 [INF] Hosting environment: Development
+2026-05-26 09:44:32.429 -05:00 [INF] Content root path: C:\Users\viamatica\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-05-26 09:44:32.909 -05:00 [INF] Executed DbCommand (169ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-26 09:44:33.136 -05:00 [INF] Executed DbCommand (131ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-26 09:44:45.383 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:44:45.504 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-26 09:44:45.541 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:44:45.669 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:44:45.693 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:44:45.700 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:44:45.700 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:44:45.700 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 318.8794ms
+2026-05-26 09:44:45.700 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:44:45.701 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:44:45.706 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:44:45.708 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 8.3357ms
+2026-05-26 09:44:45.724 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:44:45.725 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:44:45.727 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:44:45.730 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:44:45.733 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 33.3409ms
+2026-05-26 09:44:45.742 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:44:45.745 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 45.0581ms
+2026-05-26 09:44:45.750 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 200 1012335 text/javascript 49.7114ms
+2026-05-26 09:44:45.804 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:44:45.809 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:44:45.851 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:44:45.855 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:44:45.857 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:44:45.859 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:44:45.861 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 200 533 image/svg+xml 10.1181ms
+2026-05-26 09:44:46.048 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:44:46.051 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 246.4952ms
+2026-05-26 09:45:41.231 -05:00 [INF] User profile is available. Using 'C:\Users\viamatica\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-26 09:45:41.387 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-26 09:45:41.462 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-26 09:45:41.467 -05:00 [INF] Hosting environment: Development
+2026-05-26 09:45:41.468 -05:00 [INF] Content root path: C:\Users\viamatica\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-05-26 09:45:41.939 -05:00 [INF] Executed DbCommand (162ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-26 09:45:42.154 -05:00 [INF] Executed DbCommand (131ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-26 09:45:46.157 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:45:46.288 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-26 09:45:46.324 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:45:46.452 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:45:46.481 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:45:46.484 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:45:46.484 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:45:46.484 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:45:46.484 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:45:46.488 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 332.9882ms
+2026-05-26 09:45:46.491 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 7.4134ms
+2026-05-26 09:45:46.496 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:45:46.502 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:45:46.516 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:45:46.516 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:45:46.519 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 35.2125ms
+2026-05-26 09:45:46.520 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:45:46.526 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 42.1105ms
+2026-05-26 09:45:46.529 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:45:46.533 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 200 1012335 text/javascript 49.4447ms
+2026-05-26 09:45:46.589 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:45:46.593 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:45:46.630 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:45:46.635 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:45:46.637 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:45:46.638 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:45:46.640 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 200 533 image/svg+xml 10.5461ms
+2026-05-26 09:45:46.808 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:45:46.811 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 221.5912ms
+2026-05-26 09:51:00.203 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:51:00.221 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:51:00.227 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:51:00.228 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:51:00.230 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 27.1231ms
+2026-05-26 09:51:00.244 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:51:00.245 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:51:00.246 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:51:00.247 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:51:00.247 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:51:00.250 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 4.3932ms
+2026-05-26 09:51:00.252 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:51:00.256 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:51:00.263 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:51:00.265 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:51:00.265 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.3699ms
+2026-05-26 09:51:00.266 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:51:00.267 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 23.7188ms
+2026-05-26 09:51:00.271 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 25.0368ms
+2026-05-26 09:51:00.539 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:51:00.544 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:51:00.569 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:51:00.571 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 32.1391ms
+2026-05-26 09:51:00.863 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:51:00.867 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:51:00.869 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:51:00.870 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:51:00.871 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 304 null null 8.6039ms
+2026-05-26 09:51:01.853 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:51:01.860 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:51:01.864 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:51:01.866 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:51:01.868 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 15.622ms
+2026-05-26 09:51:01.884 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:51:01.884 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:51:01.884 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:51:01.884 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:51:01.887 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:51:01.890 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:51:01.892 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 8.0426ms
+2026-05-26 09:51:01.896 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:51:01.897 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:51:01.898 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.3714ms
+2026-05-26 09:51:01.901 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:51:01.902 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:51:01.906 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 304 null null 21.5807ms
+2026-05-26 09:51:01.907 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 304 null null 22.7006ms
+2026-05-26 09:51:01.947 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:51:01.950 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:51:01.974 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:51:01.977 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 29.8781ms
+2026-05-26 09:51:02.171 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:51:02.175 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:51:02.177 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:51:02.178 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:51:02.180 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 304 null null 9.2493ms
+2026-05-26 09:51:37.041 -05:00 [INF] User profile is available. Using 'C:\Users\viamatica\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-26 09:51:37.200 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-26 09:51:37.260 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-26 09:51:37.263 -05:00 [INF] Hosting environment: Development
+2026-05-26 09:51:37.264 -05:00 [INF] Content root path: C:\Users\viamatica\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-05-26 09:51:37.653 -05:00 [INF] Executed DbCommand (150ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-26 09:51:37.856 -05:00 [INF] Executed DbCommand (119ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-26 09:51:54.333 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 09:51:54.465 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-26 09:51:54.504 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:51:54.630 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 09:51:54.659 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 09:51:54.664 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 09:51:54.664 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 09:51:54.664 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 09:51:54.665 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 09:51:54.666 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 336.0968ms
+2026-05-26 09:51:54.670 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:51:54.674 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 9.2689ms
+2026-05-26 09:51:54.683 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:51:54.694 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:51:54.696 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:51:54.699 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 09:51:54.701 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 36.9636ms
+2026-05-26 09:51:54.708 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 43.3251ms
+2026-05-26 09:51:54.713 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 09:51:54.717 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 200 1012335 text/javascript 51.9337ms
+2026-05-26 09:51:54.823 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 09:51:54.828 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:51:55.041 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 09:51:55.043 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 219.9994ms
+2026-05-26 09:51:55.423 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 09:51:55.426 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:51:55.428 -05:00 [INF] Sending file with download name ''.
+2026-05-26 09:51:55.431 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 09:51:55.435 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 200 533 image/svg+xml 11.9093ms
+2026-05-26 10:16:28.467 -05:00 [INF] User profile is available. Using 'C:\Users\viamatica\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-26 10:16:28.664 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-26 10:16:28.746 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-26 10:16:28.748 -05:00 [INF] Hosting environment: Development
+2026-05-26 10:16:28.750 -05:00 [INF] Content root path: C:\Users\viamatica\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-05-26 10:16:29.145 -05:00 [INF] Executed DbCommand (153ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-26 10:16:29.405 -05:00 [INF] Executed DbCommand (150ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-26 10:16:32.206 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 10:16:32.375 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-26 10:16:32.407 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 10:16:32.528 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 10:16:32.558 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 10:16:32.562 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 10:16:32.562 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 10:16:32.562 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 10:16:32.570 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 10:16:32.564 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 360.9575ms
+2026-05-26 10:16:32.567 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 5.3384ms
+2026-05-26 10:16:32.563 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 10:16:32.574 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 10:16:32.576 -05:00 [INF] Sending file with download name ''.
+2026-05-26 10:16:32.585 -05:00 [INF] Sending file with download name ''.
+2026-05-26 10:16:32.589 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 10:16:32.592 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 30.5342ms
+2026-05-26 10:16:32.601 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 10:16:32.603 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 200 1012335 text/javascript 41.6521ms
+2026-05-26 10:16:32.610 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 47.0231ms
+2026-05-26 10:16:32.846 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 10:16:32.851 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 10:16:32.917 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 10:16:32.921 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 10:16:32.923 -05:00 [INF] Sending file with download name ''.
+2026-05-26 10:16:32.926 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 10:16:32.928 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 200 533 image/svg+xml 11.2184ms
+2026-05-26 10:16:33.058 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 10:16:33.060 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 213.6533ms
+2026-05-26 10:54:49.168 -05:00 [INF] User profile is available. Using 'C:\Users\viamatica\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-26 10:54:49.340 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-26 10:54:49.404 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-26 10:54:49.406 -05:00 [INF] Hosting environment: Development
+2026-05-26 10:54:49.407 -05:00 [INF] Content root path: C:\Users\viamatica\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-05-26 10:54:49.815 -05:00 [INF] Executed DbCommand (154ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-26 10:54:50.022 -05:00 [INF] Executed DbCommand (122ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-26 10:55:09.891 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 10:55:10.020 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-26 10:55:10.054 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 10:55:10.181 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 10:55:10.207 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 10:55:10.209 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 10:55:10.209 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 10:55:10.209 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 10:55:10.209 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 10:55:10.214 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 324.72ms
+2026-05-26 10:55:10.219 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 10.0038ms
+2026-05-26 10:55:10.223 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 10:55:10.228 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 10:55:10.242 -05:00 [INF] Sending file with download name ''.
+2026-05-26 10:55:10.242 -05:00 [INF] Sending file with download name ''.
+2026-05-26 10:55:10.245 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.6635ms
+2026-05-26 10:55:10.246 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 10:55:10.252 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 43.2306ms
+2026-05-26 10:55:10.253 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 10:55:10.258 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 200 1012335 text/javascript 49.1878ms
+2026-05-26 10:55:10.519 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 10:55:10.522 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 10:55:10.737 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 10:55:10.739 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 220.4516ms
+2026-05-26 10:55:11.028 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 10:55:11.035 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 10:55:11.053 -05:00 [INF] Sending file with download name ''.
+2026-05-26 10:55:11.056 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 10:55:11.058 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 200 533 image/svg+xml 30.3558ms
+2026-05-26 11:08:38.400 -05:00 [INF] User profile is available. Using 'C:\Users\viamatica\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-26 11:08:38.565 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-26 11:08:38.628 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-26 11:08:38.630 -05:00 [INF] Hosting environment: Development
+2026-05-26 11:08:38.631 -05:00 [INF] Content root path: C:\Users\viamatica\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-05-26 11:08:38.985 -05:00 [INF] Executed DbCommand (146ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-26 11:08:39.187 -05:00 [INF] Executed DbCommand (115ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-26 11:08:43.943 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/ - null null
+2026-05-26 11:08:44.069 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-26 11:08:44.108 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 11:08:44.236 -05:00 [INF] Write content with HTTP Response ContentType of text/html
+2026-05-26 11:08:44.258 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-05-26 11:08:44.266 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/ - 200 null text/html 324.9033ms
+2026-05-26 11:08:44.270 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-26 11:08:44.270 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - null null
+2026-05-26 11:08:44.270 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_vs/browserLink - null null
+2026-05-26 11:08:44.279 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - null null
+2026-05-26 11:08:44.284 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 14943 application/javascript; charset=utf-8 14.4142ms
+2026-05-26 11:08:44.288 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 11:08:44.298 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 11:08:44.305 -05:00 [INF] Sending file with download name ''.
+2026-05-26 11:08:44.305 -05:00 [INF] Sending file with download name ''.
+2026-05-26 11:08:44.310 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-05-26 11:08:44.313 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 42.9195ms
+2026-05-26 11:08:44.321 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.0769ms
+2026-05-26 11:08:44.352 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-05-26 11:08:44.359 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/scalar.js - 200 1012335 text/javascript 79.7108ms
+2026-05-26 11:08:44.613 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/openapi/v1.json - null null
+2026-05-26 11:08:44.618 -05:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 11:08:44.685 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - null null
+2026-05-26 11:08:44.689 -05:00 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 11:08:44.691 -05:00 [INF] Sending file with download name ''.
+2026-05-26 11:08:44.692 -05:00 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-05-26 11:08:44.695 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/scalar/favicon.svg - 200 533 image/svg+xml 9.2503ms
+2026-05-26 11:08:44.837 -05:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-05-26 11:08:44.839 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/openapi/v1.json - 200 null application/json;charset=utf-8 226.3475ms
