@@ -5,7 +5,7 @@ using YoutubeClone.Domain.Interfaces.Repositories;
 
 namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
 {
-    public class EmailTemplateRepository(YoutubeCloneContext context) : IEmailTemplateRepository
+    public class EmailTemplateRepository(Orbit2uContext context) : IEmailTemplateRepository
     {
         public async Task<List<EmailTemplate>> Get()
         {

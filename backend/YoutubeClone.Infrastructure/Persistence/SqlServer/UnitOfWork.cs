@@ -4,13 +4,13 @@ using YoutubeClone.Domain.Interfaces.Repositories;
 
 namespace YoutubeClone.Infrastructure.Persistence.SqlServer
 {
-    public class UnitOfWork(YoutubeCloneContext _context,
+    public class UnitOfWork(Orbit2uContext _context,
         IUserRepository _userRepository,
         IEmailTemplateRepository _emailTemplateRepository,
         IRoleRepository _roleRepository)
         : IUnitOfWork
     {
-        private readonly YoutubeCloneContext context = _context;
+        private readonly Orbit2uContext context = _context;
         public IUserRepository userRepository { get; set; } = _userRepository;
         public IEmailTemplateRepository emailTemplateRepository { get; set; } = _emailTemplateRepository;
         public IRoleRepository roleRepository { get; set; } = _roleRepository;

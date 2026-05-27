@@ -15,6 +15,8 @@ public partial class ViewHistory
 
     public int? WatchedSeconds { get; set; }
 
+    public DateTime LastViewedAt { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     public virtual UserAccount User { get; set; } = null!;

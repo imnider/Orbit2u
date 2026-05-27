@@ -9,5 +9,7 @@ public partial class Tag
 
     public string DisplayName { get; set; } = null!;
 
+    public virtual ICollection<UserPreferenceTag> UserPreferenceTags { get; set; } = new List<UserPreferenceTag>();
+
     public virtual ICollection<Video> Videos { get; set; } = new List<Video>();
 }

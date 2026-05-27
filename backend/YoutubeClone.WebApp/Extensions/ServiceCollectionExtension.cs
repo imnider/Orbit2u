@@ -52,7 +52,7 @@ namespace YoutubeClone.WebApp.Extensions
 
             var databaseConnectionString = Environment.GetEnvironmentVariable(EnvironmentConstants.CONNECTION_STRING_DATABASE)
                     ?? configuration[ConfigurationConstants.CONNECTION_STRING_DATABASE];
-            services.AddSqlServer<YoutubeCloneContext>(databaseConnectionString);
+            services.AddSqlServer<Orbit2uContext>(databaseConnectionString);
 
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
@@ -171,7 +171,7 @@ namespace YoutubeClone.WebApp.Extensions
             // SQL Server
             var databaseConnectionString = Environment.GetEnvironmentVariable(EnvironmentConstants.CONNECTION_STRING_DATABASE)
                     ?? configuration[ConfigurationConstants.CONNECTION_STRING_DATABASE];
-            services.AddSqlServer<YoutubeCloneContext>(databaseConnectionString);
+            services.AddSqlServer<Orbit2uContext>(databaseConnectionString);
 
             // Database - Repositories
             services.AddRepositories();

@@ -5,7 +5,7 @@ using YoutubeClone.Domain.Interfaces.Repositories;
 
 namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
 {
-    public class UserRepository(YoutubeCloneContext context) : GenericRepository<UserAccount>(context), IUserRepository
+    public class UserRepository(Orbit2uContext context) : GenericRepository<UserAccount>(context), IUserRepository
 
     {
         public async Task<bool> ClearRoles(List<UserAccountRole> roles)

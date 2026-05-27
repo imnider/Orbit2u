@@ -197,3 +197,390 @@ The host name (smtp-relay.brevo.com) did not match any of the names given in the
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
 2026-05-27 14:17:08.705 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/register/init - 500 null application/json; charset=utf-8 5607.8073ms
+2026-05-27 15:14:47.320 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 15:14:47.393 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 15:14:47.421 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 15:14:47.423 -05:00 [INF] Hosting environment: Development
+2026-05-27 15:14:47.425 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 15:14:59.973 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 74
+2026-05-27 15:14:59.995 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 15:15:00.012 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:15:00.025 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse]] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 15:15:00.185 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 154.689ms
+2026-05-27 15:15:00.195 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:15:00.233 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "1287411c-70e3-4946-a18f-07e66c6a3acd". Excepción: System.InvalidOperationException: The entity type 'PlaylistContributor' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateNonNullPrimaryKeys(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal.SqlServerModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelRuntimeInitializer.Initialize(IModel model, Boolean designTime, IDiagnosticsLogger`1 validationLogger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Linq.IQueryable.get_Provider()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include[TEntity,TProperty](IQueryable`1 source, Expression`1 navigationPropertyPath)
+   at YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories.UserRepository.Get(String email) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Infrastructure\Persistence\SqlServer\Repositories\UserRepository.cs:line 37
+   at YoutubeClone.Application.Services.AuthService.Login(LoginAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Application\Services\AuthService.cs:line 148
+   at YoutubeClone.WebApp.Controllers.AuthController.Login(LoginAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Controllers\AuthController.cs:line 88
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-05-27 15:15:00.245 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 500 null application/json; charset=utf-8 273.1049ms
+2026-05-27 15:15:05.998 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-05-27 15:15:06.085 -05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(ReadOnlyMemory`1 encodedTokenMemory)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+2026-05-27 15:15:06.089 -05:00 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-05-27 15:15:06.094 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-05-27 15:15:06.099 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 101.2758ms
+2026-05-27 15:15:38.929 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 74
+2026-05-27 15:15:38.934 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:15:38.936 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse]] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 15:15:39.067 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 129.6341ms
+2026-05-27 15:15:39.069 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:15:39.071 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "5607df6a-2ae4-4fd4-b94f-4094a63c6b86". Excepción: System.InvalidOperationException: The entity type 'PlaylistContributor' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateNonNullPrimaryKeys(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal.SqlServerModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelRuntimeInitializer.Initialize(IModel model, Boolean designTime, IDiagnosticsLogger`1 validationLogger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Linq.IQueryable.get_Provider()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include[TEntity,TProperty](IQueryable`1 source, Expression`1 navigationPropertyPath)
+   at YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories.UserRepository.Get(String email) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Infrastructure\Persistence\SqlServer\Repositories\UserRepository.cs:line 37
+   at YoutubeClone.Application.Services.AuthService.Login(LoginAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Application\Services\AuthService.cs:line 148
+   at YoutubeClone.WebApp.Controllers.AuthController.Login(LoginAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Controllers\AuthController.cs:line 88
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-05-27 15:15:39.074 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 500 null application/json; charset=utf-8 144.0435ms
+2026-05-27 15:16:01.606 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-05-27 15:16:01.610 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:16:01.611 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse]] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 15:16:01.695 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 81.974ms
+2026-05-27 15:16:01.697 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:16:01.700 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "ae77b3d5-c626-48d8-815f-ad3d101dc4ea". Excepción: System.InvalidOperationException: The entity type 'PlaylistContributor' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateNonNullPrimaryKeys(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal.SqlServerModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelRuntimeInitializer.Initialize(IModel model, Boolean designTime, IDiagnosticsLogger`1 validationLogger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Linq.IQueryable.get_Provider()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include[TEntity,TProperty](IQueryable`1 source, Expression`1 navigationPropertyPath)
+   at YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories.UserRepository.Get(String email) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Infrastructure\Persistence\SqlServer\Repositories\UserRepository.cs:line 37
+   at YoutubeClone.Application.Services.AuthService.Login(LoginAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Application\Services\AuthService.cs:line 148
+   at YoutubeClone.WebApp.Controllers.AuthController.Login(LoginAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Controllers\AuthController.cs:line 88
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-05-27 15:16:01.703 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 500 null application/json; charset=utf-8 97.0457ms
+2026-05-27 15:16:42.069 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 15:16:42.140 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 15:16:42.166 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 15:16:42.167 -05:00 [INF] Hosting environment: Development
+2026-05-27 15:16:42.168 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 15:16:45.697 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-05-27 15:16:45.721 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 15:16:45.738 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:16:45.751 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse]] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 15:16:45.923 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 166.5457ms
+2026-05-27 15:16:45.933 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:16:45.939 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "121456f9-a133-476f-a434-09cfa8a58688". Excepción: System.InvalidOperationException: The entity type 'PlaylistContributor' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateNonNullPrimaryKeys(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal.SqlServerModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelRuntimeInitializer.Initialize(IModel model, Boolean designTime, IDiagnosticsLogger`1 validationLogger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Linq.IQueryable.get_Provider()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include[TEntity,TProperty](IQueryable`1 source, Expression`1 navigationPropertyPath)
+   at YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories.UserRepository.Get(String email) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Infrastructure\Persistence\SqlServer\Repositories\UserRepository.cs:line 37
+   at YoutubeClone.Application.Services.AuthService.Login(LoginAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Application\Services\AuthService.cs:line 148
+   at YoutubeClone.WebApp.Controllers.AuthController.Login(LoginAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Controllers\AuthController.cs:line 88
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-05-27 15:16:45.950 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 500 null application/json; charset=utf-8 253.7974ms
+2026-05-27 15:21:27.029 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 15:21:27.102 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 15:21:27.129 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 15:21:27.130 -05:00 [INF] Hosting environment: Development
+2026-05-27 15:21:27.131 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 15:21:27.970 -05:00 [INF] Executed DbCommand (111ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 15:21:28.159 -05:00 [INF] Executed DbCommand (141ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 15:21:30.070 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-05-27 15:21:30.096 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 15:21:30.114 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:21:30.125 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse]] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 15:21:30.425 -05:00 [INF] Executed DbCommand (179ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 15:21:37.955 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 15:21:37.966 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 7836.4202ms
+2026-05-27 15:21:37.972 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 15:21:37.979 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 201 null application/json; charset=utf-8 7909.993ms
+2026-05-27 15:21:42.140 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-05-27 15:21:42.177 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 15:21:42.185 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.Collections.Generic.List`1[YoutubeClone.Application.Models.DTOs.UserDto]]] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 15:21:42.233 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-27 15:21:42.235 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-27 15:21:42.379 -05:00 [INF] Executed DbCommand (117ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[DeletedAt] IS NULL
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 15:21:42.388 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-27 15:21:42.397 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 209.9267ms
+2026-05-27 15:21:42.399 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 15:21:42.401 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 261.2781ms
+2026-05-27 15:21:48.457 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/register/init - application/json 42
+2026-05-27 15:21:48.462 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 15:21:48.466 -05:00 [INF] Route matched with {action = "RegisterInit", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.String]] RegisterInit(YoutubeClone.Application.Models.Requests.Auth.Register.RegisterInitAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 15:21:48.634 -05:00 [INF] Executed DbCommand (158ms) [Parameters=[@__model_Email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]
+        WHERE [u].[Email] = @__model_Email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 15:21:55.424 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-27 15:21:55.427 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp) in 6958.9869ms
+2026-05-27 15:21:55.430 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 15:21:55.432 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/register/init - 201 null application/json; charset=utf-8 6974.7115ms

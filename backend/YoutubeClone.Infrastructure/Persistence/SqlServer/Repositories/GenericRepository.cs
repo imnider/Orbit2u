@@ -4,7 +4,7 @@ using YoutubeClone.Domain.Database.SqlServer.Context;
 
 namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
 {
-    public class GenericRepository<T>(YoutubeCloneContext context) where T : class
+    public class GenericRepository<T>(Orbit2uContext context) where T : class
     {
         public async Task<T> Create(T entity)
         {

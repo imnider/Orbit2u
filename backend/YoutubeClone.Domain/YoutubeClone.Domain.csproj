@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Database\SqlServer\Entities\" />
-    <Folder Include="Database\SqlServer\Context\" />
   </ItemGroup>
 
   <ItemGroup>

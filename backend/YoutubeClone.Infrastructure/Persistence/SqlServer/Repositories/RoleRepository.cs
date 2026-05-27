@@ -5,7 +5,7 @@ using YoutubeClone.Domain.Interfaces.Repositories;
 
 namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
 {
-    public class RoleRepository(YoutubeCloneContext context) : GenericRepository<Role>(context), IRoleRepository
+    public class RoleRepository(Orbit2uContext context) : GenericRepository<Role>(context), IRoleRepository
     {
         public async Task<Role?> Get(Guid id)
         {

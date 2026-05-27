@@ -9,6 +9,8 @@ public partial class Video
 
     public Guid ChannelId { get; set; }
 
+    public Guid? CommunityId { get; set; }
+
     public int VideoAccessibilityId { get; set; }
 
     public string Title { get; set; } = null!;
@@ -23,6 +25,8 @@ public partial class Video
 
     public bool AgeRestriction { get; set; }
 
+    public bool IsPinned { get; set; }
+
     public DateTime PublishedAt { get; set; }
 
     public DateTime CreatedAt { get; set; }
@@ -34,6 +38,8 @@ public partial class Video
     public virtual Channel Channel { get; set; } = null!;
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
+    public virtual Community? Community { get; set; }
 
     public virtual ICollection<PlaylistVideo> PlaylistVideos { get; set; } = new List<PlaylistVideo>();
 

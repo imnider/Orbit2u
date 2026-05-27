@@ -19,6 +19,8 @@ public partial class Playlist
 
     public bool IsPublic { get; set; }
 
+    public bool IsCollaborative { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
@@ -28,6 +30,8 @@ public partial class Playlist
     public virtual Channel? Channel { get; set; }
 
     public virtual CreatorType CreatorType { get; set; } = null!;
+
+    public virtual ICollection<PlaylistContributor> PlaylistContributors { get; set; } = new List<PlaylistContributor>();
 
     public virtual ICollection<PlaylistVideo> PlaylistVideos { get; set; } = new List<PlaylistVideo>();
 
