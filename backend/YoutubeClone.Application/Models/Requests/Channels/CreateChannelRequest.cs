@@ -6,9 +6,6 @@ namespace YoutubeClone.Application.Models.Requests.Channels
     public class CreateChannelRequest
     {
         [Required(ErrorMessage = ValidationConstants.REQUIRED)]
-        public Guid UserId { get; set; }
-
-        [Required(ErrorMessage = ValidationConstants.REQUIRED)]
         [MaxLength(30, ErrorMessage = ValidationConstants.MAX_LENGTH)]
         [MinLength(5, ErrorMessage = ValidationConstants.MIN_LENGTH)]
         public string Handle { get; set; } = null!;
