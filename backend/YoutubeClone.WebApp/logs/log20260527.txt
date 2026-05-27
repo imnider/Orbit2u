@@ -1,0 +1,199 @@
+2026-05-27 13:59:57.764 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 13:59:57.909 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 13:59:57.966 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 13:59:57.968 -05:00 [INF] Hosting environment: Development
+2026-05-27 13:59:57.970 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 13:59:58.373 -05:00 [INF] Executed DbCommand (118ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 13:59:58.685 -05:00 [INF] Executed DbCommand (229ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 14:00:10.813 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/register/init - application/json 42
+2026-05-27 14:00:10.855 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 14:00:10.882 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 14:00:10.901 -05:00 [INF] Route matched with {action = "RegisterInit", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.String]] RegisterInit(YoutubeClone.Application.Models.Requests.Auth.Register.RegisterInitAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 14:00:11.100 -05:00 [INF] Executed DbCommand (114ms) [Parameters=[@__model_Email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]
+        WHERE [u].[Email] = @__model_Email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 14:00:18.234 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-27 14:00:18.249 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp) in 7341.8722ms
+2026-05-27 14:00:18.257 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 14:00:18.269 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/register/init - 201 null application/json; charset=utf-8 7458.2433ms
+2026-05-27 14:10:32.668 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 14:10:32.744 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 14:10:32.772 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 14:10:32.773 -05:00 [INF] Hosting environment: Development
+2026-05-27 14:10:32.774 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 14:10:33.499 -05:00 [INF] Executed DbCommand (122ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 14:10:33.767 -05:00 [INF] Executed DbCommand (185ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 14:10:59.447 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/register/init - application/json 42
+2026-05-27 14:10:59.472 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 14:10:59.489 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 14:10:59.500 -05:00 [INF] Route matched with {action = "RegisterInit", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.String]] RegisterInit(YoutubeClone.Application.Models.Requests.Auth.Register.RegisterInitAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 14:10:59.687 -05:00 [INF] Executed DbCommand (135ms) [Parameters=[@__model_Email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]
+        WHERE [u].[Email] = @__model_Email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 14:11:04.718 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp) in 5213.6661ms
+2026-05-27 14:11:04.724 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 14:11:04.762 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "2c82c52d-d53a-425d-aa45-6c0b2fcca984". Excepción: System.Net.Mail.SmtpException: Failure sending mail.
+ ---> System.Security.Authentication.AuthenticationException: The remote certificate is invalid according to the validation procedure: RemoteCertificateNameMismatch
+   at System.Net.Security.SslStream.CompleteHandshake(SslAuthenticationOptions sslAuthenticationOptions)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at System.Net.Mail.SmtpConnection.ConnectAndHandshakeAsyncResult.TlsStreamAuthenticateCallback(IAsyncResult result)
+--- End of stack trace from previous location ---
+   at System.Net.Mail.SmtpClient.ConnectCallback(IAsyncResult result)
+   --- End of inner exception stack trace ---
+   at YoutubeClone.Shared.SMTP.Send(String to, String subject, String body) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Shared\SMTP.cs:line 23
+   at YoutubeClone.Application.Services.AuthService.RegisterInit(RegisterInitAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Application\Services\AuthService.cs:line 47
+   at YoutubeClone.WebApp.Controllers.AuthController.RegisterInit(RegisterInitAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Controllers\AuthController.cs:line 28
+   at lambda_method75(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-05-27 14:11:04.777 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/register/init - 500 null application/json; charset=utf-8 5330.9513ms
+2026-05-27 14:14:53.344 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 14:14:53.482 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 14:14:53.533 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 14:14:53.535 -05:00 [INF] Hosting environment: Development
+2026-05-27 14:14:53.537 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 14:14:54.219 -05:00 [INF] Executed DbCommand (178ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 14:14:54.455 -05:00 [INF] Executed DbCommand (157ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 14:15:12.107 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/register/init - application/json 42
+2026-05-27 14:15:12.146 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 14:15:12.174 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 14:15:12.192 -05:00 [INF] Route matched with {action = "RegisterInit", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.String]] RegisterInit(YoutubeClone.Application.Models.Requests.Auth.Register.RegisterInitAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 14:15:12.408 -05:00 [INF] Executed DbCommand (132ms) [Parameters=[@__model_Email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]
+        WHERE [u].[Email] = @__model_Email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 14:15:12.434 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp) in 236.835ms
+2026-05-27 14:15:12.441 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 14:15:12.448 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "0f248f31-fd13-48dc-bc57-26b062f0983f". Excepción: System.IO.FileNotFoundException: Could not load file or assembly 'MailKit, Version=4.17.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b'. The system cannot find the file specified.
+File name: 'MailKit, Version=4.17.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b'
+   at YoutubeClone.Shared.SMTP.Send(String to, String subject, String body)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at YoutubeClone.Shared.SMTP.Send(String to, String subject, String body)
+   at YoutubeClone.Application.Services.AuthService.RegisterInit(RegisterInitAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Application\Services\AuthService.cs:line 47
+   at YoutubeClone.WebApp.Controllers.AuthController.RegisterInit(RegisterInitAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Controllers\AuthController.cs:line 28
+   at lambda_method75(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-05-27 14:15:12.467 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/register/init - 500 null application/json; charset=utf-8 362.9476ms
+2026-05-27 14:16:59.164 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 14:16:59.302 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 14:16:59.354 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 14:16:59.356 -05:00 [INF] Hosting environment: Development
+2026-05-27 14:16:59.357 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 14:16:59.716 -05:00 [INF] Executed DbCommand (119ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 14:16:59.907 -05:00 [INF] Executed DbCommand (110ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 14:17:03.099 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/register/init - application/json 42
+2026-05-27 14:17:03.124 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 14:17:03.142 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 14:17:03.153 -05:00 [INF] Route matched with {action = "RegisterInit", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.String]] RegisterInit(YoutubeClone.Application.Models.Requests.Auth.Register.RegisterInitAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 14:17:03.317 -05:00 [INF] Executed DbCommand (109ms) [Parameters=[@__model_Email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]
+        WHERE [u].[Email] = @__model_Email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 14:17:08.667 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp) in 5509.038ms
+2026-05-27 14:17:08.674 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
+2026-05-27 14:17:08.687 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "006efddb-d2be-4ebd-a663-49f0d4ef0eef". Excepción: MailKit.Security.SslHandshakeException: An error occurred while attempting to establish an SSL or TLS connection.
+
+The host name (smtp-relay.brevo.com) did not match any of the names given in the server's SSL certificate:
+  • smtp-relay-offshore-southamerica-east-v2.sendinblue.com
+  • smtp-relay.sendinblue.com
+
+ ---> System.Security.Authentication.AuthenticationException: The remote certificate was rejected by the provided RemoteCertificateValidationCallback.
+   at System.Net.Security.SslStream.CompleteHandshake(SslAuthenticationOptions sslAuthenticationOptions)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.SslHandshakeAsync(SslStream ssl, String host, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.PostConnectAsync(Stream stream, String host, Int32 port, SecureSocketOptions options, Boolean starttls, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.PostConnectAsync(Stream stream, String host, Int32 port, SecureSocketOptions options, Boolean starttls, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at YoutubeClone.Shared.SMTP.Send(String to, String subject, String body) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Shared\SMTP.cs:line 18
+   at YoutubeClone.Application.Services.AuthService.RegisterInit(RegisterInitAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.Application\Services\AuthService.cs:line 47
+   at YoutubeClone.WebApp.Controllers.AuthController.RegisterInit(RegisterInitAuthRequest model) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Controllers\AuthController.cs:line 28
+   at lambda_method75(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-05-27 14:17:08.705 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/register/init - 500 null application/json; charset=utf-8 5607.8073ms

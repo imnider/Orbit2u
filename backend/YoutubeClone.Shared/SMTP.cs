@@ -1,5 +1,6 @@
-﻿using System.Net;
-using System.Net.Mail;
+﻿using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 
 namespace YoutubeClone.Shared
 {
@@ -7,20 +8,20 @@ namespace YoutubeClone.Shared
     {
         public async Task Send(string to, string subject, string body)
         {
-            var smtpClient = new SmtpClient
-            {
-                Host = host,
-                Credentials = new NetworkCredential(user, password),
-                Port = port,
-                EnableSsl = false
-            };
+            var message = new MimeMessage();
+            message.From.Add(MailboxAddress.Parse(from));
+            message.To.Add(MailboxAddress.Parse(to));
+            message.Subject = subject;
+            message.Body = new TextPart("html") { Text = body };
 
-            var message = new MailMessage(from, to, subject, body)
-            {
-                IsBodyHtml = true
-            };
+            using var client = new SmtpClient();
 
-            smtpClient.Send(message);
+            client.ServerCertificateValidationCallback = (sender, certificate, chain, errors) => true;
+
+            await client.ConnectAsync(host, port, SecureSocketOptions.StartTls);
+            await client.AuthenticateAsync(user, password);
+            await client.SendAsync(message);
+            await client.DisconnectAsync(true);
         }
     }
 }
