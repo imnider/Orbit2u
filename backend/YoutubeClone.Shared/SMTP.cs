@@ -12,7 +12,7 @@ namespace YoutubeClone.Shared
                 Host = host,
                 Credentials = new NetworkCredential(user, password),
                 Port = port,
-                EnableSsl = true
+                EnableSsl = false
             };
 
             var message = new MailMessage(from, to, subject, body)
