@@ -20,7 +20,9 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
             {
                 return await context.UserAccounts
                     .Include(user => user.UserAccountRoles)
-                    .ThenInclude(userRoles => userRoles.Role)
+                        .ThenInclude(userRoles => userRoles.Role)
+                    .Include(user => user.UserMemberships)
+                        .ThenInclude(membership => membership.MembershipPlan)
                     .FirstOrDefaultAsync(x => x.UserId == userId && x.DeletedAt == null);
             }
             catch (Exception)
@@ -36,7 +38,9 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
             {
                 return await context.UserAccounts
                     .Include(user => user.UserAccountRoles)
-                    .ThenInclude(userRoles => userRoles.Role)
+                        .ThenInclude(userRoles => userRoles.Role)
+                    .Include(user => user.UserMemberships)
+                        .ThenInclude(membership => membership.MembershipPlan)
                     .FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);
             }
             catch (Exception)

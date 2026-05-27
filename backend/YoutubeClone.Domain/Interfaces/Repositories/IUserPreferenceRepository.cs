@@ -2,7 +2,7 @@
 
 namespace YoutubeClone.Domain.Interfaces.Repositories
 {
-    public interface IUserWalletRepository : IGenericRepository<UserWallet>
+    public interface IUserPreferenceRepository : IGenericRepository<UserPreference>
     {
 
     }

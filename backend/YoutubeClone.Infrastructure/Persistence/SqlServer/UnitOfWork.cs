@@ -7,13 +7,20 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer
     public class UnitOfWork(Orbit2uContext _context,
         IUserRepository _userRepository,
         IEmailTemplateRepository _emailTemplateRepository,
-        IRoleRepository _roleRepository)
+        IRoleRepository _roleRepository,
+        IUserWalletRepository _userWalletRepository,
+        IMembershipPlanRepository _membershipPlanRepository,
+        IUserPreferenceRepository _userPreferenceRepository)
         : IUnitOfWork
     {
         private readonly Orbit2uContext context = _context;
         public IUserRepository userRepository { get; set; } = _userRepository;
         public IEmailTemplateRepository emailTemplateRepository { get; set; } = _emailTemplateRepository;
         public IRoleRepository roleRepository { get; set; } = _roleRepository;
+        public IUserWalletRepository userWalletRepository { get; set; } = _userWalletRepository;
+        public IMembershipPlanRepository membershipPlanRepository { get; set; } = _membershipPlanRepository;
+        public IUserPreferenceRepository userPreferenceRepository { get; set; } = _userPreferenceRepository;
+
 
         public async Task SaveChangesAsync()
         {

@@ -44,6 +44,9 @@ namespace YoutubeClone.Application.Services
                 throw new BadRequestException("Imposible obtener el rol para asignarle al usuario");
             }
 
+            var freePlan = await uow.membershipPlanRepository.Get(x => x.DisplayName == "Free")
+                ?? throw new BadRequestException("No se encontró el plan Free");
+
             var password = Generate.RandomText(32);
 
             var create = await uow.userRepository.Create(new UserAccount
@@ -60,7 +63,28 @@ namespace YoutubeClone.Application.Services
                     RoleId = roleToAssign.RoleId,
                     AssignedBy = executor?.UserId,
                     AssignedAt = DateTimeHelper.UtcNow()
+                }],
+                UserMemberships = [new UserMembership {
+                    MembershipPlanId = freePlan.MembershipPlanId,
+                    StartDate = DateTimeHelper.UtcNow(),
+                    IsActive = true,
+                    CreatedAt = DateTimeHelper.UtcNow()
                 }]
+            });
+
+            await uow.userWalletRepository.Create(new UserWallet
+            {
+                UserId = create.UserId,
+                Balance = 0,
+                UpdatedAt = DateTimeHelper.UtcNow()
+            });
+
+            await uow.userPreferenceRepository.Create(new UserPreference
+            {
+                UserId = create.UserId,
+                // tema por defecto en la base de datos
+                CreatedAt = DateTimeHelper.UtcNow(),
+                UpdatedAt = DateTimeHelper.UtcNow()
             });
 
             var template = await emailTemplateService.Get(EmailTemplateNameConstants.USER_REGISTER, new Dictionary<string, string>
@@ -114,7 +138,9 @@ namespace YoutubeClone.Application.Services
             // Paginación y consulta
             var users = queryable
                 .Include(user => user.UserAccountRoles)
-                .ThenInclude(userRole => userRole.Role)
+                    .ThenInclude(userRole => userRole.Role)
+                .Include(user => user.UserMemberships)
+                    .ThenInclude(membership => membership.MembershipPlan)
                 .AsQueryable()
                 .Skip(model.Offset)
                 .Take(model.Limit)
@@ -225,6 +251,7 @@ namespace YoutubeClone.Application.Services
         private static UserDto Map(UserAccount user)
         {
             var role = user.UserAccountRoles.FirstOrDefault()?.Role;
+            var membershipPlan = user.UserMemberships.FirstOrDefault()?.MembershipPlan;
 
             return new UserDto
             {
@@ -241,6 +268,16 @@ namespace YoutubeClone.Application.Services
                     Id = role.RoleId,
                     Name = role.Name,
                     Description = role.Description
+                } : null,
+                MembershipPlan = membershipPlan != null ? new MembershipPlanDto
+                {
+                    MembershipPlanId = membershipPlan.MembershipPlanId,
+                    DisplayName = membershipPlan.DisplayName,
+                    Description = membershipPlan.Description,
+                    MonthlyPrice = membershipPlan.MonthlyPrice,
+                    CoinsReward = membershipPlan.CoinsReward,
+                    MaxCommunities = membershipPlan.MaxCommunities,
+                    MaxVideosPerCommunity = membershipPlan.MaxVideosPerCommunity
                 } : null
             };
         }

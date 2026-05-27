@@ -584,3 +584,526 @@ END
 2026-05-27 15:21:55.427 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp) in 6958.9869ms
 2026-05-27 15:21:55.430 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.RegisterInit (YoutubeClone.WebApp)'
 2026-05-27 15:21:55.432 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/register/init - 201 null application/json; charset=utf-8 6974.7115ms
+2026-05-27 16:11:23.859 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 16:11:23.999 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 16:11:24.051 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 16:11:24.053 -05:00 [INF] Hosting environment: Development
+2026-05-27 16:11:24.055 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 16:11:24.478 -05:00 [INF] Executed DbCommand (163ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:11:24.679 -05:00 [INF] Executed DbCommand (117ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 16:11:27.332 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-05-27 16:11:27.374 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 16:11:27.404 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 16:11:27.422 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse]] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 16:11:27.758 -05:00 [INF] Executed DbCommand (129ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:11:34.746 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:11:34.762 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 7332.4538ms
+2026-05-27 16:11:34.769 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 16:11:34.782 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 201 null application/json; charset=utf-8 7451.7262ms
+2026-05-27 16:16:29.034 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 16:16:29.124 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 16:16:29.175 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 16:16:29.177 -05:00 [INF] Hosting environment: Development
+2026-05-27 16:16:29.179 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 16:16:29.605 -05:00 [INF] Executed DbCommand (113ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:16:29.788 -05:00 [INF] Executed DbCommand (101ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 16:16:31.931 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-05-27 16:16:31.971 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 16:16:32.051 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-05-27 16:16:32.064 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.UserDto]] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:16:32.423 -05:00 [INF] Executed DbCommand (189ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:16:32.544 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:16:32.573 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 502.4109ms
+2026-05-27 16:16:32.581 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-05-27 16:16:32.593 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 664.1991ms
+2026-05-27 16:19:51.422 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 16:19:51.556 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 16:19:51.608 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 16:19:51.610 -05:00 [INF] Hosting environment: Development
+2026-05-27 16:19:51.612 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 16:19:52.244 -05:00 [INF] Executed DbCommand (161ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:19:52.443 -05:00 [INF] Executed DbCommand (115ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 16:26:39.578 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 16:26:39.713 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 16:26:39.762 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 16:26:39.763 -05:00 [INF] Hosting environment: Development
+2026-05-27 16:26:39.764 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 16:26:40.424 -05:00 [INF] Executed DbCommand (155ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:26:40.622 -05:00 [INF] Executed DbCommand (117ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 16:27:26.748 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-05-27 16:27:26.784 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 16:27:26.851 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-05-27 16:27:26.862 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.UserDto]] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:27:27.129 -05:00 [INF] Executed DbCommand (118ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:27:27.228 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:27:27.256 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 388.7838ms
+2026-05-27 16:27:27.262 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-05-27 16:27:27.271 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 524.3878ms
+2026-05-27 16:27:41.661 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-05-27 16:27:41.667 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 16:27:41.675 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse]] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-05-27 16:27:41.877 -05:00 [INF] Executed DbCommand (109ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:27:48.721 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:27:48.725 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 7047.9179ms
+2026-05-27 16:27:48.727 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-05-27 16:27:48.728 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 201 null application/json; charset=utf-8 7067.3737ms
+2026-05-27 16:27:52.052 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-05-27 16:27:52.059 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 16:27:52.067 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.Collections.Generic.List`1[YoutubeClone.Application.Models.DTOs.UserDto]]] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:27:52.082 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-27 16:27:52.084 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-27 16:27:52.250 -05:00 [INF] Executed DbCommand (146ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[DeletedAt] IS NULL
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:27:52.259 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-27 16:27:52.263 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 193.7431ms
+2026-05-27 16:27:52.264 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 16:27:52.266 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 214.1421ms
+2026-05-27 16:28:16.813 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/users - application/json 250
+2026-05-27 16:28:16.823 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Create (YoutubeClone.WebApp)'
+2026-05-27 16:28:16.827 -05:00 [INF] Route matched with {action = "Create", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.UserDto]] Create(YoutubeClone.Application.Models.Requests.Users.CreateUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:28:16.963 -05:00 [INF] Executed DbCommand (110ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:28:17.084 -05:00 [INF] Executed DbCommand (112ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:28:17.221 -05:00 [INF] Executed DbCommand (127ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[RoleID], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+FROM [Roles] AS [r]
+WHERE [r].[RoleID] = @__id_0
+2026-05-27 16:28:17.225 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Create (YoutubeClone.WebApp) in 396.2466ms
+2026-05-27 16:28:17.227 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Create (YoutubeClone.WebApp)'
+2026-05-27 16:28:17.231 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 404 null application/json; charset=utf-8 418.1488ms
+2026-05-27 16:28:31.403 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/app/info - null null
+2026-05-27 16:28:31.406 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AppController.Info (YoutubeClone.WebApp)'
+2026-05-27 16:28:31.410 -05:00 [INF] Route matched with {action = "Info", controller = "App"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.AppInfoDto]] Info() on controller YoutubeClone.WebApp.Controllers.AppController (YoutubeClone.WebApp).
+2026-05-27 16:28:31.596 -05:00 [INF] Executed DbCommand (175ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RoleID], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+FROM [Roles] AS [r]
+WHERE [r].[IsActive] = CAST(1 AS bit)
+2026-05-27 16:28:31.600 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.AppInfoDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:28:31.603 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AppController.Info (YoutubeClone.WebApp) in 190.7763ms
+2026-05-27 16:28:31.605 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AppController.Info (YoutubeClone.WebApp)'
+2026-05-27 16:28:31.606 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/app/info - 200 null application/json; charset=utf-8 203.5946ms
+2026-05-27 16:28:47.694 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/users - application/json 250
+2026-05-27 16:28:47.698 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Create (YoutubeClone.WebApp)'
+2026-05-27 16:28:47.699 -05:00 [INF] Route matched with {action = "Create", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.UserDto]] Create(YoutubeClone.Application.Models.Requests.Users.CreateUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:28:47.884 -05:00 [INF] Executed DbCommand (180ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:28:48.089 -05:00 [INF] Executed DbCommand (202ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:28:48.207 -05:00 [INF] Executed DbCommand (115ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[RoleID], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+FROM [Roles] AS [r]
+WHERE [r].[RoleID] = @__id_0
+2026-05-27 16:28:48.396 -05:00 [INF] Executed DbCommand (177ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[MembershipPlanID], [m].[CoinsReward], [m].[CreatedAt], [m].[DeletedAt], [m].[Description], [m].[DisplayName], [m].[MaxCommunities], [m].[MaxVideosPerCommunity], [m].[MonthlyPrice], [m].[UpdatedAt]
+FROM [MembershipPlan] AS [m]
+WHERE [m].[DisplayName] = N'Free'
+2026-05-27 16:28:55.711 -05:00 [INF] Executed DbCommand (134ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (Size = 50), @p5='?' (Size = 255), @p6='?' (Size = 30), @p7='?' (Size = 255), @p8='?' (DbType = DateTime2), @p9='?' (Size = 20), @p10='?' (DbType = DateTime2), @p11='?' (DbType = Guid), @p12='?' (DbType = Guid), @p13='?' (DbType = Guid), @p14='?' (DbType = DateTime2), @p15='?' (DbType = DateTime2), @p16='?' (DbType = Int32), @p17='?' (DbType = DateTime2), @p18='?' (DbType = Guid), @p19='?' (DbType = DateTime2), @p20='?' (DbType = DateTime2), @p21='?' (DbType = Guid), @p22='?' (DbType = Int32), @p23='?' (DbType = DateTime2), @p24='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [UserAccount] ([UserID], [Birthday], [CreatedAt], [DeletedAt], [DisplayName], [Email], [Location], [Password], [UpdatedAt], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+INSERT INTO [UserAccountRole] ([AssignedAt], [AssignedBy], [RoleID], [UserID])
+OUTPUT INSERTED.[UserRoleID]
+VALUES (@p10, @p11, @p12, @p13);
+INSERT INTO [UserMembership] ([CreatedAt], [EndDate], [MembershipPlanID], [StartDate], [UserID])
+OUTPUT INSERTED.[UserMembershipID], INSERTED.[IsActive]
+VALUES (@p14, @p15, @p16, @p17, @p18);
+INSERT INTO [UserPreference] ([CreatedAt], [UpdatedAt], [UserID])
+OUTPUT INSERTED.[UserPreferenceID], INSERTED.[ThemeName]
+VALUES (@p19, @p20, @p21);
+INSERT INTO [UserWallet] ([Balance], [UpdatedAt], [UserID])
+OUTPUT INSERTED.[UserWalletID]
+VALUES (@p22, @p23, @p24);
+2026-05-27 16:28:55.868 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:28:55.872 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Create (YoutubeClone.WebApp) in 8170.3651ms
+2026-05-27 16:28:55.874 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Create (YoutubeClone.WebApp)'
+2026-05-27 16:28:55.876 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 201 null application/json; charset=utf-8 8181.1129ms
+2026-05-27 16:34:35.542 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 16:34:35.681 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 16:34:35.731 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 16:34:35.734 -05:00 [INF] Hosting environment: Development
+2026-05-27 16:34:35.735 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 16:34:36.100 -05:00 [INF] Executed DbCommand (120ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:34:36.294 -05:00 [INF] Executed DbCommand (111ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 16:34:41.656 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-05-27 16:34:41.699 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 16:34:41.777 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 16:34:41.799 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.Collections.Generic.List`1[YoutubeClone.Application.Models.DTOs.UserDto]]] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:34:41.880 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-27 16:34:41.882 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-27 16:34:42.217 -05:00 [INF] Executed DbCommand (221ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[DeletedAt] IS NULL
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:34:42.336 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-27 16:34:42.363 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 557.378ms
+2026-05-27 16:34:42.370 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 16:34:42.379 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 724.8143ms
+2026-05-27 16:37:24.699 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 16:37:24.834 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 16:37:24.883 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 16:37:24.885 -05:00 [INF] Hosting environment: Development
+2026-05-27 16:37:24.886 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 16:37:25.313 -05:00 [INF] Executed DbCommand (122ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:37:25.523 -05:00 [INF] Executed DbCommand (127ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 16:37:28.233 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-05-27 16:37:28.274 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 16:37:28.353 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 16:37:28.375 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.Collections.Generic.List`1[YoutubeClone.Application.Models.DTOs.UserDto]]] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:37:28.462 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-27 16:37:28.464 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-27 16:37:28.556 -05:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-05-27 16:37:28.779 -05:00 [INF] Executed DbCommand (173ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u2].[UserID], [u2].[Birthday], [u2].[CreatedAt], [u2].[DeletedAt], [u2].[DisplayName], [u2].[Email], [u2].[Location], [u2].[Password], [u2].[UpdatedAt], [u2].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt], [s0].[UserMembershipID], [s0].[CreatedAt], [s0].[EndDate], [s0].[IsActive], [s0].[MembershipPlanID], [s0].[StartDate], [s0].[UserID], [s0].[MembershipPlanID0], [s0].[CoinsReward], [s0].[CreatedAt0], [s0].[DeletedAt], [s0].[Description], [s0].[DisplayName], [s0].[MaxCommunities], [s0].[MaxVideosPerCommunity], [s0].[MonthlyPrice], [s0].[UpdatedAt]
+FROM (
+    SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[DeletedAt] IS NULL
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [u2]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u2].[UserID] = [s].[UserID]
+LEFT JOIN (
+    SELECT [u1].[UserMembershipID], [u1].[CreatedAt], [u1].[EndDate], [u1].[IsActive], [u1].[MembershipPlanID], [u1].[StartDate], [u1].[UserID], [m].[MembershipPlanID] AS [MembershipPlanID0], [m].[CoinsReward], [m].[CreatedAt] AS [CreatedAt0], [m].[DeletedAt], [m].[Description], [m].[DisplayName], [m].[MaxCommunities], [m].[MaxVideosPerCommunity], [m].[MonthlyPrice], [m].[UpdatedAt]
+    FROM [UserMembership] AS [u1]
+    INNER JOIN [MembershipPlan] AS [m] ON [u1].[MembershipPlanID] = [m].[MembershipPlanID]
+) AS [s0] ON [u2].[UserID] = [s0].[UserID]
+ORDER BY [u2].[UserID], [s].[UserRoleID], [s].[RoleID0], [s0].[UserMembershipID]
+2026-05-27 16:37:28.936 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-27 16:37:28.969 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 587.2119ms
+2026-05-27 16:37:28.975 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 16:37:28.984 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 752.8075ms
+2026-05-27 16:37:42.569 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-05-27 16:37:42.580 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-05-27 16:37:42.585 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.UserDto]] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:37:42.807 -05:00 [INF] Executed DbCommand (113ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:37:42.820 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:37:42.824 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 235.02ms
+2026-05-27 16:37:42.827 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-05-27 16:37:42.831 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 261.5597ms
+2026-05-27 16:39:41.999 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/bb8fc9af-19bb-4d65-88f1-c33ebc4d1c4c - null null
+2026-05-27 16:39:42.007 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp)'
+2026-05-27 16:39:42.012 -05:00 [INF] Route matched with {action = "GetById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.UserDto]] GetById(System.Guid) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:39:42.250 -05:00 [INF] Executed DbCommand (221ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:39:42.254 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:39:42.256 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp) in 241.8018ms
+2026-05-27 16:39:42.258 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp)'
+2026-05-27 16:39:42.259 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/bb8fc9af-19bb-4d65-88f1-c33ebc4d1c4c - 200 null application/json; charset=utf-8 260.3917ms
+2026-05-27 16:39:54.763 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-05-27 16:39:54.767 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 16:39:54.768 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[System.Collections.Generic.List`1[YoutubeClone.Application.Models.DTOs.UserDto]]] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:39:54.890 -05:00 [INF] Executed DbCommand (118ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u2].[UserID], [u2].[Birthday], [u2].[CreatedAt], [u2].[DeletedAt], [u2].[DisplayName], [u2].[Email], [u2].[Location], [u2].[Password], [u2].[UpdatedAt], [u2].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt], [s0].[UserMembershipID], [s0].[CreatedAt], [s0].[EndDate], [s0].[IsActive], [s0].[MembershipPlanID], [s0].[StartDate], [s0].[UserID], [s0].[MembershipPlanID0], [s0].[CoinsReward], [s0].[CreatedAt0], [s0].[DeletedAt], [s0].[Description], [s0].[DisplayName], [s0].[MaxCommunities], [s0].[MaxVideosPerCommunity], [s0].[MonthlyPrice], [s0].[UpdatedAt]
+FROM (
+    SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[DeletedAt] IS NULL
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [u2]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u2].[UserID] = [s].[UserID]
+LEFT JOIN (
+    SELECT [u1].[UserMembershipID], [u1].[CreatedAt], [u1].[EndDate], [u1].[IsActive], [u1].[MembershipPlanID], [u1].[StartDate], [u1].[UserID], [m].[MembershipPlanID] AS [MembershipPlanID0], [m].[CoinsReward], [m].[CreatedAt] AS [CreatedAt0], [m].[DeletedAt], [m].[Description], [m].[DisplayName], [m].[MaxCommunities], [m].[MaxVideosPerCommunity], [m].[MonthlyPrice], [m].[UpdatedAt]
+    FROM [UserMembership] AS [u1]
+    INNER JOIN [MembershipPlan] AS [m] ON [u1].[MembershipPlanID] = [m].[MembershipPlanID]
+) AS [s0] ON [u2].[UserID] = [s0].[UserID]
+ORDER BY [u2].[UserID], [s].[UserRoleID], [s].[RoleID0], [s0].[UserMembershipID]
+2026-05-27 16:39:54.895 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-27 16:39:54.897 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 126.9078ms
+2026-05-27 16:39:54.898 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-05-27 16:39:54.899 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 136.3883ms
+2026-05-27 16:41:28.311 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/bb8fc9af-19bb-4d65-88f1-c33ebc4d1c4c - null null
+2026-05-27 16:41:28.315 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp)'
+2026-05-27 16:41:28.316 -05:00 [INF] Route matched with {action = "GetById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.UserDto]] GetById(System.Guid) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:41:28.439 -05:00 [INF] Executed DbCommand (119ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:41:28.443 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:41:28.445 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp) in 126.676ms
+2026-05-27 16:41:28.447 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp)'
+2026-05-27 16:41:28.448 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/bb8fc9af-19bb-4d65-88f1-c33ebc4d1c4c - 200 null application/json; charset=utf-8 136.5594ms
+2026-05-27 16:41:50.636 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 16:41:50.714 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 16:41:50.743 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 16:41:50.744 -05:00 [INF] Hosting environment: Development
+2026-05-27 16:41:50.746 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 16:41:51.211 -05:00 [INF] Executed DbCommand (108ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:41:51.367 -05:00 [INF] Executed DbCommand (105ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 16:41:53.208 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/bb8fc9af-19bb-4d65-88f1-c33ebc4d1c4c - null null
+2026-05-27 16:41:53.248 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 16:41:53.328 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp)'
+2026-05-27 16:41:53.348 -05:00 [INF] Route matched with {action = "GetById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.UserDto]] GetById(System.Guid) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:41:53.651 -05:00 [INF] Executed DbCommand (119ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u1].[UserID], [u1].[Birthday], [u1].[CreatedAt], [u1].[DeletedAt], [u1].[DisplayName], [u1].[Email], [u1].[Location], [u1].[Password], [u1].[UpdatedAt], [u1].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+) AS [u1]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u1].[UserID] = [s].[UserID]
+ORDER BY [u1].[UserID], [s].[UserRoleID]
+2026-05-27 16:41:53.769 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:41:53.796 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp) in 440.9971ms
+2026-05-27 16:41:53.803 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp)'
+2026-05-27 16:41:53.812 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/bb8fc9af-19bb-4d65-88f1-c33ebc4d1c4c - 200 null application/json; charset=utf-8 606.6074ms
+2026-05-27 16:44:03.136 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-27 16:44:03.286 -05:00 [INF] Now listening on: http://localhost:5288
+2026-05-27 16:44:03.342 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-27 16:44:03.345 -05:00 [INF] Hosting environment: Development
+2026-05-27 16:44:03.346 -05:00 [INF] Content root path: D:\Documents\workspace\orbit2u\backend\YoutubeClone.WebApp
+2026-05-27 16:44:03.910 -05:00 [INF] Executed DbCommand (206ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-27 16:44:04.101 -05:00 [INF] Executed DbCommand (112ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-05-27 16:44:04.586 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/bb8fc9af-19bb-4d65-88f1-c33ebc4d1c4c - null null
+2026-05-27 16:44:04.629 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-05-27 16:44:04.702 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp)'
+2026-05-27 16:44:04.720 -05:00 [INF] Route matched with {action = "GetById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.UserDto]] GetById(System.Guid) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-05-27 16:44:04.887 -05:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-05-27 16:44:05.116 -05:00 [INF] Executed DbCommand (183ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u2].[UserID], [u2].[Birthday], [u2].[CreatedAt], [u2].[DeletedAt], [u2].[DisplayName], [u2].[Email], [u2].[Location], [u2].[Password], [u2].[UpdatedAt], [u2].[UserName], [s].[UserRoleID], [s].[AssignedAt], [s].[AssignedBy], [s].[RoleID], [s].[UserID], [s].[RoleID0], [s].[CreatedAt], [s].[DeletedAt], [s].[Description], [s].[IsActive], [s].[Name], [s].[UpdatedAt], [s0].[UserMembershipID], [s0].[CreatedAt], [s0].[EndDate], [s0].[IsActive], [s0].[MembershipPlanID], [s0].[StartDate], [s0].[UserID], [s0].[MembershipPlanID0], [s0].[CoinsReward], [s0].[CreatedAt0], [s0].[DeletedAt], [s0].[Description], [s0].[DisplayName], [s0].[MaxCommunities], [s0].[MaxVideosPerCommunity], [s0].[MonthlyPrice], [s0].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+    FROM [UserAccount] AS [u]
+    WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+) AS [u2]
+LEFT JOIN (
+    SELECT [u0].[UserRoleID], [u0].[AssignedAt], [u0].[AssignedBy], [u0].[RoleID], [u0].[UserID], [r].[RoleID] AS [RoleID0], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+    FROM [UserAccountRole] AS [u0]
+    INNER JOIN [Roles] AS [r] ON [u0].[RoleID] = [r].[RoleID]
+) AS [s] ON [u2].[UserID] = [s].[UserID]
+LEFT JOIN (
+    SELECT [u1].[UserMembershipID], [u1].[CreatedAt], [u1].[EndDate], [u1].[IsActive], [u1].[MembershipPlanID], [u1].[StartDate], [u1].[UserID], [m].[MembershipPlanID] AS [MembershipPlanID0], [m].[CoinsReward], [m].[CreatedAt] AS [CreatedAt0], [m].[DeletedAt], [m].[Description], [m].[DisplayName], [m].[MaxCommunities], [m].[MaxVideosPerCommunity], [m].[MonthlyPrice], [m].[UpdatedAt]
+    FROM [UserMembership] AS [u1]
+    INNER JOIN [MembershipPlan] AS [m] ON [u1].[MembershipPlanID] = [m].[MembershipPlanID]
+) AS [s0] ON [u2].[UserID] = [s0].[UserID]
+ORDER BY [u2].[UserID], [s].[UserRoleID], [s].[RoleID0], [s0].[UserMembershipID]
+2026-05-27 16:44:05.277 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:44:05.306 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp) in 578.9484ms
+2026-05-27 16:44:05.312 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetById (YoutubeClone.WebApp)'
+2026-05-27 16:44:05.323 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/bb8fc9af-19bb-4d65-88f1-c33ebc4d1c4c - 200 null application/json; charset=utf-8 738.4568ms
+2026-05-27 16:47:38.435 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/app/info - null null
+2026-05-27 16:47:38.441 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AppController.Info (YoutubeClone.WebApp)'
+2026-05-27 16:47:38.448 -05:00 [INF] Route matched with {action = "Info", controller = "App"}. Executing controller action with signature System.Threading.Tasks.Task`1[YoutubeClone.Application.Models.Responses.GenericResponse`1[YoutubeClone.Application.Models.DTOs.AppInfoDto]] Info() on controller YoutubeClone.WebApp.Controllers.AppController (YoutubeClone.WebApp).
+2026-05-27 16:47:38.645 -05:00 [INF] Executed DbCommand (117ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RoleID], [r].[CreatedAt], [r].[DeletedAt], [r].[Description], [r].[IsActive], [r].[Name], [r].[UpdatedAt]
+FROM [Roles] AS [r]
+WHERE [r].[IsActive] = CAST(1 AS bit)
+2026-05-27 16:47:38.651 -05:00 [INF] Executing ObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.AppInfoDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-27 16:47:38.655 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AppController.Info (YoutubeClone.WebApp) in 204.0728ms
+2026-05-27 16:47:38.657 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AppController.Info (YoutubeClone.WebApp)'
+2026-05-27 16:47:38.658 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/app/info - 200 null application/json; charset=utf-8 223.0587ms

@@ -12,5 +12,6 @@
         public DateTime CreatedAt { get; set; }
         public DateTime DeletedAt { get; set; }
         public RoleDto Role { get; set; } = null!;
+        public MembershipPlanDto MembershipPlan { get; set; } = null!;
     }
 }

@@ -39,6 +39,9 @@ namespace YoutubeClone.WebApp.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEmailTemplateRepository, EmailTemplateRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IUserWalletRepository, UserWalletRepository>();
+            services.AddScoped<IMembershipPlanRepository, MembershipPlanRepository>();
+            services.AddScoped<IUserPreferenceRepository, UserPreferenceRepository>();
         }
 
         public static void AddMiddlewares(this IServiceCollection services)

@@ -2,8 +2,8 @@
 
 namespace YoutubeClone.Domain.Interfaces.Repositories
 {
-    public interface IUserWalletRepository : IGenericRepository<UserWallet>
+    public interface IMembershipPlanRepository : IGenericRepository<MembershipPlan>
     {
-
+        Task<MembershipPlan?> Get(int id);
     }
 }
