@@ -15,6 +15,7 @@ namespace YoutubeClone.Application.Interfaces.Services
         public Task<GenericResponse<UserDto>> Update(Guid id, UpdateUserRequest model, Claim? claim);
         public Task<GenericResponse<bool>> Delete(Guid id);
         Task<UserAccount> GetExecutor(string value);
+        Task<UserAccount> GetUser(Guid id);
         public Task CreateFirstUser();
 
     }

@@ -242,7 +242,7 @@ namespace YoutubeClone.Application.Services
         }
 
         // METODOS PRIVADOS
-        private async Task<UserAccount> GetUser(Guid id)
+        public async Task<UserAccount> GetUser(Guid id)
         {
             return await uow.userRepository.Get(id)
                 ?? throw new NotFoundException(ResponseConstants.USER_NOT_EXIST);

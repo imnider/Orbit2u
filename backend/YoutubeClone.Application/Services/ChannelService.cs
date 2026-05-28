@@ -6,6 +6,8 @@ using YoutubeClone.Application.Models.Requests.Channels;
 using YoutubeClone.Application.Models.Responses;
 using YoutubeClone.Domain.Database;
 using YoutubeClone.Domain.Database.SqlServer.Entities;
+using YoutubeClone.Domain.Exceptions;
+using YoutubeClone.Shared.Constants;
 using YoutubeClone.Shared.Helpers;
 
 namespace YoutubeClone.Application.Services
@@ -35,24 +37,67 @@ namespace YoutubeClone.Application.Services
             return ResponseHelper.Create(Map(create), [], "Canal creado exitosamente.");
         }
 
-        public Task<GenericResponse<bool>> Delete(Guid id)
+        public async Task<GenericResponse<bool>> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var channel = await GetChannel(id);
+
+            channel.DeletedAt = DateTimeHelper.UtcNow();
+
+            await uow.channelRepository.Update(channel);
+
+            await uow.SaveChangesAsync();
+
+            return ResponseHelper.Create(true);
         }
 
-        public Task<GenericResponse<List<ChannelDto>>> GetAll(FilterChannelRequest model)
+        public async Task<GenericResponse<List<ChannelDto>>> GetAll(FilterChannelRequest model)
         {
-            throw new NotImplementedException();
+            var queryable = uow.channelRepository.Queryable();
+
+            queryable = queryable.Where(x => x.DeletedAt == null);
+
+            if (!string.IsNullOrWhiteSpace(model.DisplayName))
+            {
+                queryable = queryable.Where(x => x.DisplayName.Contains(model.DisplayName ?? ""));
+            }
+
+            // Paginación y consulta
+            var channels = queryable
+                // includes de ser necesario
+                .AsQueryable()
+                .Skip(model.Offset)
+                .Take(model.Limit)
+                .Select(channel => Map(channel))
+                .ToList();
+
+            return ResponseHelper.Create(channels);
         }
 
-        public Task<GenericResponse<ChannelDto>> GetById(Guid id)
+        public async Task<GenericResponse<ChannelDto>> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            var channel = await GetChannel(id);
+            return ResponseHelper.Create(Map(channel));
         }
 
-        public Task<GenericResponse<ChannelDto>> Update(Guid id, UpdateChannerlRequest model)
+        public async Task<GenericResponse<ChannelDto>> Update(UpdateChannerlRequest model, Claim claim)
         {
-            throw new NotImplementedException();
+            var executor = await userService.GetExecutor(claim.Value);
+            var user = await userService.GetUser(executor.UserId);
+            var channel = await uow.channelRepository.Get(user);
+
+            channel.Handle = model.Handle ?? channel.Handle;
+            channel.DisplayName = model.DisplayName ?? channel.DisplayName;
+            channel.Description = model.Description ?? channel.Description;
+            channel.AvatarUrl = model.AvatarUrl ?? channel.AvatarUrl;
+            channel.BannerUrl = model.BannerUrl ?? channel.BannerUrl;
+
+            channel.UpdatedAt = DateTimeHelper.UtcNow();
+
+            var update = await uow.channelRepository.Update(channel);
+
+            await uow.SaveChangesAsync();
+
+            return ResponseHelper.Create(Map(channel));
         }
 
         // PRIVADOS
@@ -72,6 +117,12 @@ namespace YoutubeClone.Application.Services
                 UpdatedAt = channel.UpdatedAt,
                 DeletedAt = channel.DeletedAt,
             };
+        }
+
+        private async Task<Channel> GetChannel(Guid id)
+        {
+            return await uow.channelRepository.Get(id)
+                ?? throw new NotFoundException(ResponseConstants.CHANNEL_NOT_EXIST);
         }
     }
 }
