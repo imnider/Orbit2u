@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:5288/api',
+    apiUrl: 'https://orbit2u-backend.onrender.com/api',
     tokenKey: 'token',
     refreshTokenKey: 'refreshToken'
 }

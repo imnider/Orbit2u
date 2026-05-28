@@ -15,19 +15,11 @@ import { Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../../services/auth/auth.service';
 
-
 @Component({
   selector: 'app-login',
-
   standalone: true,
-
-  imports: [
-    ReactiveFormsModule,
-    RouterLink
-  ],
-
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
-
   styleUrl: './login.scss'
 })
 

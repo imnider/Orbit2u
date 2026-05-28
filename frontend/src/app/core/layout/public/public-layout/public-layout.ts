@@ -1,11 +1,11 @@
 import { Component, computed, HostListener, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../../../features/services/auth/auth.service';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-public-layout',
-  imports: [FormsModule, RouterLink, RouterLinkActive],
+  imports: [FormsModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './public-layout.html',
   styleUrl: './public-layout.scss',
 })
