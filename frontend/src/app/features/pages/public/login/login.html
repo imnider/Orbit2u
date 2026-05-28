@@ -1,0 +1,103 @@
+<div class="login-page">
+
+  <div class="space-background"></div>
+
+  <div class="login-card">
+
+    <div class="brand">
+
+      <div class="logo-glow"></div>
+
+      <h1>Orbit2u</h1>
+
+      <p>
+        Explora tu universo digital
+      </p>
+
+    </div>
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="login-form"
+    >
+
+      <div class="field">
+
+        <label>Email</label>
+
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="usuario@orbit2u.com"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>Contraseña</label>
+
+        <div class="password-wrapper">
+
+          <input
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="••••••••"
+          >
+
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePassword()"
+          >
+            {{ showPassword() ? 'Ocultar' : 'Mostrar' }}
+          </button>
+
+        </div>
+
+      </div>
+
+      @if(error()) {
+
+        <div class="error-message">
+          {{ error() }}
+        </div>
+
+      }
+
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="loading()"
+      >
+
+        @if(loading()) {
+
+          <span class="loader"></span>
+
+        } @else {
+
+          <span>Iniciar sesión</span>
+
+        }
+
+      </button>
+
+    </form>
+
+    <div class="footer-links">
+
+      <a routerLink="/register">
+        Crear cuenta
+      </a>
+
+      <a href="#">
+        ¿Olvidaste tu contraseña?
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
