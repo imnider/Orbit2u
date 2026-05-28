@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/aspnetcore,dotnetcore,angular
 # Edit at https://www.toptal.com/developers/gitignore?templates=aspnetcore,dotnetcore,angular
 
+### Logs ###
+backend/YoutubeClone.WebApp/logs/
+
 ### Angular ###
 ## Angular ##
 # compiled output
