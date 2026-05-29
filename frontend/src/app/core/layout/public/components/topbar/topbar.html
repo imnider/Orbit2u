@@ -1,0 +1,52 @@
+<header class="topbar">
+  <div class="topbar__logo">
+    <div class="topbar__logo-icon">
+      <img src="/images/logo-orbit.png" alt="Orbit2u">
+    </div>
+    <span class="topbar__logo-text">Orbit<span class="topbar__logo-accent">2u</span></span>
+  </div>
+
+  <div class="topbar__search">
+    <mat-icon class="topbar__search-icon">search</mat-icon>
+    <input
+      class="topbar__search-input"
+      type="text"
+      placeholder="Buscar en Orbit2u..."
+      aria-label="Buscar"
+    />
+  </div>
+
+  <div class="topbar__actions">
+
+    <div class="topbar__theme-switcher" (clickOutside)="closeThemeMenu()">
+      <button
+        class="topbar__icon-btn topbar__icon-btn--theme"
+        [class.active]="showThemeMenu"
+        (click)="toggleThemeMenu()"
+        [matTooltip]="'Tema: ' + activeThemeOption.label"
+        aria-label="Cambiar tema"
+      >
+        <mat-icon>{{ activeThemeOption.icon }}</mat-icon>
+      </button>
+
+      @if (showThemeMenu) {
+        <div class="topbar__theme-menu" role="menu">
+          @for (theme of themes; track theme.value) {
+            <button
+              class="topbar__theme-option"
+              [class.selected]="theme.value === activeTheme"
+              (click)="selectTheme(theme.value)"
+              role="menuitem"
+            >
+              <mat-icon>{{ theme.icon }}</mat-icon>
+              <span>{{ theme.label }}</span>
+            </button>
+          }
+        </div>
+      }
+    </div>
+
+    <button class="topbar__btn topbar__btn--ghost">Entrar</button>
+    <button class="topbar__btn topbar__btn--primary">Unirme</button>
+  </div>
+</header>

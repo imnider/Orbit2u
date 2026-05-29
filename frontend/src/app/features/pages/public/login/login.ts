@@ -1,17 +1,6 @@
-import {
-  Component,
-  inject,
-  signal
-} from '@angular/core';
-
-import {
-  FormBuilder,
-  ReactiveFormsModule,
-  Validators
-} from '@angular/forms';
-
+import {Component, inject, signal} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-
 import { finalize } from 'rxjs';
 import { AuthService } from '../../../services/auth/auth.service';
 
@@ -24,30 +13,23 @@ import { AuthService } from '../../../services/auth/auth.service';
 })
 
 export class Login{
-
   private readonly fb = inject(FormBuilder);
-
   private readonly authService = inject(AuthService);
-
   private readonly router = inject(Router);
 
   loading = signal(false);
-
   error = signal('');
-
   showPassword = signal(false);
 
   form = this.fb.nonNullable.group({
-    email: [
-      '',
+    email: ['',
       [
         Validators.required,
         Validators.email
       ]
     ],
 
-    password: [
-      '',
+    password: ['',
       [
         Validators.required,
         Validators.minLength(6)
@@ -56,16 +38,12 @@ export class Login{
   });
 
   onSubmit(): void {
-
     if (this.form.invalid) {
-
       this.form.markAllAsTouched();
-
       return;
     }
 
     this.loading.set(true);
-
     this.error.set('');
 
     this.authService
@@ -77,16 +55,12 @@ export class Login{
       )
       .subscribe({
         next: () => {
-
           this.router.navigate(['/dashboard']);
         },
-
         error: (err) => {
-
           const message =
             err?.error?.message ??
             'No fue posible iniciar sesión';
-
           this.error.set(message);
         }
       });

@@ -5,7 +5,7 @@ import { PublicLayout } from "./core/layout/public/public-layout/public-layout";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Login, PublicLayout],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

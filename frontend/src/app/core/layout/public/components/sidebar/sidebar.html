@@ -1,0 +1,76 @@
+<nav class="sidebar">
+  <div class="sidebar__scroll">
+
+    <section class="sidebar__section">
+      <span class="sidebar__section-label">Descubrir</span>
+      <ul class="sidebar__nav-list">
+        @for (item of discoverItems; track item.route) {
+          <li>
+            <a
+              class="sidebar__nav-item"
+              [routerLink]="item.route"
+              routerLinkActive="sidebar__nav-item--active"
+            >
+              <mat-icon class="sidebar__nav-icon">{{ item.icon }}</mat-icon>
+              <span>{{ item.label }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section class="sidebar__section">
+      <span class="sidebar__section-label">Biblioteca</span>
+      <ul class="sidebar__nav-list">
+        @for (item of libraryItems; track item.route) {
+          <li>
+            <a
+              class="sidebar__nav-item"
+              [routerLink]="item.route"
+              routerLinkActive="sidebar__nav-item--active"
+            >
+              <mat-icon class="sidebar__nav-icon">{{ item.icon }}</mat-icon>
+              <span>{{ item.label }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section class="sidebar__section">
+      <span class="sidebar__section-label">Tu espacio</span>
+      <ul class="sidebar__nav-list">
+        @for (item of spaceItems; track item.route) {
+          <li>
+            <a
+              class="sidebar__nav-item"
+              [routerLink]="item.route"
+              routerLinkActive="sidebar__nav-item--active"
+            >
+              <mat-icon class="sidebar__nav-icon">{{ item.icon }}</mat-icon>
+              <span>{{ item.label }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+
+  </div>
+
+  <footer class="sidebar__footer">
+    <ul class="sidebar__nav-list">
+      @for (item of footerItems; track item.route) {
+        <li>
+          <a
+            class="sidebar__nav-item sidebar__nav-item--footer"
+            [routerLink]="item.route"
+            routerLinkActive="sidebar__nav-item--active"
+          >
+            <mat-icon class="sidebar__nav-icon">{{ item.icon }}</mat-icon>
+            <span>{{ item.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </footer>
+</nav>

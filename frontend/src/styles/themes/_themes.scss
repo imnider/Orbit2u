@@ -1,0 +1,107 @@
+// Base Variables 
+// Cada tema sobreescribe estas variables en el body con la clase correspondiente.
+// Los componentes SOLO consumen var(--...) y nunca tienen colores hardcodeados.
+
+// DARK (default)
+body.theme-dark {
+  --color-background:       #0a0812;
+  --color-surface:          #110e1f;
+  --color-surface-alt:      #1a1630;
+  --color-border:           rgba(255, 255, 255, 0.06);
+  --color-primary:          #e245fc;   // Hyper Magenta
+  --color-primary-soft:     rgba(226, 69, 252, 0.15);
+  --color-accent:           #6d4aff;   // Ultrasonic Blue
+  --color-accent-soft:      rgba(109, 74, 255, 0.15);
+  --color-text:             #f0eaf8;
+  --color-text-muted:       rgba(240, 234, 248, 0.45);
+  --color-text-label:       rgba(240, 234, 248, 0.30);
+  --color-sidebar-bg:       #0d0a1a;
+  --color-topbar-bg:        rgba(10, 8, 18, 0.85);
+  --color-btn-join-bg:      #7c3aed;
+  --color-btn-join-hover:   #6d28d9;
+  --color-scrollbar:        rgba(226, 69, 252, 0.25);
+  --color-star-dots:        rgba(255, 255, 255, 0.55);
+  --gradient-hero:          radial-gradient(ellipse 60% 50% at 80% 50%, rgba(109,74,255,0.18) 0%, transparent 70%),
+                            radial-gradient(ellipse 40% 60% at 20% 80%, rgba(226,69,252,0.12) 0%, transparent 70%);
+  --gradient-sidebar:       linear-gradient(180deg, #0d0a1a 0%, #120d22 100%);
+  --shadow-card:            0 4px 24px rgba(0,0,0,0.4);
+  --radius-base:            12px;
+}
+
+// MIDNIGHT 
+body.theme-midnight {
+  --color-background:       #09091d;
+  --color-surface:          #0f0f2e;
+  --color-surface-alt:      #161640;
+  --color-border:           rgba(147, 197, 253, 0.08);
+  --color-primary:          #6fa3e0;   // Cornflower Blue
+  --color-primary-soft:     rgba(111, 163, 224, 0.15);
+  --color-accent:           #4a6fbd;   // Persian Blue
+  --color-accent-soft:      rgba(74, 111, 189, 0.15);
+  --color-text:             #dde8f8;
+  --color-text-muted:       rgba(221, 232, 248, 0.45);
+  --color-text-label:       rgba(221, 232, 248, 0.30);
+  --color-sidebar-bg:       #07071a;
+  --color-topbar-bg:        rgba(9, 9, 29, 0.85);
+  --color-btn-join-bg:      #3a5faa;
+  --color-btn-join-hover:   #2d4e94;
+  --color-scrollbar:        rgba(111, 163, 224, 0.25);
+  --color-star-dots:        rgba(147, 197, 253, 0.5);
+  --gradient-hero:          radial-gradient(ellipse 60% 50% at 80% 50%, rgba(74,111,189,0.2) 0%, transparent 70%),
+                            radial-gradient(ellipse 40% 60% at 20% 80%, rgba(111,163,224,0.12) 0%, transparent 70%);
+  --gradient-sidebar:       linear-gradient(180deg, #07071a 0%, #0c0c28 100%);
+  --shadow-card:            0 4px 24px rgba(0,0,0,0.5);
+  --radius-base:            12px;
+}
+
+// ROSEWAVE
+body.theme-rosewave {
+  --color-background:       #1a0810;
+  --color-surface:          #240d16;
+  --color-surface-alt:      #30101e;
+  --color-border:           rgba(240, 50, 50, 0.08);
+  --color-primary:          #f03060;   // Racing Red
+  --color-primary-soft:     rgba(240, 48, 96, 0.15);
+  --color-accent:           #8b1a2a;   // Crushed Berry
+  --color-accent-soft:      rgba(139, 26, 42, 0.2);
+  --color-text:             #f8e8ec;
+  --color-text-muted:       rgba(248, 232, 236, 0.45);
+  --color-text-label:       rgba(248, 232, 236, 0.30);
+  --color-sidebar-bg:       #150610;
+  --color-topbar-bg:        rgba(26, 8, 16, 0.85);
+  --color-btn-join-bg:      #c0185a;
+  --color-btn-join-hover:   #a8124d;
+  --color-scrollbar:        rgba(240, 48, 96, 0.25);
+  --color-star-dots:        rgba(255, 180, 200, 0.45);
+  --gradient-hero:          radial-gradient(ellipse 60% 50% at 80% 50%, rgba(139,26,42,0.22) 0%, transparent 70%),
+                            radial-gradient(ellipse 40% 60% at 20% 80%, rgba(240,48,96,0.12) 0%, transparent 70%);
+  --gradient-sidebar:       linear-gradient(180deg, #150610 0%, #1e0a16 100%);
+  --shadow-card:            0 4px 24px rgba(0,0,0,0.45);
+  --radius-base:            12px;
+}
+
+// LIGHT
+body.theme-light {
+  --color-background:       #f5f0fa;
+  --color-surface:          #ffffff;
+  --color-surface-alt:      #ede8f7;
+  --color-border:           rgba(0, 0, 0, 0.08);
+  --color-primary:          #7c3aed;   // Soft Periwinkle / violet
+  --color-primary-soft:     rgba(124, 58, 237, 0.1);
+  --color-accent:           #a855f7;
+  --color-accent-soft:      rgba(168, 85, 247, 0.1);
+  --color-text:             #1a1030;
+  --color-text-muted:       rgba(26, 16, 48, 0.55);
+  --color-text-label:       rgba(26, 16, 48, 0.38);
+  --color-sidebar-bg:       #ece6f8;
+  --color-topbar-bg:        rgba(245, 240, 250, 0.92);
+  --color-btn-join-bg:      #7c3aed;
+  --color-btn-join-hover:   #6d28d9;
+  --color-scrollbar:        rgba(124, 58, 237, 0.2);
+  --color-star-dots:        rgba(124, 58, 237, 0.25);
+  --gradient-hero:          radial-gradient(ellipse 60% 50% at 80% 50%, rgba(168,85,247,0.1) 0%, transparent 70%),
+                            radial-gradient(ellipse 40% 60% at 20% 80%, rgba(124,58,237,0.07) 0%, transparent 70%);
+  --gradient-sidebar:       linear-gradient(180deg, #ece6f8 0%, #e4dcf5 100%);
+  --shadow-card:            0 2px 16px rgba(0,0,0,0.08);
+  --radius-base:            12px;
+}
