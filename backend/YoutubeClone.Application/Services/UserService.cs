@@ -23,6 +23,7 @@ namespace YoutubeClone.Application.Services
         {
             Role? roleToAssign = null;
             UserAccount? executor = null;
+            string? password = null;
 
             if (claim is not null)
             {
@@ -33,10 +34,12 @@ namespace YoutubeClone.Application.Services
                 }
                 await ValidateEmailIfExists(model.Email);
                 roleToAssign = await ValidateRole(executor, model.RoleId.Value);
+                password = model.Password ?? throw new BadRequestException("Es necesaria una contraseña para continuar");
             }
             else
             {
                 roleToAssign = await uow.roleRepository.Get(x => x.Name == RoleConstants.CreadorContenido);
+                password = Generate.RandomText(32);
             }
 
             if (roleToAssign is null)
@@ -46,8 +49,6 @@ namespace YoutubeClone.Application.Services
 
             var freePlan = await uow.membershipPlanRepository.Get(x => x.DisplayName == "Free")
                 ?? throw new BadRequestException("No se encontró el plan Free");
-
-            var password = Generate.RandomText(32);
 
             var create = await uow.userRepository.Create(new UserAccount
             {
@@ -252,6 +253,7 @@ namespace YoutubeClone.Application.Services
         {
             var role = user.UserAccountRoles.FirstOrDefault()?.Role;
             var membershipPlan = user.UserMemberships.FirstOrDefault()?.MembershipPlan;
+            var channel = user.Channels.FirstOrDefault();
 
             return new UserDto
             {
