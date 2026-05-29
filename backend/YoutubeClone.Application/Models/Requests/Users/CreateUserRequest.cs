@@ -29,6 +29,7 @@ namespace YoutubeClone.Application.Models.Requests.Users
         [MinLength(5, ErrorMessage = ValidationConstants.MIN_LENGTH)]
         public string Location { get; set; } = null!;
 
+        public string? Password { get; set; }
         public Guid? RoleId { get; set; }
     }
 }

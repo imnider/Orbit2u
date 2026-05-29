@@ -41,7 +41,7 @@ namespace YoutubeClone.WebApp.Controllers
         [Authorize]
         [EndpointSummary("Obtener todos los usuarios")]
         [EndpointDescription("Retorna todos los usuarios del sistema")]
-        [ProducesResponseType<GenericResponse<UserDto>>(StatusCodes.Status200OK)]
+        [ProducesResponseType<GenericResponse<List<UserDto>>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<List<UserDto>>> GetAll([FromQuery] FilterUserRequest model)
         {
             var rsp = await userService.GetAll(model);
@@ -49,7 +49,6 @@ namespace YoutubeClone.WebApp.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        [Authorize]
         [EndpointSummary("Obtener usuario por ID")]
         [EndpointDescription("Retorna un usuario específico usando el identificador único")]
         [ProducesResponseType<GenericResponse<UserDto>>(StatusCodes.Status200OK)]
@@ -63,7 +62,7 @@ namespace YoutubeClone.WebApp.Controllers
         [Authorize(Roles = RoleConstants.Administrador)]
         [EndpointSummary("Borrar usuario por ID")]
         [EndpointDescription("Borra un usuario en específico usando su identificador único")]
-        [ProducesResponseType<GenericResponse<UserDto>>(StatusCodes.Status200OK)]
+        [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<bool>> Delete(Guid id)
         {
             var rsp = await userService.Delete(id);
@@ -75,7 +74,7 @@ namespace YoutubeClone.WebApp.Controllers
         [EndpointSummary("Actualizar usuario por ID")]
         [EndpointDescription("Actualiza los datos de un usuario en específico usando su identificador único")]
         [ProducesResponseType<GenericResponse<UserDto>>(StatusCodes.Status200OK)]
-        public async Task<GenericResponse<UserDto>> Update(Guid id, UpdateUserRequest model)
+        public async Task<GenericResponse<UserDto>> Update(Guid id, [FromBody] UpdateUserRequest model)
         {
             var rsp = await userService.Update(id, model, UserClaim());
             return ResponseStatus.Updated(HttpContext, rsp);
