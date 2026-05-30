@@ -32,6 +32,11 @@
         // App
         public const string VERSION = "Version";
 
+        // Cloudinary
+        public const string CLOUDINARY_CLOUD_NAME = "Cloudinary:CloudName";
+        public const string CLOUDINARY_API_KEY = "Cloudinary:ApiKey";
+        public const string CLOUDINARY_API_SECRET = "Cloudinary:ApiSecret";
+
         // Client
         public const string CLIENT_ORIGIN = "ClientOrigin";
     }

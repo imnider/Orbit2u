@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YoutubeClone.Application\YoutubeClone.Application.csproj" />
-    <ProjectReference Include="..\YoutubeClone.Domain\YoutubeClone.Domain.csproj" />
+    <ProjectReference Include="..\YoutubeClone.Infrastructure\YoutubeClone.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
