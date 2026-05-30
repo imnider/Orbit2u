@@ -38,7 +38,7 @@ namespace YoutubeClone.Application.Services
             }
             else
             {
-                roleToAssign = await uow.roleRepository.Get(x => x.Name == RoleConstants.CreadorContenido);
+                roleToAssign = await uow.roleRepository.Get(x => x.Name == RoleConstants.Usuario);
                 password = Generate.RandomText(32);
             }
 

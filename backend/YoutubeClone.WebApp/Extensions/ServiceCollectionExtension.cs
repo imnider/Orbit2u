@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using CloudinaryDotNet;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
@@ -11,6 +12,7 @@ using YoutubeClone.Domain.Database;
 using YoutubeClone.Domain.Database.SqlServer.Context;
 using YoutubeClone.Domain.Exceptions;
 using YoutubeClone.Domain.Interfaces.Repositories;
+using YoutubeClone.Infrastructure.Persistence.Cloudinary.Services;
 using YoutubeClone.Infrastructure.Persistence.SqlServer;
 using YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories;
 using YoutubeClone.Shared;
@@ -24,6 +26,7 @@ namespace YoutubeClone.WebApp.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<ICacheService, CacheService>();
+            services.AddScoped<IStorageService, StorageService>();
             services.AddScoped<IAuthServices, AuthService>();
             services.AddScoped<IAppService, AppService>();
 
@@ -100,6 +103,30 @@ namespace YoutubeClone.WebApp.Extensions
             services.AddSingleton(smtp);
         }
 
+        public static void AddCloudinary(this IServiceCollection services, IConfiguration configuration)
+        {
+            var cloudName = Environment.GetEnvironmentVariable(EnvironmentConstants.CLOUDINARY_CLOUD_NAME)
+                ?? configuration[ConfigurationConstants.CLOUDINARY_CLOUD_NAME]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.CLOUDINARY_CLOUD_NAME));
+
+            var apiKey = Environment.GetEnvironmentVariable(EnvironmentConstants.CLOUDINARY_API_KEY)
+                ?? configuration[ConfigurationConstants.CLOUDINARY_API_KEY]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.CLOUDINARY_API_KEY));
+
+            var apiSecret = Environment.GetEnvironmentVariable(EnvironmentConstants.CLOUDINARY_API_SECRET)
+                ?? configuration[ConfigurationConstants.CLOUDINARY_API_SECRET]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.CLOUDINARY_API_SECRET));
+
+            var account = new Account(
+                cloudName,
+                apiKey,
+                apiSecret);
+
+            var cloudinary = new Cloudinary(account);
+
+            services.AddSingleton<ICloudinary>(cloudinary);
+        }
+
         public async static Task Initialize(this IServiceCollection services)
         {
             var templatesData = new EmailTemplateData();
@@ -108,8 +135,8 @@ namespace YoutubeClone.WebApp.Extensions
             var provider = services.BuildServiceProvider();
             var scope = provider.CreateAsyncScope();
 
-            var collaboratorService = scope.ServiceProvider.GetRequiredService<IUserService>();
-            await collaboratorService.CreateFirstUser();
+            var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+            await userService.CreateFirstUser();
 
             var emailTemplateService = scope.ServiceProvider.GetRequiredService<IEmailTemplateService>();
             await emailTemplateService.Init();
@@ -157,6 +184,8 @@ namespace YoutubeClone.WebApp.Extensions
         public static async Task AddCore(this IServiceCollection services, IConfiguration configuration)
         {
             await services.AddSMTP(configuration);
+
+            services.AddCloudinary(configuration);
 
             services.AddControllers().ConfigureApiBehaviorOptions(option =>
             {
