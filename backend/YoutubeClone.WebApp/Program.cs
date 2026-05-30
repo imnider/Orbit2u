@@ -1,20 +1,22 @@
 using Scalar.AspNetCore;
 using Serilog;
+using YoutubeClone.Shared.Constants;
 using YoutubeClone.WebApp.Extensions;
 using YoutubeClone.WebApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 builder.Host.UseSerilog();
 
-builder.Services.AddCore(builder.Configuration);
+builder.Services.AddCore(configuration);
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular",
         policy =>
         {
-            policy.WithOrigins("http://localhost:4200")
+            policy.WithOrigins(configuration[ConfigurationConstants.CLIENT_ORIGIN])
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
