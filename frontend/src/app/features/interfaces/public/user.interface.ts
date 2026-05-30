@@ -30,4 +30,12 @@ export interface CurrentUser {
     membershipPlan: MembershipPlan;
 }
 
+export interface UpdateUserRequest {
+  userName?:    string;
+  displayName?: string;
+  email?:       string;
+  birthday?:    string;
+  location?:    string;
+}
+
 export type MeResponse = ApiResponse<CurrentUser>;
