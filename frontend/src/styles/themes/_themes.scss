@@ -56,27 +56,29 @@ body.theme-midnight {
 
 // ROSEWAVE
 body.theme-rosewave {
-  --color-background:       #1a0810;
-  --color-surface:          #240d16;
-  --color-surface-alt:      #30101e;
-  --color-border:           rgba(240, 50, 50, 0.08);
-  --color-primary:          #f03060;   // Racing Red
-  --color-primary-soft:     rgba(240, 48, 96, 0.15);
-  --color-accent:           #8b1a2a;   // Crushed Berry
-  --color-accent-soft:      rgba(139, 26, 42, 0.2);
-  --color-text:             #f8e8ec;
-  --color-text-muted:       rgba(248, 232, 236, 0.45);
-  --color-text-label:       rgba(248, 232, 236, 0.30);
-  --color-sidebar-bg:       #150610;
-  --color-topbar-bg:        rgba(26, 8, 16, 0.85);
-  --color-btn-join-bg:      #c0185a;
-  --color-btn-join-hover:   #a8124d;
-  --color-scrollbar:        rgba(240, 48, 96, 0.25);
-  --color-star-dots:        rgba(255, 180, 200, 0.45);
-  --gradient-hero:          radial-gradient(ellipse 60% 50% at 80% 50%, rgba(139,26,42,0.22) 0%, transparent 70%),
-                            radial-gradient(ellipse 40% 60% at 20% 80%, rgba(240,48,96,0.12) 0%, transparent 70%);
-  --gradient-sidebar:       linear-gradient(180deg, #150610 0%, #1e0a16 100%);
-  --shadow-card:            0 4px 24px rgba(0,0,0,0.45);
+  --color-background:       #fff8fb;
+  --color-surface:          #fff1f6;
+  --color-surface-alt:      #ffdbe8;
+  --color-border:           rgba(216, 77, 134, 0.18);
+  --color-primary:          #d84d86;
+  --color-primary-soft:     rgba(216, 77, 134, 0.18);
+  --color-accent:           #7a1d35;
+  --color-accent-soft:      rgba(122, 29, 53, 0.15);
+  --color-text:             #3a1b28;
+  --color-text-muted:       rgba(58, 27, 40, 0.65);
+  --color-text-label:       rgba(58, 27, 40, 0.45);
+  --color-sidebar-bg:       #ffe7f1;
+  --color-topbar-bg:        rgba(255, 248, 251, 0.92);
+  --color-btn-join-bg:      #8a2038;
+  --color-btn-join-hover:   #6e182d;
+  --color-scrollbar:        rgba(216, 77, 134, 0.35);
+  --color-star-dots:        rgba(216, 77, 134, 0.25);
+  --gradient-hero:
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(138, 32, 56, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(216, 77, 134, 0.08) 0%, transparent 70%);
+  --gradient-sidebar:
+    linear-gradient(180deg, #fff2f7 0%, #ffe8f1 100%);
+  --shadow-card:            0 4px 20px rgba(138, 32, 56, 0.08);
   --radius-base:            12px;
 }
 

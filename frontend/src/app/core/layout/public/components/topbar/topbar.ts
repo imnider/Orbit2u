@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Theme, ThemeService } from '../../../../services/theme/theme.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterLink } from '@angular/router';
 
 interface ThemeOption {
   value: Theme;
@@ -12,7 +13,7 @@ interface ThemeOption {
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [MatIconModule, MatTooltipModule],
+  imports: [RouterLink, MatIconModule, MatTooltipModule],
   templateUrl: './topbar.html',
   styleUrls: ['./topbar.scss']
 })

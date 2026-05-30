@@ -1,1 +1,87 @@
-<p>register works!</p>
+<div class="login-page">
+  <div class="space-background"></div>
+  
+  <nav class="login-nav">
+    <a routerLink="/login" class="exit-button">
+      <i class="fa-solid fa-chevron-left"></i>
+      <span>Volver</span>
+    </a>
+  </nav>
+
+  <div class="login-container">
+    <div class="login-card">
+      <header class="login-header">
+        <div class="logo-wrapper">
+          <img src="/images/logo-orbit.png" alt="Orbit2u">
+        </div>
+        <h1>{{ isEmailVerified() ? 'Crea tu Cuenta' : 'Únete a Orbit' }}</h1>
+        <p>{{ isEmailVerified() ? 'Completa tu perfil digital' : 'Verifica tu correo para empezar' }}</p>
+      </header>
+
+      @if (!isEmailVerified()) {
+        <form [formGroup]="emailStepForm" (ngSubmit)="onVerifyEmail()" class="login-form">
+          <div class="field-group">
+            <label>Correo Electrónico</label>
+            <div class="input-wrapper">
+              <input type="email" formControlName="email" placeholder="nombre@ejemplo.com">
+            </div>
+            @if (getErrorMessage('email')) { <span class="field-error">{{ getErrorMessage('email') }}</span> }
+          </div>
+          <button type="submit" class="submit-btn" [disabled]="loading()">Verificar Correo</button>
+        </form>
+      } @else {
+        <form [formGroup]="form" (ngSubmit)="onRegister()" class="login-form">
+          
+          <div class="field-group">
+            <label>Email verificado</label>
+            <div class="input-wrapper">
+              <input type="email" formControlName="email" class="disabled-input">
+              <i class="fa-solid fa-lock icon-inside-right"></i>
+            </div>
+          </div>
+
+          <div class="row-fields">
+            <div class="field-group">
+              <label>Username</label>
+              <div class="input-wrapper">
+                <input type="text" formControlName="username" placeholder="@usuario">
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Display Name</label>
+              <div class="input-wrapper">
+                <input type="text" formControlName="displayname" placeholder="Tu nombre">
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fields">
+            <div class="field-group">
+              <label>Cumpleaños</label>
+              <div class="input-wrapper custom-material">
+                <input matInput [matDatepicker]="picker" formControlName="birthday" placeholder="DD/MM/AAAA">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Ubicación</label>
+              <div class="input-wrapper custom-material">
+                <mat-select formControlName="location" placeholder="Selecciona país">
+                  @for (country of countries; track country) {
+                    <mat-option [value]="country">{{ country }}</mat-option>
+                  }
+                </mat-select>
+              </div>
+            </div>
+          </div>
+
+          @if(error()) { <div class="alert-error">{{ error() }}</div> }
+
+          <button type="submit" class="submit-btn" [disabled]="loading()">Finalizar Registro</button>
+        </form>
+      }
+    </div>
+  </div>
+</div>

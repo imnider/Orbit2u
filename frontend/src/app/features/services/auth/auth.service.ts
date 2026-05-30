@@ -56,9 +56,8 @@ export class AuthService {
 
   //registrarse
   register(data: RegisterRequest) {
-    return this.http.post<ApiResponse<RegisterResponse>>(`${this.API}/auth/register`, data).pipe(
+    return this.http.post<ApiResponse<RegisterResponse>>(`${this.API}/auth/validate`, data).pipe(
       tap((res) => {
-
         this.saveSession(
           res.data.token,
           res.data.refreshToken
@@ -74,7 +73,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  //herlpers
+  //helpers
   getToken(): string | null {
     return this._token();
   }
@@ -87,5 +86,9 @@ export class AuthService {
     this.tokenService.saveToken(token);
     this.tokenService.saveRefreshToken(refreshToken);
     this._token.set(token);
+  }
+
+  verifyEmail(email: string) {
+    return this.http.post<ApiResponse<any>>(`${this.API}/auth/register/init`, {email});
   }
 }
