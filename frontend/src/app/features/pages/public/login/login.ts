@@ -22,20 +22,19 @@ export class Login{
   showPassword = signal(false);
 
   form = this.fb.nonNullable.group({
-    email: ['',
-      [
-        Validators.required,
-        Validators.email
-      ]
-    ],
-
-    password: ['',
-      [
-        Validators.required,
-        Validators.minLength(6)
-      ]
-    ]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
+
+  getErrorMessage(controlName: string): string {
+    const control = this.form.get(controlName);
+    if (control?.touched && control?.errors) {
+      if (control.errors['required']) return 'Este campo es obligatorio';
+      if (control.errors['email']) return 'Formato de correo inválido';
+      if (control.errors['minlength']) return `Mínimo ${control.errors['minlength'].requiredLength} caracteres`;
+    }
+    return '';
+  }
 
   onSubmit(): void {
     if (this.form.invalid) {

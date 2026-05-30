@@ -4,8 +4,6 @@ export interface RegisterRequest {
     displayName: string;
     birthday: string;
     location: string;
-    password: string;
-    confirmPassword: string;
 }
 
 export interface RegisterResponse {
