@@ -1,7 +1,7 @@
 <nav class="sidebar" [class.sidebar--collapsed]="collapsed">
   <div class="sidebar__scroll">
 
-    <!--visible para todos<: descubrir-->
+    <!--visible para todos: descubrir-->
     <section class="sidebar__section">
       @if (!collapsed) { <span class="sidebar__section-label">Descubrir</span> }
       <ul class="sidebar__nav-list">
@@ -16,7 +16,7 @@
       </ul>
     </section>
 
-    <!--visible para logueados<: biblioteca-->
+    <!--visible para logueados: biblioteca-->
     @if (isLoggedIn()) {
       <section class="sidebar__section">
         @if (!collapsed) { <span class="sidebar__section-label">Biblioteca</span> }
@@ -33,7 +33,7 @@
       </section>
     }
 
-    <!--visible para logueados<: espacio personal-->
+    <!--visible para logueados: espacio personal-->
     @if (isLoggedIn()) {
       <section class="sidebar__section">
         @if (!collapsed) { <span class="sidebar__section-label">Tu espacio</span> }
