@@ -15,6 +15,11 @@ export const routes: Routes = [
                 path: 'register',
                 loadComponent: () =>
                     import('./features/pages/public/register/register').then((m)=>m.Register)
+            },
+            {
+                path: 'register/:token',
+                loadComponent: () =>
+                    import('./features/pages/public/register.form/register.form').then((m)=>m.RegisterForm)
             }
         ]
     }

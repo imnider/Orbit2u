@@ -8,8 +8,8 @@ import { environment } from '../../../../environment/environment';
 import { JwtPayload } from '../../interfaces/public/jwt.interface';
 import { LoginRequest, LoginResponse } from '../../interfaces/public/login.interface';
 import { ApiResponse } from '../../interfaces/public/api-response.interface';
-import { RegisterRequest, RegisterResponse } from '../../interfaces/public/register.interface';
 import { CLAIMS } from '../../../shared/constants/claims.constants';
+import { CompleteRegisterRequest, CompleteRegisterResponse, ValidateTokenResponse } from '../../interfaces/public/register.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -64,18 +64,6 @@ export class AuthService {
     );
   }
 
-  //registrarse
-  register(data: RegisterRequest) {
-    return this.http.post<ApiResponse<RegisterResponse>>(`${this.API}/auth/validate`, data).pipe(
-      tap((res) => {
-        this.saveSession(
-          res.data.token,
-          res.data.refreshToken
-        );
-      })
-    );
-  }
-
   //cerrar sesión
   logout(): void {
     this.tokenService.removeTokens();
@@ -83,7 +71,29 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  //helpers
+  // registro: pasos
+  registerInit(email: string) {
+    return this.http.post<ApiResponse<null>>(
+      `${this.API}/auth/register/init`,
+      { email }
+    );
+  }
+ 
+  validateRegisterToken(token: string) {
+    return this.http.get<ApiResponse<ValidateTokenResponse>>(
+      `${this.API}/auth/register/validate/${token}`
+    );
+  }
+ 
+  completeRegister(token: string, data: CompleteRegisterRequest) {
+    return this.http
+      .post<ApiResponse<CompleteRegisterResponse>>(
+        `${this.API}/auth/register/complete/${token}`,
+        data
+      ).pipe(tap((res) => this.saveSession(res.data.token, res.data.refreshToken)));
+  }
+
+  // helpers
   getToken(): string | null {
     return this._token();
   }
