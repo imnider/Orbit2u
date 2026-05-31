@@ -35,15 +35,15 @@ export class Sidebar{
   //items visibles para todos
   readonly discoverItems: NavItem[] = [
     { label: 'Inicio',      icon: 'home',             route: '/home'        },
-    { label: 'Explorar',    icon: 'explore',          route: '/explore'     },
     { label: 'Comunidades', icon: 'public',           route: '/communities' },
     { label: 'Planes',      icon: 'card_membership',  route: '/planes'      },
   ];
 
   //items solo para usuarios logueados
   readonly libraryItems: NavItem[] = [
-    { label: 'Playlists',     icon: 'queue_music', route: '/playlists'     },
-    { label: 'Suscripciones', icon: 'subscriptions', route: '/subscriptions' },
+    { label: 'Playlists',     icon: 'queue_music',    route: '/playlists'     },
+    { label: 'Suscripciones', icon: 'subscriptions',  route: '/subscriptions' },
+    { label: 'Crear Canal',      icon: 'explore',        route: '/create-channel'},
   ];
 
   //items del espacio personal

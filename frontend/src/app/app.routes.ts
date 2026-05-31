@@ -20,7 +20,12 @@ export const routes: Routes = [
                 path: 'register/:token',
                 loadComponent: () =>
                     import('./features/pages/public/register.form/register.form').then((m)=>m.RegisterForm)
-            }
+            },
+            {
+                path: 'profile',
+                loadComponent: () =>
+                    import('./features/pages/private/profile/profile').then((m) => m.Profile),
+            },
         ]
     }
 ];
