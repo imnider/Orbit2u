@@ -13,13 +13,23 @@ builder.Services.AddCore(configuration);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAngular",
-        policy =>
+    options.AddPolicy("AllowAngular", policy =>
+    {
+        if (builder.Environment.IsDevelopment())
         {
-            policy.WithOrigins(configuration[ConfigurationConstants.CLIENT_ORIGIN])
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
+            policy
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        }
+        else
+        {
+            policy
+                .WithOrigins(configuration[ConfigurationConstants.CLIENT_ORIGIN]!)
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        }
+    });
 });
 
 var app = builder.Build();
