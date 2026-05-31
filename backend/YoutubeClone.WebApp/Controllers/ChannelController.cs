@@ -12,7 +12,7 @@ namespace YoutubeClone.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ChannelController(IChannelService channelService) : ControllerBase
+    public class ChannelController(IChannelService channelService, ISubscriptionService subscriptionService) : ControllerBase
     {
         [HttpPost]
         [Authorize]
@@ -85,6 +85,28 @@ namespace YoutubeClone.WebApp.Controllers
         public async Task<GenericResponse<List<VideoDto>>> GetVideos(Guid id)
         {
             var rsp = await channelService.GetVideos(id);
+            return ResponseStatus.Ok(HttpContext, rsp);
+        }
+
+        [HttpPost("{id:guid}/subscribe")]
+        [Authorize]
+        [EndpointSummary("Suscribirse a un canal")]
+        [EndpointDescription("Hace que el usuario logeado se suscriba a un canal")]
+        [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<bool>> Subscribe(Guid id)
+        {
+            var rsp = await subscriptionService.Subscribe(id, this.UserClaim());
+            return ResponseStatus.Ok(HttpContext, rsp);
+        }
+
+        [HttpDelete("{id:guid}/subscribe")]
+        [Authorize]
+        [EndpointSummary("Desuscribirse a un canal")]
+        [EndpointDescription("Hace que el usuario logeado se desuscriba a un canal")]
+        [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<bool>> Unsubscribe(Guid id)
+        {
+            var rsp = await subscriptionService.Unsubscribe(id, this.UserClaim());
             return ResponseStatus.Ok(HttpContext, rsp);
         }
     }

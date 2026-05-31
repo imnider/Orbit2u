@@ -85,7 +85,7 @@ namespace YoutubeClone.Application.Services
                 .AsQueryable()
                 .Skip(model.Offset)
                 .Take(model.Limit)
-                .Select(channel => ChannelMapper.ToDto(channel))
+                .Select(channel => ChannelMapper.ToDto(channel, channel.Subscriptions.Count(s => s.DeletedAt == null)))
                 .ToList();
 
             return ResponseHelper.Create(channels);
@@ -94,7 +94,11 @@ namespace YoutubeClone.Application.Services
         public async Task<GenericResponse<ChannelDto>> GetById(Guid id)
         {
             var channel = await GetChannel(id);
-            return ResponseHelper.Create(ChannelMapper.ToDto(channel));
+
+            var subscriberCount = uow.subscriptionRepository.Queryable()
+                .Count(x => x.ChannelId == id && x.DeletedAt == null);
+
+            return ResponseHelper.Create(ChannelMapper.ToDto(channel, subscriberCount));
         }
 
         public async Task<GenericResponse<ChannelDto>> Update(UpdateChannerlRequest model, Claim claim)
@@ -124,7 +128,10 @@ namespace YoutubeClone.Application.Services
             var channel = await uow.channelRepository.Get(executor)
                 ?? throw new NotFoundException(ResponseConstants.CHANNEL_NOT_EXIST);
 
-            return ResponseHelper.Create(ChannelMapper.ToDto(channel));
+            var subscriberCount = uow.subscriptionRepository.Queryable()
+                .Count(x => x.ChannelId == channel.ChannelId && x.DeletedAt == null);
+
+            return ResponseHelper.Create(ChannelMapper.ToDto(channel, subscriberCount));
         }
 
         public async Task<GenericResponse<List<VideoDto>>> GetVideos(Guid channelId)

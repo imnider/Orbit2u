@@ -13,6 +13,7 @@ namespace YoutubeClone.Domain.Database
         IChannelRepository channelRepository { get; set; }
         IVideoRepository videoRepository { get; set; }
         ICommunityRepository communityRepository { get; set; }
+        ISubscriptionRepository subscriptionRepository { get; set; }
         Task SaveChangesAsync();
     }
 }

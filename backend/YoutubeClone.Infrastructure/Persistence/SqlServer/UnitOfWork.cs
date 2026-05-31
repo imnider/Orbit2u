@@ -13,7 +13,8 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer
         IUserPreferenceRepository _userPreferenceRepository,
         IChannelRepository _channelRepository,
         IVideoRepository _videoRepository,
-        ICommunityRepository _communityRepository)
+        ICommunityRepository _communityRepository,
+        ISubscriptionRepository _subscriptionRepository)
         : IUnitOfWork
     {
         private readonly Orbit2uContext context = _context;
@@ -26,6 +27,7 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer
         public IChannelRepository channelRepository { get; set; } = _channelRepository;
         public IVideoRepository videoRepository { get; set; } = _videoRepository;
         public ICommunityRepository communityRepository { get; set; } = _communityRepository;
+        public ISubscriptionRepository subscriptionRepository { get; set; } = _subscriptionRepository;
 
         public async Task SaveChangesAsync()
         {

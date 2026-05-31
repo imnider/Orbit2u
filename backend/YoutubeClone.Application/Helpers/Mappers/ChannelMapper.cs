@@ -5,7 +5,7 @@ namespace YoutubeClone.Application.Helpers.Mappers
 {
     public static class ChannelMapper
     {
-        public static ChannelDto ToDto(Channel channel)
+        public static ChannelDto ToDto(Channel channel, int subscriberCount = 0)
         {
             return new ChannelDto
             {
@@ -20,6 +20,7 @@ namespace YoutubeClone.Application.Helpers.Mappers
                 CreatedAt = channel.CreatedAt,
                 UpdatedAt = channel.UpdatedAt,
                 DeletedAt = channel.DeletedAt,
+                SubscriberCount = subscriberCount
             };
         }
     }
