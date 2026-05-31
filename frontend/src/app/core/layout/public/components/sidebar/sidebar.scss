@@ -114,3 +114,47 @@
   border-top: 1px solid var(--color-border);
   padding: 8px 0 12px;
 }
+
+//colapso del sidebar
+.sidebar {
+  width: 220px;
+  transition: width 0.25s ease;
+
+  &--collapsed {
+    width: 64px;
+
+    .sidebar__section-label { display: none; }
+
+    //centra los items cuando está colapsado
+    .sidebar__nav-item {
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    .sidebar__footer {
+      align-items: center;
+    }
+  }
+}
+
+.sidebar__collapse-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 4px;
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+
+  mat-icon { font-size: 18px; width: 18px; height: 18px; }
+
+  &:hover {
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
+  }
+}

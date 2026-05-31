@@ -10,7 +10,7 @@ interface FileUploadResponse {
 }
 
 @Injectable({ providedIn: 'root' })
-export class StorageService {
+export class StorageServiceVid {
   private readonly http = inject(HttpClient);
   private readonly base = `${environment.apiUrl}/api/Storage`;
 

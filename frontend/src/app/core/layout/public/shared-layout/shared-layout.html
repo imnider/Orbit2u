@@ -1,15 +1,18 @@
-<div class="public-layout">
-  <app-topbar></app-topbar>
+<div class="shared-layout">
+  <app-topbar (toggleSidebar)="toggleSidebar()"></app-topbar>
 
   <div class="layout-body">
-    <app-sidebar></app-sidebar>
+    <app-sidebar
+      [collapsed]="sidebarCollapsed()"
+      (collapseToggle)="toggleSidebar()"
+    ></app-sidebar>
 
     <main class="layout-content">
       <div class="stars-bg" aria-hidden="true">
         @if (stars && stars.length > 0) {
-            @for (star of stars; track $index) {
+          @for (star of stars; track $index) {
             <span class="star" [ngStyle]="star"></span>
-            }
+          }
         }
       </div>
       <router-outlet></router-outlet>

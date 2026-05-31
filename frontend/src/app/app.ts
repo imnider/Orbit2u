@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Login } from "./features/pages/public/login/login";
-import { PublicLayout } from "./core/layout/public/public-layout/public-layout";
+import { SharedLayout } from "./core/layout/public/shared-layout/shared-layout";
 
 @Component({
   selector: 'app-root',

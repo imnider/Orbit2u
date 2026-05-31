@@ -1,4 +1,13 @@
 <header class="topbar">
+  <button
+    class="topbar__icon-btn topbar__icon-btn--menu"
+    (click)="onToggleSidebar()"
+    aria-label="Toggle sidebar"
+    matTooltip="Menú"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
   <div class="topbar__logo">
     <div class="topbar__logo-icon">
       <img src="/images/logo-orbit.png" alt="Orbit2u">
@@ -49,4 +58,5 @@
     <button class="topbar__btn topbar__btn--ghost" routerLink="/login">Entrar</button>
     <button class="topbar__btn topbar__btn--primary" routerLink="/register">Unirme</button>
   </div>
+
 </header>
