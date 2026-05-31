@@ -25,5 +25,6 @@ namespace YoutubeClone.Application.Models.Requests.Users
         public string? Location { get; set; }
 
         public Guid? RoleId { get; set; }
+        public int? MembershipPlanId { get; set; }
     }
 }

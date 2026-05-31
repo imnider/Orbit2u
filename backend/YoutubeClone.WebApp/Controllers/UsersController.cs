@@ -37,7 +37,7 @@ namespace YoutubeClone.WebApp.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.Administrador)]
         [EndpointSummary("Obtener todos los usuarios")]
         [EndpointDescription("Retorna todos los usuarios del sistema")]
         [ProducesResponseType<GenericResponse<List<UserDto>>>(StatusCodes.Status200OK)]
@@ -69,7 +69,7 @@ namespace YoutubeClone.WebApp.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        [Authorize(Roles = RoleConstants.Administrador)]
+        [Authorize]
         [EndpointSummary("Actualizar usuario por ID")]
         [EndpointDescription("Actualiza los datos de un usuario en específico usando su identificador único")]
         [ProducesResponseType<GenericResponse<UserDto>>(StatusCodes.Status200OK)]

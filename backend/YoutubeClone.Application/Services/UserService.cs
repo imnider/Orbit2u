@@ -163,13 +163,21 @@ namespace YoutubeClone.Application.Services
             var executor = await GetExecutor(claim.Value);
             var user = await GetUser(id);
 
+            var isAdmin = executor.UserAccountRoles.Any(x => x.Role.Name == RoleConstants.Administrador);
+
+            if (!isAdmin && executor.UserId != user.UserId)
+            {
+                throw new ForbiddenException(ResponseConstants.USER_WITHOUT_PERMISSIONS);
+            }
+
             user.UserName = model.UserName ?? user.UserName;
             user.DisplayName = model.DisplayName ?? user.DisplayName;
             user.Email = model.Email ?? user.Email;
             user.Birthday = model.Birthday ?? user.Birthday;
             user.Location = model.Location ?? user.Location;
 
-            if (!string.IsNullOrWhiteSpace(model.Email) && user.Email != model.Email)
+            if (!string.IsNullOrWhiteSpace(model.Email)
+                && user.Email != model.Email)
             {
                 await ValidateEmailIfExists(model.Email);
                 user.Email = model.Email;
@@ -177,6 +185,11 @@ namespace YoutubeClone.Application.Services
 
             if (model.RoleId.HasValue)
             {
+                if (!isAdmin)
+                {
+                    throw new ForbiddenException(ResponseConstants.ROLE_WITHOUT_PERMISSIONS);
+                }
+
                 var roleToAssign = await ValidateRole(executor, model.RoleId.Value);
 
                 await uow.userRepository.ClearRoles([.. user.UserAccountRoles]);
@@ -189,10 +202,24 @@ namespace YoutubeClone.Application.Services
                 });
             }
 
+            if (model.MembershipPlanId.HasValue)
+            {
+                if (!isAdmin)
+                {
+                    throw new ForbiddenException(ResponseConstants.MEMBERSHIP_WITHOUT_PERMISSIONS);
+                }
+                var membership = await uow.membershipPlanRepository.Get(model.MembershipPlanId.Value)
+                    ?? throw new NotFoundException(ResponseConstants.MembershipNotFound(model.MembershipPlanId ?? 0));
+
+                var userMembership = user.UserMemberships.FirstOrDefault()
+                    ?? throw new NotFoundException("El usuario no tiene una membresía asignada.");
+
+                userMembership.MembershipPlanId = membership.MembershipPlanId;
+            }
+
             user.UpdatedAt = DateTimeHelper.UtcNow();
 
-            var update = await uow.userRepository.Update(user);
-
+            await uow.userRepository.Update(user);
             await uow.SaveChangesAsync();
 
             return ResponseHelper.Create(UserMapper.ToDto(user));

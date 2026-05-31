@@ -5,7 +5,7 @@
         // Usuarios
         public const string USER_NOT_EXIST = "El usuario no existe";
         public const string USER_EMAIL_TAKED = "Ya existe un usuario con este correo";
-
+        public const string USER_WITHOUT_PERMISSIONS = "No tienes los permisos para modificar otros usuarios.";
         // Canales
         public const string CHANNEL_NOT_EXIST = "El canal no existe";
 
@@ -23,6 +23,11 @@
         public static string RoleNotFound(string name) => $"El rol {name} no existe";
         public static string RoleNotFound(Guid id) => $"El rol con ID: {id} no existe";
         public const string CANNOT_ASSIGN_THE_ROLE = "No puede asignar el rol que argumentó";
+        public const string ROLE_WITHOUT_PERMISSIONS = "No tienes los permisos para modificar roles";
+
+        // Membresías
+        public static string MembershipNotFound(int id) => $"La membresía con ID: {id} no existe";
+        public const string MEMBERSHIP_WITHOUT_PERMISSIONS = "No tienes los permisos para modificar membresías";
 
         // Auth - Token
         public const string AUTH_TOKEN_NOT_FOUND = "El token no es correcto o expiró";

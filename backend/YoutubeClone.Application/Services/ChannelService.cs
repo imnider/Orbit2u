@@ -33,6 +33,23 @@ namespace YoutubeClone.Application.Services
                 DeletedAt = null
             });
 
+            var creatorRole = await uow.roleRepository.Get(x => x.Name == RoleConstants.CreadorContenido)
+                ?? throw new NotFoundException("No existe el rol de creador de contenido.");
+
+            var currentRole = executor.UserAccountRoles.FirstOrDefault()?.Role;
+
+            if (currentRole?.Name == RoleConstants.Usuario)
+            {
+                await uow.userRepository.ClearRoles([.. executor.UserAccountRoles]);
+
+                executor.UserAccountRoles.Add(new UserAccountRole
+                {
+                    RoleId = creatorRole.RoleId,
+                    AssignedBy = executor.UserId,
+                    AssignedAt = DateTimeHelper.UtcNow()
+                });
+            }
+
             await uow.SaveChangesAsync();
 
             return ResponseHelper.Create(ChannelMapper.ToDto(create), [], "Canal creado exitosamente.");
