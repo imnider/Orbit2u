@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using YoutubeClone.Application.Models.Requests.Storage;
 using YoutubeClone.Application.Models.Responses;
 
 namespace YoutubeClone.Application.Interfaces.Services
@@ -7,6 +8,6 @@ namespace YoutubeClone.Application.Interfaces.Services
     {
         Task<GenericResponse<FileUploadResponse>> UploadImageAsync(IFormFile file);
         Task<GenericResponse<FileUploadResponse>> UploadVideoAsync(IFormFile file);
-        Task<GenericResponse<bool>> DeleteAsync(string publicId);
+        Task<GenericResponse<bool>> DeleteAsync(DeleteFileRequest model);
     }
 }

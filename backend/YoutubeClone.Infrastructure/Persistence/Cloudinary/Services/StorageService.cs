@@ -3,6 +3,7 @@ using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
+using YoutubeClone.Application.Models.Requests.Storage;
 using YoutubeClone.Application.Models.Responses;
 using YoutubeClone.Domain.Exceptions;
 
@@ -80,8 +81,11 @@ namespace YoutubeClone.Infrastructure.Persistence.Cloudinary.Services
             });
         }
 
-        public async Task<GenericResponse<bool>> DeleteAsync(string publicId)
+        public async Task<GenericResponse<bool>> DeleteAsync(DeleteFileRequest model)
         {
+
+            var publicId = ExtractCloudinaryPublicId(model.FileUrl);
+
             var result = await cloudinary.DestroyAsync(
                 new DeletionParams(publicId));
 
@@ -92,5 +96,26 @@ namespace YoutubeClone.Infrastructure.Persistence.Cloudinary.Services
 
             return ResponseHelper.Create(true);
         }
+
+        // Privados
+        private static string ExtractCloudinaryPublicId(string url)
+        {
+            var uri = new Uri(url);
+            var segments = uri.AbsolutePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
+
+            var uploadIndex = Array.IndexOf(segments, "upload");
+
+            if (uploadIndex == -1 || uploadIndex + 1 >= segments.Length)
+                throw new Exception("URL de Cloudinary inválida");
+
+            var pathParts = segments.Skip(uploadIndex + 2).ToArray();
+
+            var fileName = string.Join("/", pathParts);
+
+            var publicId = Path.ChangeExtension(fileName, null);
+
+            return publicId;
+        }
     }
+
 }
