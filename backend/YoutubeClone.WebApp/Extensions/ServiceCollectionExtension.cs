@@ -32,6 +32,7 @@ namespace YoutubeClone.WebApp.Extensions
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IChannelService, ChannelService>();
+            services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<IEmailTemplateService, EmailTemplateService>();
         }
 
@@ -42,6 +43,7 @@ namespace YoutubeClone.WebApp.Extensions
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IChannelRepository, ChannelRepository>();
+            services.AddScoped<IVideoRepository, VideoRepository>();
             services.AddScoped<IEmailTemplateRepository, EmailTemplateRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IUserWalletRepository, UserWalletRepository>();

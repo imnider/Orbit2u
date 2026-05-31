@@ -82,8 +82,7 @@ namespace YoutubeClone.Application.Services
         public async Task<GenericResponse<ChannelDto>> Update(UpdateChannerlRequest model, Claim claim)
         {
             var executor = await userService.GetExecutor(claim.Value);
-            var user = await userService.GetUser(executor.UserId);
-            var channel = await uow.channelRepository.Get(user);
+            var channel = await uow.channelRepository.Get(executor);
 
             channel.Handle = model.Handle ?? channel.Handle;
             channel.DisplayName = model.DisplayName ?? channel.DisplayName;
@@ -96,6 +95,16 @@ namespace YoutubeClone.Application.Services
             var update = await uow.channelRepository.Update(channel);
 
             await uow.SaveChangesAsync();
+
+            return ResponseHelper.Create(Map(channel));
+        }
+
+        public async Task<GenericResponse<ChannelDto>> GetMyChannel(Claim claim)
+        {
+            var executor = await userService.GetExecutor(claim.Value);
+
+            var channel = await uow.channelRepository.Get(executor)
+                ?? throw new NotFoundException(ResponseConstants.CHANNEL_NOT_EXIST);
 
             return ResponseHelper.Create(Map(channel));
         }

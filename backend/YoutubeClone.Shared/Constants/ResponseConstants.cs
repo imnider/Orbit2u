@@ -9,6 +9,12 @@
         // Canales
         public const string CHANNEL_NOT_EXIST = "El canal no existe";
 
+        // Videos
+        public const string USER_WITHOUT_CHANNEL = "Debes crear un canal antes de publicar videos";
+        public const string VIDEO_NOT_EXIST = "El video no existe";
+        public const string VIDEO_WITHOUT_PERMISSIONS = "No tienes permisos para modificar este video.";
+        public const string VIDEO_NEED_CHANNEL = "Debes crear un canal antes de gestionar videos.";
+
         // Roles
         public static string RoleNotFound(string name) => $"El rol {name} no existe";
         public static string RoleNotFound(Guid id) => $"El rol con ID: {id} no existe";

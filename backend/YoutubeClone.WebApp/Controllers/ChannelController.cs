@@ -68,6 +68,17 @@ namespace YoutubeClone.WebApp.Controllers
             return ResponseStatus.Updated(HttpContext, rsp);
         }
 
+        [HttpGet("me")]
+        [Authorize]
+        [EndpointSummary("Obtener mi canal")]
+        [EndpointDescription("Retorna el canal asociado al usuario autenticado")]
+        [ProducesResponseType<GenericResponse<ChannelDto>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<ChannelDto>> GetMine()
+        {
+            var rsp = await channelService.GetMyChannel(UserClaim());
+            return ResponseStatus.Ok(HttpContext, rsp);
+        }
+
         // PRIVADOS
         private Claim UserClaim()
         {
