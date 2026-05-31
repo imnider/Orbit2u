@@ -11,6 +11,7 @@ namespace YoutubeClone.Application.Interfaces.Services
         public Task<GenericResponse<List<ChannelDto>>> GetAll(FilterChannelRequest model);
         public Task<GenericResponse<ChannelDto>> GetById(Guid id);
         public Task<GenericResponse<ChannelDto>> GetMyChannel(Claim claim);
+        public Task<GenericResponse<List<VideoDto>>> GetVideos(Guid channelId);
         public Task<GenericResponse<ChannelDto>> Update(UpdateChannerlRequest model, Claim claim);
         public Task<GenericResponse<bool>> Delete(Guid id);
     }

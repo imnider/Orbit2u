@@ -4,6 +4,7 @@ using System.Data;
 using System.Globalization;
 using System.Security.Claims;
 using YoutubeClone.Application.Helpers;
+using YoutubeClone.Application.Helpers.Mappers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Users;
@@ -96,7 +97,7 @@ namespace YoutubeClone.Application.Services
 
             await uow.SaveChangesAsync();
 
-            return ResponseHelper.Create(Map(create), [], "Usuario creado correctamente.");
+            return ResponseHelper.Create(UserMapper.ToDto(create), [], "Usuario creado correctamente.");
         }
 
         public async Task<GenericResponse<bool>> Delete(Guid id)
@@ -145,7 +146,7 @@ namespace YoutubeClone.Application.Services
                 .AsQueryable()
                 .Skip(model.Offset)
                 .Take(model.Limit)
-                .Select(user => Map(user))
+                .Select(user => UserMapper.ToDto(user))
                 .ToList();
 
             return ResponseHelper.Create(users);
@@ -154,7 +155,7 @@ namespace YoutubeClone.Application.Services
         public async Task<GenericResponse<UserDto>> GetById(Guid id)
         {
             var user = await GetUser(id);
-            return ResponseHelper.Create(Map(user));
+            return ResponseHelper.Create(UserMapper.ToDto(user));
         }
 
         public async Task<GenericResponse<UserDto>> Update(Guid id, UpdateUserRequest model, Claim? claim)
@@ -194,7 +195,7 @@ namespace YoutubeClone.Application.Services
 
             await uow.SaveChangesAsync();
 
-            return ResponseHelper.Create(Map(user));
+            return ResponseHelper.Create(UserMapper.ToDto(user));
         }
 
         public async Task CreateFirstUser()
@@ -239,7 +240,7 @@ namespace YoutubeClone.Application.Services
         public async Task<GenericResponse<UserDto>> Me(Claim claim)
         {
             var executor = await GetExecutor(claim.Value);
-            return ResponseHelper.Create(Map(executor));
+            return ResponseHelper.Create(UserMapper.ToDto(executor));
         }
 
         // METODOS PRIVADOS
@@ -247,41 +248,6 @@ namespace YoutubeClone.Application.Services
         {
             return await uow.userRepository.Get(id)
                 ?? throw new NotFoundException(ResponseConstants.USER_NOT_EXIST);
-        }
-
-        private static UserDto Map(UserAccount user)
-        {
-            var role = user.UserAccountRoles.FirstOrDefault()?.Role;
-            var membershipPlan = user.UserMemberships.FirstOrDefault()?.MembershipPlan;
-            var channel = user.Channels.FirstOrDefault();
-
-            return new UserDto
-            {
-                UserId = user.UserId,
-                UserName = user.UserName,
-                DisplayName = user.DisplayName,
-                Email = user.Email,
-                Birthday = user.Birthday,
-                Location = user.Location,
-                Password = user.Password,
-                CreatedAt = user.CreatedAt,
-                Role = role != null ? new RoleDto
-                {
-                    Id = role.RoleId,
-                    Name = role.Name,
-                    Description = role.Description
-                } : null,
-                MembershipPlan = membershipPlan != null ? new MembershipPlanDto
-                {
-                    MembershipPlanId = membershipPlan.MembershipPlanId,
-                    DisplayName = membershipPlan.DisplayName,
-                    Description = membershipPlan.Description,
-                    MonthlyPrice = membershipPlan.MonthlyPrice,
-                    CoinsReward = membershipPlan.CoinsReward,
-                    MaxCommunities = membershipPlan.MaxCommunities,
-                    MaxVideosPerCommunity = membershipPlan.MaxVideosPerCommunity
-                } : null
-            };
         }
 
         public async Task<UserAccount> GetExecutor(string value)

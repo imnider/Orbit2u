@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using YoutubeClone.Application.Helpers;
+using YoutubeClone.Application.Helpers.Mappers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Channels;
@@ -34,7 +35,7 @@ namespace YoutubeClone.Application.Services
 
             await uow.SaveChangesAsync();
 
-            return ResponseHelper.Create(Map(create), [], "Canal creado exitosamente.");
+            return ResponseHelper.Create(ChannelMapper.ToDto(create), [], "Canal creado exitosamente.");
         }
 
         public async Task<GenericResponse<bool>> Delete(Guid id)
@@ -67,7 +68,7 @@ namespace YoutubeClone.Application.Services
                 .AsQueryable()
                 .Skip(model.Offset)
                 .Take(model.Limit)
-                .Select(channel => Map(channel))
+                .Select(channel => ChannelMapper.ToDto(channel))
                 .ToList();
 
             return ResponseHelper.Create(channels);
@@ -76,7 +77,7 @@ namespace YoutubeClone.Application.Services
         public async Task<GenericResponse<ChannelDto>> GetById(Guid id)
         {
             var channel = await GetChannel(id);
-            return ResponseHelper.Create(Map(channel));
+            return ResponseHelper.Create(ChannelMapper.ToDto(channel));
         }
 
         public async Task<GenericResponse<ChannelDto>> Update(UpdateChannerlRequest model, Claim claim)
@@ -96,7 +97,7 @@ namespace YoutubeClone.Application.Services
 
             await uow.SaveChangesAsync();
 
-            return ResponseHelper.Create(Map(channel));
+            return ResponseHelper.Create(ChannelMapper.ToDto(channel));
         }
 
         public async Task<GenericResponse<ChannelDto>> GetMyChannel(Claim claim)
@@ -106,28 +107,25 @@ namespace YoutubeClone.Application.Services
             var channel = await uow.channelRepository.Get(executor)
                 ?? throw new NotFoundException(ResponseConstants.CHANNEL_NOT_EXIST);
 
-            return ResponseHelper.Create(Map(channel));
+            return ResponseHelper.Create(ChannelMapper.ToDto(channel));
+        }
+
+        public async Task<GenericResponse<List<VideoDto>>> GetVideos(Guid channelId)
+        {
+            var channel = await GetChannel(channelId);
+
+            var videos = uow.videoRepository.Queryable()
+                .Where(x =>
+                    x.ChannelId == channelId &&
+                    x.DeletedAt == null)
+                .OrderByDescending(x => x.PublishedAt)
+                .Select(VideoMapper.ToDto)
+                .ToList();
+
+            return ResponseHelper.Create(videos);
         }
 
         // PRIVADOS
-        private static ChannelDto Map(Channel channel)
-        {
-            return new ChannelDto
-            {
-                ChannelId = channel.ChannelId,
-                UserId = channel.ChannelId,
-                Handle = channel.Handle,
-                DisplayName = channel.DisplayName,
-                Verification = channel.Verification,
-                Description = channel.Description,
-                AvatarURL = channel.AvatarUrl,
-                BannerURL = channel.BannerUrl,
-                CreatedAt = channel.CreatedAt,
-                UpdatedAt = channel.UpdatedAt,
-                DeletedAt = channel.DeletedAt,
-            };
-        }
-
         private async Task<Channel> GetChannel(Guid id)
         {
             return await uow.channelRepository.Get(id)

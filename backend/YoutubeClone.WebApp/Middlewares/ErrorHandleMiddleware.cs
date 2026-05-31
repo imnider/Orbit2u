@@ -21,6 +21,10 @@ namespace YoutubeClone.WebApp.Middlewares
             {
                 await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status400BadRequest));
             }
+            catch (ForbiddenException exeption)
+            {
+                await context.Response.WriteAsJsonAsync(ManageException(context, exeption, StatusCodes.Status403Forbidden));
+            }
             catch (UnauthorizedException exception)
             {
                 await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status401Unauthorized));

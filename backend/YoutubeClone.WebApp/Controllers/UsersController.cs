@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Users;
 using YoutubeClone.Application.Models.Responses;
-using YoutubeClone.Domain.Exceptions;
 using YoutubeClone.Shared.Constants;
+using YoutubeClone.WebApp.Extensions;
 using YoutubeClone.WebApp.Helpers;
 
 namespace YoutubeClone.WebApp.Controllers
@@ -22,7 +21,7 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<UserDto>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<UserDto>> Me()
         {
-            var rsp = await userService.Me(UserClaim());
+            var rsp = await userService.Me(this.UserClaim());
             return ResponseStatus.Ok(HttpContext, rsp);
         }
 
@@ -33,7 +32,7 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<UserDto>>(StatusCodes.Status201Created)]
         public async Task<GenericResponse<UserDto>> Create([FromBody] CreateUserRequest model)
         {
-            var rsp = await userService.Create(model, UserClaim());
+            var rsp = await userService.Create(model, this.UserClaim());
             return ResponseStatus.Created(HttpContext, rsp);
         }
 
@@ -76,15 +75,8 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<UserDto>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<UserDto>> Update(Guid id, [FromBody] UpdateUserRequest model)
         {
-            var rsp = await userService.Update(id, model, UserClaim());
+            var rsp = await userService.Update(id, model, this.UserClaim());
             return ResponseStatus.Updated(HttpContext, rsp);
-        }
-
-        // MÉTODOS PRIVADOS
-        private Claim UserClaim()
-        {
-            return User.FindFirst(ClaimsConstants.USER_ID)
-                ?? throw new BadRequestException(ResponseConstants.AUTH_CLAIM_USER_NOT_FOUND);
         }
     }
 }

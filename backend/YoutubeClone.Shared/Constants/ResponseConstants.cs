@@ -15,6 +15,10 @@
         public const string VIDEO_WITHOUT_PERMISSIONS = "No tienes permisos para modificar este video.";
         public const string VIDEO_NEED_CHANNEL = "Debes crear un canal antes de gestionar videos.";
 
+        // Comunidades
+        public const string COMMUNITY_NOT_EXIST = "La comunidad no existe";
+        public const string COMMUNITY_WITHOUT_PERMISSIONS = "No tienes permisos para modificar esta comunidad.";
+
         // Roles
         public static string RoleNotFound(string name) => $"El rol {name} no existe";
         public static string RoleNotFound(Guid id) => $"El rol con ID: {id} no existe";

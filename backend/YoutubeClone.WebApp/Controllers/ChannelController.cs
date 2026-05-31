@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Channels;
 using YoutubeClone.Application.Models.Responses;
-using YoutubeClone.Domain.Exceptions;
 using YoutubeClone.Shared.Constants;
+using YoutubeClone.WebApp.Extensions;
 using YoutubeClone.WebApp.Helpers;
 
 namespace YoutubeClone.WebApp.Controllers
@@ -22,7 +21,7 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<ChannelDto>>(StatusCodes.Status201Created)]
         public async Task<GenericResponse<ChannelDto>> Create([FromBody] CreateChannelRequest model)
         {
-            var rsp = await channelService.Create(model, UserClaim());
+            var rsp = await channelService.Create(model, this.UserClaim());
             return ResponseStatus.Created(HttpContext, rsp);
         }
 
@@ -64,7 +63,7 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<ChannelDto>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<ChannelDto>> Update([FromBody] UpdateChannerlRequest model)
         {
-            var rsp = await channelService.Update(model, UserClaim());
+            var rsp = await channelService.Update(model, this.UserClaim());
             return ResponseStatus.Updated(HttpContext, rsp);
         }
 
@@ -75,15 +74,18 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<ChannelDto>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<ChannelDto>> GetMine()
         {
-            var rsp = await channelService.GetMyChannel(UserClaim());
+            var rsp = await channelService.GetMyChannel(this.UserClaim());
             return ResponseStatus.Ok(HttpContext, rsp);
         }
 
-        // PRIVADOS
-        private Claim UserClaim()
+        [HttpGet("{id:guid}/videos")]
+        [EndpointSummary("Videos de un canal")]
+        [EndpointDescription("Retorna todos los videos pertenecientes a un canal")]
+        [ProducesResponseType<GenericResponse<List<VideoDto>>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<List<VideoDto>>> GetVideos(Guid id)
         {
-            return User.FindFirst(ClaimsConstants.USER_ID)
-                ?? throw new BadRequestException(ResponseConstants.AUTH_CLAIM_USER_NOT_FOUND);
+            var rsp = await channelService.GetVideos(id);
+            return ResponseStatus.Ok(HttpContext, rsp);
         }
     }
 }

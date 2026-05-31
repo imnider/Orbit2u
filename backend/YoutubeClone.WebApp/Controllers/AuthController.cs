@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Auth;
@@ -9,8 +9,7 @@ using YoutubeClone.Application.Models.Requests.Users;
 using YoutubeClone.Application.Models.Responses;
 using YoutubeClone.Application.Models.Responses.Auth;
 using YoutubeClone.Application.Models.Responses.Auth.Register;
-using YoutubeClone.Domain.Exceptions;
-using YoutubeClone.Shared.Constants;
+using YoutubeClone.WebApp.Extensions;
 using YoutubeClone.WebApp.Helpers;
 
 namespace YoutubeClone.WebApp.Controllers
@@ -70,12 +69,13 @@ namespace YoutubeClone.WebApp.Controllers
         }
 
         [HttpPost("changePassword")]
+        [Authorize]
         [EndpointSummary("Cambiar contraseña")]
         [EndpointDescription("El usuario envía su contraseña actual y la nueva para cambiarla")]
         [ProducesResponseType<GenericResponse<string>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<string>> ChangePassword([FromBody] ChangePasswordAuthRequest model)
         {
-            var srv = await service.ChangePassword(model, UserClaim());
+            var srv = await service.ChangePassword(model, this.UserClaim());
             return ResponseStatus.Created(HttpContext, srv);
         }
 
@@ -97,12 +97,6 @@ namespace YoutubeClone.WebApp.Controllers
         {
             var rsp = await service.Renew(model);
             return ResponseStatus.Created(HttpContext, rsp);
-        }
-
-        private Claim UserClaim()
-        {
-            return User.FindFirst(ClaimsConstants.USER_ID)
-                ?? throw new BadRequestException(ResponseConstants.AUTH_CLAIM_USER_NOT_FOUND);
         }
     }
 }

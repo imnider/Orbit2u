@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Videos;
 using YoutubeClone.Application.Models.Responses;
-using YoutubeClone.Domain.Exceptions;
-using YoutubeClone.Shared.Constants;
+using YoutubeClone.WebApp.Extensions;
 using YoutubeClone.WebApp.Helpers;
 
 namespace YoutubeClone.WebApp.Controllers
@@ -22,7 +20,7 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<VideoDto>>(StatusCodes.Status201Created)]
         public async Task<GenericResponse<VideoDto>> Create([FromBody] CreateVideoRequest model)
         {
-            var rsp = await videoService.Create(model, UserClaim());
+            var rsp = await videoService.Create(model, this.UserClaim());
             return ResponseStatus.Created(HttpContext, rsp);
         }
 
@@ -46,16 +44,6 @@ namespace YoutubeClone.WebApp.Controllers
             return ResponseStatus.Ok(HttpContext, rsp);
         }
 
-        [HttpGet("channel/{channelId:guid}")]
-        [EndpointSummary("Obtener videos de un canal")]
-        [EndpointDescription("Retorna todos los videos pertenecientes a un canal")]
-        [ProducesResponseType<GenericResponse<List<VideoDto>>>(StatusCodes.Status200OK)]
-        public async Task<GenericResponse<List<VideoDto>>> GetOfChannel(Guid channelId)
-        {
-            var rsp = await videoService.GetOfChannel(channelId);
-            return ResponseStatus.Ok(HttpContext, rsp);
-        }
-
         [HttpGet("me")]
         [Authorize]
         [EndpointSummary("Obtener mis videos")]
@@ -63,7 +51,7 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<List<VideoDto>>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<List<VideoDto>>> GetMyVideos()
         {
-            var rsp = await videoService.GetOfCurrentUser(UserClaim());
+            var rsp = await videoService.GetOfCurrentUser(this.UserClaim());
             return ResponseStatus.Ok(HttpContext, rsp);
         }
 
@@ -74,7 +62,7 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<VideoDto>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<VideoDto>> Update(Guid id, [FromBody] UpdateVideoRequest model)
         {
-            var rsp = await videoService.Update(id, model, UserClaim());
+            var rsp = await videoService.Update(id, model, this.UserClaim());
             return ResponseStatus.Ok(HttpContext, rsp);
         }
 
@@ -85,15 +73,8 @@ namespace YoutubeClone.WebApp.Controllers
         [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<bool>> Delete(Guid id)
         {
-            var rsp = await videoService.Delete(id, UserClaim());
+            var rsp = await videoService.Delete(id, this.UserClaim());
             return ResponseStatus.Ok(HttpContext, rsp);
-        }
-
-        // PRIVADOS
-        private Claim UserClaim()
-        {
-            return User.FindFirst(ClaimsConstants.USER_ID)
-                ?? throw new BadRequestException(ResponseConstants.AUTH_CLAIM_USER_NOT_FOUND);
         }
     }
 }

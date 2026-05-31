@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using YoutubeClone.Application.Helpers;
+using YoutubeClone.Application.Helpers.Mappers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Videos;
@@ -19,6 +20,17 @@ namespace YoutubeClone.Application.Services
             var executor = await userService.GetExecutor(claim.Value);
             var channel = await uow.channelRepository.Get(executor)
                 ?? throw new BadRequestException(ResponseConstants.VIDEO_NEED_CHANNEL);
+
+            if (model.CommunityId.HasValue)
+            {
+                var community = await uow.communityRepository.Get(model.CommunityId.Value)
+                    ?? throw new NotFoundException(ResponseConstants.COMMUNITY_NOT_EXIST);
+
+                if (community.OwnerUserId != executor.UserId)
+                {
+                    throw new ForbiddenException("No puedes asignar videos a una comunidad que no te pertenece.");
+                }
+            }
 
             var create = await uow.videoRepository.Create(new Video
             {
@@ -40,7 +52,7 @@ namespace YoutubeClone.Application.Services
 
             await uow.SaveChangesAsync();
 
-            return ResponseHelper.Create(Map(create), [], "Video creado exitosamente.");
+            return ResponseHelper.Create(VideoMapper.ToDto(create), [], "Video creado exitosamente.");
         }
 
         public async Task<GenericResponse<bool>> Delete(Guid id, Claim claim)
@@ -88,7 +100,7 @@ namespace YoutubeClone.Application.Services
                 .AsQueryable()
                 .Skip(model.Offset)
                 .Take(model.Limit)
-                .Select(video => Map(video))
+                .Select(video => VideoMapper.ToDto(video))
                 .ToList();
 
             return ResponseHelper.Create(videos);
@@ -97,20 +109,7 @@ namespace YoutubeClone.Application.Services
         public async Task<GenericResponse<VideoDto>> GetById(Guid id)
         {
             var video = await GetVideo(id);
-            return ResponseHelper.Create(Map(video));
-        }
-
-        public async Task<GenericResponse<List<VideoDto>>> GetOfChannel(Guid channelId)
-        {
-            var channel = await uow.channelRepository.Get(channelId)
-                ?? throw new NotFoundException(ResponseConstants.CHANNEL_NOT_EXIST);
-
-            var videos = uow.videoRepository.Queryable()
-                .Where(x => x.ChannelId == channelId && x.DeletedAt == null)
-                .Select(x => Map(x))
-                .ToList();
-
-            return ResponseHelper.Create(videos);
+            return ResponseHelper.Create(VideoMapper.ToDto(video));
         }
 
         public async Task<GenericResponse<List<VideoDto>>> GetOfCurrentUser(Claim claim)
@@ -123,7 +122,7 @@ namespace YoutubeClone.Application.Services
             var videos = uow.videoRepository.Queryable()
                 .Where(x => x.ChannelId == channel.ChannelId && x.DeletedAt == null)
                 .OrderByDescending(x => x.PublishedAt)
-                .Select(x => Map(x))
+                .Select(x => VideoMapper.ToDto(x))
                 .ToList();
 
             return ResponseHelper.Create(videos);
@@ -144,6 +143,17 @@ namespace YoutubeClone.Application.Services
                 throw new ForbiddenException(ResponseConstants.VIDEO_WITHOUT_PERMISSIONS);
             }
 
+            if (model.CommunityId.HasValue)
+            {
+                var community = await uow.communityRepository.Get(model.CommunityId.Value)
+                    ?? throw new NotFoundException(ResponseConstants.COMMUNITY_NOT_EXIST);
+
+                if (community.OwnerUserId != executor.UserId)
+                {
+                    throw new ForbiddenException("No puedes asignar videos a una comunidad que no te pertenece.");
+                }
+            }
+
             video.CommunityId = model.CommunityId ?? video.CommunityId;
             video.VideoAccessibilityId = model.VideoAccessibilityId ?? video.VideoAccessibilityId;
             video.Title = model.Title ?? video.Title;
@@ -157,32 +167,10 @@ namespace YoutubeClone.Application.Services
 
             await uow.SaveChangesAsync();
 
-            return ResponseHelper.Create(Map(video));
+            return ResponseHelper.Create(VideoMapper.ToDto(video));
         }
 
         // PRIVADOS
-        private static VideoDto Map(Video video)
-        {
-            return new VideoDto
-            {
-                VideoId = video.VideoId,
-                ChannelId = video.ChannelId,
-                CommunityId = video.CommunityId,
-                VideoAccessibilityId = video.VideoAccessibilityId,
-                Title = video.Title,
-                Description = video.Description,
-                DurationSeconds = video.DurationSeconds,
-                ThumbnailUrl = video.ThumbnailUrl,
-                VideoUrl = video.VideoUrl,
-                AgeRestriction = video.AgeRestriction,
-                IsPinned = video.IsPinned,
-                PublishedAt = video.PublishedAt,
-                CreatedAt = video.CreatedAt,
-                UpdatedAt = video.UpdatedAt,
-                DeletedAt = video.DeletedAt,
-            };
-        }
-
         private async Task<Video> GetVideo(Guid id)
         {
             return await uow.videoRepository.Get(id)
