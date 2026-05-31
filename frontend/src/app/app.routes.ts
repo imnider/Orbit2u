@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { SharedLayout } from './core/layout/public/shared-layout/shared-layout';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -21,11 +22,17 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./features/pages/public/register.form/register.form').then((m)=>m.RegisterForm)
             },
+            // rutas privadas
             {
                 path: 'profile',
-                loadComponent: () =>
-                    import('./features/pages/private/profile/profile').then((m) => m.Profile),
+                canActivate: [authGuard],
+                loadChildren: () =>
+                    import('./features/routes/profile.routes').then((m) => m.profileRoutes),
             },
-        ]
-    }
+        ],
+    },
+    {
+        path: '**',
+        redirectTo: 'home',
+    },
 ];

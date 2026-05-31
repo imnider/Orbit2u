@@ -1,0 +1,88 @@
+<div class="profile-section">
+  <h2 class="profile-section__title">Editar perfil</h2>
+
+  @if (loadingUser()) {
+    <div class="profile-loading">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      <span>Cargando datos...</span>
+    </div>
+  }
+
+  @if (!loadingUser()) {
+
+    @if (successMessage()) {
+      <div class="profile-alert profile-alert--success">
+        <i class="fa-solid fa-circle-check"></i>
+        {{ successMessage() }}
+      </div>
+    }
+
+    @if (error()) {
+      <div class="profile-alert profile-alert--error">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ error() }}
+      </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSave()" class="profile-form">
+
+      <!-- Display Name -->
+      <div class="field-group">
+        <label>Display Name</label>
+        <div class="input-wrapper">
+          <input
+            type="text"
+            formControlName="displayName"
+            placeholder="Tu nombre visible (mín. 10 caracteres)"
+          />
+        </div>
+        @if (getError('displayName')) {
+          <span class="field-error">{{ getError('displayName') }}</span>
+        }
+      </div>
+
+      <div class="form-row">
+        <!-- Cumpleaños -->
+        <div class="field-group">
+          <label>Cumpleaños</label>
+          <div class="input-wrapper custom-material">
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="birthday"
+              placeholder="DD/MM/AAAA"
+            />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </div>
+          @if (getError('birthday')) {
+            <span class="field-error">{{ getError('birthday') }}</span>
+          }
+        </div>
+
+        <!-- Ubicación -->
+        <div class="field-group">
+          <label>Ubicación</label>
+          <div class="input-wrapper custom-material">
+            <mat-select formControlName="location" placeholder="Selecciona país">
+              @for (country of countries; track country) {
+                <mat-option [value]="country">{{ country }}</mat-option>
+              }
+            </mat-select>
+          </div>
+          @if (getError('location')) {
+            <span class="field-error">{{ getError('location') }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <a routerLink="../view" class="btn btn--ghost">Cancelar</a>
+        <button type="submit" class="btn btn--primary" [disabled]="!canSave">
+          {{ loading() ? 'Guardando...' : 'Guardar cambios' }}
+        </button>
+      </div>
+
+    </form>
+  }
+</div>

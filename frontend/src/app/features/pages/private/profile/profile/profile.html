@@ -1,0 +1,36 @@
+<div class="profile-page">
+
+  <!-- sidebar de nav -->
+  <aside class="profile-nav">
+    <div class="profile-nav__avatar">
+      <div class="profile-nav__avatar-circle">
+        {{ user()?.displayName?.charAt(0)?.toUpperCase() ?? '?' }}
+      </div>
+      <div class="profile-nav__avatar-info">
+        <span class="profile-nav__name">{{ user()?.displayName ?? '...' }}</span>
+        <span class="profile-nav__username">@{{ user()?.userName ?? '...' }}</span>
+      </div>
+    </div>
+
+    <nav class="profile-nav__links">
+      <a class="profile-nav__item" routerLink="view" routerLinkActive="active">
+        <i class="fa-solid fa-user"></i>
+        <span>Mi perfil</span>
+      </a>
+      <a class="profile-nav__item" routerLink="edit" routerLinkActive="active">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <span>Editar perfil</span>
+      </a>
+      <a class="profile-nav__item" routerLink="password" routerLinkActive="active">
+        <i class="fa-solid fa-lock"></i>
+        <span>Cambiar contraseña</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ssubruta -->
+  <main class="profile-content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

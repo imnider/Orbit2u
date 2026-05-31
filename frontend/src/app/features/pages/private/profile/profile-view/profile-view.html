@@ -1,0 +1,92 @@
+<div class="profile-section">
+
+  @if (loading()) {
+    <div class="profile-loading">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      <span>Cargando perfil...</span>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="profile-alert profile-alert--error">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      {{ error() }}
+    </div>
+  }
+
+  @if (!loading() && user()) {
+
+    <!--datos del perfil-->
+    <h2 class="profile-section__title">Mi perfil</h2>
+
+    <div class="profile-card">
+      <div class="profile-card__row">
+        <span class="profile-card__label">Display Name</span>
+        <span class="profile-card__value">{{ user()!.displayName }}</span>
+      </div>
+      <div class="profile-card__row">
+        <span class="profile-card__label">Username</span>
+        <span class="profile-card__value">@{{ user()!.userName }}</span>
+      </div>
+      <div class="profile-card__row">
+        <span class="profile-card__label">Email</span>
+        <span class="profile-card__value">{{ user()!.email }}</span>
+      </div>
+      <div class="profile-card__row">
+        <span class="profile-card__label">Cumpleaños</span>
+        <span class="profile-card__value">{{ formatDate(user()!.birthday) }}</span>
+      </div>
+      <div class="profile-card__row">
+        <span class="profile-card__label">Ubicación</span>
+        <span class="profile-card__value">{{ user()!.location }}</span>
+      </div>
+      <div class="profile-card__row">
+        <span class="profile-card__label">Rol</span>
+        <span class="profile-card__value profile-card__badge">
+          {{ getRoleLabel(user()!.role.name) }}
+        </span>
+      </div>
+      <div class="profile-card__row">
+        <span class="profile-card__label">Miembro desde</span>
+        <span class="profile-card__value">{{ formatDate(user()!.createdAt) }}</span>
+      </div>
+    </div>
+
+    <!--plan de membresia-->
+    @if (user()!.membershipPlan; as plan) {
+      <h2 class="profile-section__title" style="margin-top: 12px;">Mi plan</h2>
+
+      <div class="plan-card">
+        <div class="plan-card__header">
+          <div class="plan-card__icon">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <div>
+            <h3 class="plan-card__name">{{ plan.displayName }}</h3>
+            <span class="plan-card__price">{{ formatPrice(plan.monthlyPrice) }}</span>
+          </div>
+        </div>
+
+        @if (plan.description) {
+          <p class="plan-card__desc">{{ plan.description }}</p>
+        }
+
+        <div class="plan-card__stats">
+          <div class="plan-card__stat">
+            <i class="fa-solid fa-coins"></i>
+            <span><strong>{{ plan.coinsReward }}</strong> coins / mes</span>
+          </div>
+          <div class="plan-card__stat">
+            <i class="fa-solid fa-users"></i>
+            <span>Hasta <strong>{{ plan.maxCommunities }}</strong> comunidades</span>
+          </div>
+          <div class="plan-card__stat">
+            <i class="fa-solid fa-video"></i>
+            <span>Hasta <strong>{{ plan.maxVideosPerCommunity }}</strong> videos por comunidad</span>
+          </div>
+        </div>
+      </div>
+    }
+
+  }
+</div>
