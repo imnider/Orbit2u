@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { PublicLayout } from './core/layout/public/public-layout/public-layout';
+import { SharedLayout } from './core/layout/public/shared-layout/shared-layout';
 
 export const routes: Routes = [
     {
         path: '',
-        component: PublicLayout,
+        component: SharedLayout,
         children: [
             {
                 path: 'login',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../../services/theme/theme.service';
 import { Topbar } from "../components/topbar/topbar";
@@ -14,18 +14,23 @@ interface StarStyle {
 }
 
 @Component({
-  selector: 'app-public-layout',
+  selector: 'app-shared-layout',
   imports: [Topbar, Sidebar, RouterOutlet, CommonModule],
-  templateUrl: './public-layout.html',
-  styleUrls: ['./public-layout.scss']
+  templateUrl: './shared-layout.html',
+  styleUrls: ['./shared-layout.scss']
 })
-export class PublicLayout implements OnInit {
+export class SharedLayout implements OnInit {
   stars: StarStyle[] = [];
+  sidebarCollapsed = signal(false);
   constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {
     this.themeService.init();
     this.generateStars(120);
+  }
+
+  toggleSidebar(): void {
+    this.sidebarCollapsed.update(v => !v);
   }
 
   //funcion para que se generen estrellas

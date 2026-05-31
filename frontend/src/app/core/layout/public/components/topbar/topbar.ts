@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Theme, ThemeService } from '../../../../services/theme/theme.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -18,6 +18,7 @@ interface ThemeOption {
   styleUrls: ['./topbar.scss']
 })
 export class Topbar {
+  @Output() toggleSidebar = new EventEmitter<void>();
   showThemeMenu = false;
 
   readonly themes: ThemeOption[] = [
@@ -48,5 +49,9 @@ export class Topbar {
 
   closeThemeMenu(): void {
     this.showThemeMenu = false;
+  }
+
+  onToggleSidebar(): void {
+    this.toggleSidebar.emit();
   }
 }

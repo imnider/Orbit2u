@@ -9,6 +9,7 @@ import { JwtPayload } from '../../interfaces/public/jwt.interface';
 import { LoginRequest, LoginResponse } from '../../interfaces/public/login.interface';
 import { ApiResponse } from '../../interfaces/public/api-response.interface';
 import { RegisterRequest, RegisterResponse } from '../../interfaces/public/register.interface';
+import { CLAIMS } from '../../../shared/constants/claims.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,15 @@ export class AuthService {
     }
     return !this.tokenService.isTokenExpired(token);
   });
+
+  // leer el rol usando el claim
+  role = computed<string | null>(() => {
+    const p = this.payload();
+    if (!p) return null;
+    return (p as any)[CLAIMS.ROLE] ?? null;
+  });
+
+  userId = computed<string | null>(() => this.payload()?.UserId ?? null);
 
   //inicio de sesión
   login(credentials: LoginRequest) {
@@ -90,5 +100,9 @@ export class AuthService {
 
   verifyEmail(email: string) {
     return this.http.post<ApiResponse<any>>(`${this.API}/auth/register/init`, {email});
+  }
+
+  getCurrentUser(): JwtPayload | null {
+    return this.payload();
   }
 }
