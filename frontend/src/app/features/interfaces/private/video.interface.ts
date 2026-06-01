@@ -1,4 +1,5 @@
 import { ApiResponse } from "../public/api-response.interface";
+import { TagDto } from "../public/tag.interface";
 
 export interface VideoDto {
     videoId: string;
@@ -16,6 +17,7 @@ export interface VideoDto {
     createdAt: string;
     updatedAt: string | null;
     deletedAt: string | null;
+    tags: TagDto[];
 }
 
 

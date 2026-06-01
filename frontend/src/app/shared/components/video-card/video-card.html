@@ -1,0 +1,18 @@
+<div class="video-card" (click)="onClick()">
+  <div class="video-card__thumb">
+    <img [src]="video().thumbnailUrl" [alt]="video().title" loading="lazy">
+    <span class="video-card__duration">{{ formatDuration(video().durationSeconds) }}</span>
+    @if (video().ageRestriction) {
+      <span class="video-card__age">+18</span>
+    }
+  </div>
+  <div class="video-card__info">
+    <p class="video-card__title">{{ video().title }}</p>
+    <div class="video-card__tags">
+      @for (tag of video().tags.slice(0, 2); track tag.tagId) {
+        <span class="video-card__tag">{{ tag.displayName }}</span>
+      }
+    </div>
+    <span class="video-card__date">{{ video().publishedAt | date:'mediumDate' }}</span>
+  </div>
+</div>

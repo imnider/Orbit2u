@@ -15,8 +15,8 @@ export class ChannelStateService {
   //después del login
   loadMyChannel(): void {
     this.channelService.getMe().subscribe({
-      next:  (ch) => { this._channel.set(ch); this._loaded.set(true); },
-      error: ()   => { this._channel.set(null); this._loaded.set(true); },
+      next: (ch) => { this._channel.set(ch); this._loaded.set(true); },
+      error: () => { this._channel.set(null); this._loaded.set(true); },
     });
   }
 
