@@ -24,6 +24,9 @@ namespace YoutubeClone.Application.Helpers.Mappers
                 CreatedAt = video.CreatedAt,
                 UpdatedAt = video.UpdatedAt,
                 DeletedAt = video.DeletedAt,
+                Tags = video.Tags
+                    .Select(TagMapper.ToDto)
+                    .ToList()
             };
         }
     }

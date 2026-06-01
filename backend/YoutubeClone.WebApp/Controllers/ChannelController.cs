@@ -64,7 +64,7 @@ namespace YoutubeClone.WebApp.Controllers
         public async Task<GenericResponse<ChannelDto>> Update([FromBody] UpdateChannerlRequest model)
         {
             var rsp = await channelService.Update(model, this.UserClaim());
-            return ResponseStatus.Updated(HttpContext, rsp);
+            return ResponseStatus.Ok(HttpContext, rsp);
         }
 
         [HttpGet("me")]
