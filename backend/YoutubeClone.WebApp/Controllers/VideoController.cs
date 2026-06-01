@@ -11,7 +11,7 @@ namespace YoutubeClone.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VideoController(IVideoService videoService) : ControllerBase
+    public class VideoController(IVideoService videoService, ITagService tagService) : ControllerBase
     {
         [HttpPost]
         [Authorize]
@@ -74,6 +74,26 @@ namespace YoutubeClone.WebApp.Controllers
         public async Task<GenericResponse<bool>> Delete(Guid id)
         {
             var rsp = await videoService.Delete(id, this.UserClaim());
+            return ResponseStatus.Ok(HttpContext, rsp);
+        }
+
+        [HttpPost("{videoId:guid}/tags/{tagId:guid}")]
+        [EndpointSummary("Agregar tag a video")]
+        [EndpointDescription("Asocia un tag existente a un video del usuario autenticado")]
+        [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<bool>> AddTag(Guid videoId, Guid tagId)
+        {
+            var rsp = await tagService.AddTag(videoId, tagId, this.UserClaim());
+            return ResponseStatus.Ok(HttpContext, rsp);
+        }
+
+        [HttpDelete("{videoId:guid}/tags/{tagId:guid}")]
+        [EndpointSummary("Quitar tag de video")]
+        [EndpointDescription("Elimina la asociación entre un tag y un video del usuario autenticado")]
+        [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<bool>> RemoveTag(Guid videoId, Guid tagId)
+        {
+            var rsp = await tagService.RemoveTag(videoId, tagId, this.UserClaim());
             return ResponseStatus.Ok(HttpContext, rsp);
         }
     }

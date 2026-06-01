@@ -12,7 +12,21 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
             try
             {
                 return await context.Videos
+                    .Include(x => x.Tags)
                     .FirstOrDefaultAsync(x => x.VideoId == videoId && x.DeletedAt == null);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public new IQueryable<Video> Queryable()
+        {
+            try
+            {
+                return context.Videos.Include(x => x.Tags);
             }
             catch (Exception)
             {
