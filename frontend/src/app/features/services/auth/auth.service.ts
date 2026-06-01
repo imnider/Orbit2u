@@ -136,4 +136,12 @@ export class AuthService {
 
     return this.renewRequest$;
   }
+
+  initSession(): void {
+    const token = this.tokenService.getToken();
+
+    if (!token) return;
+
+    this.channelState.loadMyChannel();
+  }
 }

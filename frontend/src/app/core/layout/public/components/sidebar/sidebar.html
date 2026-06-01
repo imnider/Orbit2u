@@ -1,15 +1,24 @@
 <nav class="sidebar" [class.sidebar--collapsed]="collapsed">
   <div class="sidebar__scroll">
-
     <!--visible para todos: descubrir-->
     <section class="sidebar__section">
-      @if (!collapsed) { <span class="sidebar__section-label">Descubrir</span> }
+      @if (!collapsed) {
+        <span class="sidebar__section-label">Descubrir</span>
+      }
       <ul class="sidebar__nav-list">
         @for (item of discoverItems; track item.route) {
           <li>
-            <a class="sidebar__nav-item" [routerLink]="item.route" routerLinkActive="sidebar__nav-item--active" [matTooltip]="collapsed ? item.label : ''" matTooltipPosition="right">
+            <a
+              class="sidebar__nav-item"
+              [routerLink]="item.route"
+              routerLinkActive="sidebar__nav-item--active"
+              [matTooltip]="collapsed ? item.label : ''"
+              matTooltipPosition="right"
+            >
               <mat-icon class="sidebar__nav-icon">{{ item.icon }}</mat-icon>
-              @if (!collapsed) { <span>{{ item.label }}</span> }
+              @if (!collapsed) {
+                <span>{{ item.label }}</span>
+              }
             </a>
           </li>
         }
@@ -20,16 +29,30 @@
     @if (isLoggedIn() && !isCreator()) {
       <li>
         @if (hasChannel()) {
-          <a class="sidebar__nav-item" [routerLink]="['/channel', myChannelId()]" routerLinkActive="sidebar__nav-item--active"
-            [matTooltip]="collapsed ? 'Mi canal' : ''" matTooltipPosition="right">
+          <a
+            class="sidebar__nav-item"
+            [routerLink]="['/channel', myChannelId()]"
+            routerLinkActive="sidebar__nav-item--active"
+            [matTooltip]="collapsed ? 'Mi canal' : ''"
+            matTooltipPosition="right"
+          >
             <mat-icon class="sidebar__nav-icon">play_circle</mat-icon>
-            @if (!collapsed) { <span>Mi canal</span> }
+            @if (!collapsed) {
+              <span>Mi canal</span>
+            }
           </a>
         } @else {
-          <a class="sidebar__nav-item" routerLink="/create-channel" routerLinkActive="sidebar__nav-item--active"
-            [matTooltip]="collapsed ? 'Crear canal' : ''" matTooltipPosition="right">
+          <a
+            class="sidebar__nav-item"
+            routerLink="/create-channel"
+            routerLinkActive="sidebar__nav-item--active"
+            [matTooltip]="collapsed ? 'Crear canal' : ''"
+            matTooltipPosition="right"
+          >
             <mat-icon class="sidebar__nav-icon">add_circle</mat-icon>
-            @if (!collapsed) { <span>Crear canal</span> }
+            @if (!collapsed) {
+              <span>Crear canal</span>
+            }
           </a>
         }
       </li>
@@ -38,13 +61,23 @@
     <!--visible para logueados: espacio personal-->
     @if (isLoggedIn()) {
       <section class="sidebar__section">
-        @if (!collapsed) { <span class="sidebar__section-label">Tu espacio</span> }
+        @if (!collapsed) {
+          <span class="sidebar__section-label">Tu espacio</span>
+        }
         <ul class="sidebar__nav-list">
           @for (item of spaceItems; track item.route) {
             <li>
-              <a class="sidebar__nav-item" [routerLink]="item.route" routerLinkActive="sidebar__nav-item--active" [matTooltip]="collapsed ? item.label : ''" matTooltipPosition="right">
+              <a
+                class="sidebar__nav-item"
+                [routerLink]="item.route"
+                routerLinkActive="sidebar__nav-item--active"
+                [matTooltip]="collapsed ? item.label : ''"
+                matTooltipPosition="right"
+              >
                 <mat-icon class="sidebar__nav-icon">{{ item.icon }}</mat-icon>
-                @if (!collapsed) { <span>{{ item.label }}</span> }
+                @if (!collapsed) {
+                  <span>{{ item.label }}</span>
+                }
               </a>
             </li>
           }
@@ -55,13 +88,23 @@
     <!--visible para creadores-->
     @if (isCreator()) {
       <section class="sidebar__section">
-        @if (!collapsed) { <span class="sidebar__section-label">Creador</span> }
+        @if (!collapsed) {
+          <span class="sidebar__section-label">Creador</span>
+        }
         <ul class="sidebar__nav-list">
           @for (item of creatorItems; track item.route) {
             <li>
-              <a class="sidebar__nav-item" [routerLink]="item.route" routerLinkActive="sidebar__nav-item--active" [matTooltip]="collapsed ? item.label : ''" matTooltipPosition="right">
+              <a
+                class="sidebar__nav-item"
+                [routerLink]="item.route"
+                routerLinkActive="sidebar__nav-item--active"
+                [matTooltip]="collapsed ? item.label : ''"
+                matTooltipPosition="right"
+              >
                 <mat-icon class="sidebar__nav-icon">{{ item.icon }}</mat-icon>
-                @if (!collapsed) { <span>{{ item.label }}</span> }
+                @if (!collapsed) {
+                  <span>{{ item.label }}</span>
+                }
               </a>
             </li>
           }
@@ -72,13 +115,23 @@
     <!--visible para admin-->
     @if (isAdmin()) {
       <section class="sidebar__section">
-        @if (!collapsed) { <span class="sidebar__section-label">Administración</span> }
+        @if (!collapsed) {
+          <span class="sidebar__section-label">Administración</span>
+        }
         <ul class="sidebar__nav-list">
           @for (item of adminItems; track item.route) {
             <li>
-              <a class="sidebar__nav-item" [routerLink]="item.route" routerLinkActive="sidebar__nav-item--active" [matTooltip]="collapsed ? item.label : ''" matTooltipPosition="right">
+              <a
+                class="sidebar__nav-item"
+                [routerLink]="item.route"
+                routerLinkActive="sidebar__nav-item--active"
+                [matTooltip]="collapsed ? item.label : ''"
+                matTooltipPosition="right"
+              >
                 <mat-icon class="sidebar__nav-icon">{{ item.icon }}</mat-icon>
-                @if (!collapsed) { <span>{{ item.label }}</span> }
+                @if (!collapsed) {
+                  <span>{{ item.label }}</span>
+                }
               </a>
             </li>
           }
@@ -91,15 +144,29 @@
     <ul class="sidebar__nav-list">
       @for (item of footerItems; track item.route) {
         <li>
-          <a class="sidebar__nav-item sidebar__nav-item--footer" [routerLink]="item.route" routerLinkActive="sidebar__nav-item--active" [matTooltip]="collapsed ? item.label : ''" matTooltipPosition="right">
+          <a
+            class="sidebar__nav-item sidebar__nav-item--footer"
+            [routerLink]="item.route"
+            routerLinkActive="sidebar__nav-item--active"
+            [matTooltip]="collapsed ? item.label : ''"
+            matTooltipPosition="right"
+          >
             <mat-icon class="sidebar__nav-icon">{{ item.icon }}</mat-icon>
-            @if (!collapsed) { <span>{{ item.label }}</span> }
+            @if (!collapsed) {
+              <span>{{ item.label }}</span>
+            }
           </a>
         </li>
       }
     </ul>
 
-    <button class="sidebar__collapse-btn" (click)="onCollapseToggle()" [matTooltip]="collapsed ? 'Expandir' : 'Colapsar'" matTooltipPosition="right" aria-label="Toggle sidebar">
+    <button
+      class="sidebar__collapse-btn"
+      (click)="onCollapseToggle()"
+      [matTooltip]="collapsed ? 'Expandir' : 'Colapsar'"
+      matTooltipPosition="right"
+      aria-label="Toggle sidebar"
+    >
       <mat-icon>{{ collapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
     </button>
   </footer>

@@ -12,7 +12,7 @@ import { ChannelStateService } from '../../../../../features/services/models/cha
 
 interface NavItem {
   label: string;
-  icon:  string;
+  icon: string;
   route: string;
 }
 
@@ -21,9 +21,11 @@ interface NavItem {
   standalone: true,
   imports: [RouterModule, MatIconModule, MatTooltipModule, CommonModule],
   templateUrl: './sidebar.html',
-  styleUrls: ['./sidebar.scss']
+  styleUrls: ['./sidebar.scss'],
 })
-export class Sidebar{
+export class Sidebar {
+  ngOnInit() {}
+
   @Input() collapsed = false;
   @Output() collapseToggle = new EventEmitter<void>();
 
@@ -31,33 +33,35 @@ export class Sidebar{
   private readonly channelState = inject(ChannelStateService);
 
   readonly isLoggedIn = this.authService.isAuthenticated;
-  readonly isUser  = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'User');
-  readonly isCreator  = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Creator');
-  readonly isAdmin    = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Admin');
+  readonly isUser = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'User');
+  readonly isCreator = computed(
+    () => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Creator',
+  );
+  readonly isAdmin = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Admin');
 
   //items visibles para todos
   readonly discoverItems: NavItem[] = [
-    { label: 'Inicio',      icon: 'home',             route: '/home'        },
-    { label: 'Comunidades', icon: 'public',           route: '/communities' },
-    { label: 'Planes',      icon: 'card_membership',  route: '/planes'      },
+    { label: 'Inicio', icon: 'home', route: '/home' },
+    { label: 'Comunidades', icon: 'public', route: '/communities' },
+    { label: 'Planes', icon: 'card_membership', route: '/planes' },
   ];
 
   //items solo para usuarios logueados
   readonly libraryItems: NavItem[] = [
-    { label: 'Playlists',     icon: 'queue_music',    route: '/playlists'     },
-    { label: 'Suscripciones', icon: 'subscriptions',  route: '/subscriptions' },
+    { label: 'Playlists', icon: 'queue_music', route: '/playlists' },
+    { label: 'Suscripciones', icon: 'subscriptions', route: '/subscriptions' },
   ];
 
   //items del espacio personal
   readonly spaceItems: NavItem[] = [
-    { label: 'Mi perfil',    icon: 'person', route: '/profile'     },
-    { label: 'Preferencias', icon: 'tune',   route: '/preferences' },
+    { label: 'Mi perfil', icon: 'person', route: '/profile' },
+    { label: 'Preferencias', icon: 'tune', route: '/preferences' },
   ];
 
   //items solo para creadores
   readonly creatorItems: NavItem[] = [
-    { label: 'Mi canal',    icon: 'play_circle', route: '/my-channel'  },
-    { label: 'Dashboard',   icon: 'bar_chart',   route: '/dashboard'   },
+    { label: 'Mi canal', icon: 'play_circle', route: '/my-channel' },
+    { label: 'Dashboard', icon: 'bar_chart', route: '/dashboard' },
   ];
 
   //items solo para admin
@@ -66,7 +70,7 @@ export class Sidebar{
   ];
 
   readonly footerItems: NavItem[] = [
-    { label: 'About us', icon: 'info',  route: '/about'   },
+    { label: 'About us', icon: 'info', route: '/about' },
     { label: 'Contacto', icon: 'email', route: '/contact' },
   ];
 

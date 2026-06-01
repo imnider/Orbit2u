@@ -6,17 +6,23 @@ import { ChannelDto } from '../../interfaces/private/channel.interface';
 export class ChannelStateService {
   private readonly channelService = inject(ChannelService);
 
-  private _channel  = signal<ChannelDto | null>(null);
-  private _loaded   = signal(false);
+  private _channel = signal<ChannelDto | null>(null);
+  private _loaded = signal(false);
 
-  readonly channel    = computed(() => this._channel());
+  readonly channel = computed(() => this._channel());
   readonly hasChannel = computed(() => this._loaded() && this._channel() !== null);
 
   //después del login
   loadMyChannel(): void {
     this.channelService.getMe().subscribe({
-      next: (ch) => { this._channel.set(ch); this._loaded.set(true); },
-      error: () => { this._channel.set(null); this._loaded.set(true); },
+      next: (ch) => {
+        this._channel.set(ch);
+        this._loaded.set(true);
+      },
+      error: () => {
+        this._channel.set(null);
+        this._loaded.set(true);
+      },
     });
   }
 
