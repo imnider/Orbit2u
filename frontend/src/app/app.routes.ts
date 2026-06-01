@@ -62,7 +62,13 @@ export const routes: Routes = [
                 canActivate: [authGuard],
                 loadComponent: () =>
                     import('./features/pages/private/channel/channel-edit/edit-channel').then(m => m.EditChannel),
-            }
+            },
+            {
+                path: 'upload-video',
+                canActivate: [authGuard],
+                loadComponent: () =>
+                    import('./features/pages/public/video/upload-video').then(m => m.UploadVideo),
+            },
         ],
     },
     {

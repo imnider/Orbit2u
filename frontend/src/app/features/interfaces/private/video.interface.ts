@@ -18,4 +18,25 @@ export interface VideoDto {
     deletedAt: string | null;
 }
 
+
+export interface CreateVideoRequest {
+  communityId: string | null;
+  videoAccessibilityId: number;
+  title: string;
+  description: string | null;
+  durationSeconds: number;
+  thumbnailUrl: string;
+  videoUrl: string;
+  ageRestriction: boolean;
+}
+
+export interface UpdateVideoRequest {
+  communityId?: string | null;
+  videoAccessibilityId?: number | null;
+  title?: string | null;
+  description?: string | null;
+  thumbnailUrl?: string | null;
+  ageRestriction?: boolean | null;
+}
+
 export type VideoListResponse = ApiResponse<VideoDto[]>;
