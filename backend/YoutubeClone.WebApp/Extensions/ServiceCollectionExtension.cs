@@ -34,6 +34,7 @@ namespace YoutubeClone.WebApp.Extensions
             services.AddScoped<IChannelService, ChannelService>();
             services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<ISubscriptionService, SubscriptionService>();
+            services.AddScoped<IMembershipPlanService, MembershipPlanService>();
             services.AddScoped<ICommunityService, CommunityService>();
             services.AddScoped<ICommunityMemberService, CommunityMemberService>();
             services.AddScoped<ITagService, TagService>();
