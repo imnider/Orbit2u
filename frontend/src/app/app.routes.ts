@@ -8,6 +8,16 @@ export const routes: Routes = [
         component: SharedLayout,
         children: [
             {
+                path: '',
+                redirectTo: 'home',
+                pathMatch: 'full',
+            },
+            {
+                path: 'home',
+                loadComponent: () =>
+                    import('./features/pages/public/home/home').then((m)=>m.Home)
+            },
+            {
                 path: 'login',
                 loadComponent: () =>
                     import('./features/pages/public/login/login').then((m)=>m.Login)

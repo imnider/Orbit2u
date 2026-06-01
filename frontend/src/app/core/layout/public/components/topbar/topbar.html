@@ -1,10 +1,6 @@
 <header class="topbar">
-  <button
-    class="topbar__icon-btn topbar__icon-btn--menu"
-    (click)="onToggleSidebar()"
-    aria-label="Toggle sidebar"
-    matTooltip="Menú"
-  >
+  <button class="topbar__icon-btn topbar__icon-btn--menu"
+    (click)="onToggleSidebar()" aria-label="Toggle sidebar" matTooltip="Menú">
     <mat-icon>menu</mat-icon>
   </button>
 
@@ -17,12 +13,8 @@
 
   <div class="topbar__search">
     <mat-icon class="topbar__search-icon">search</mat-icon>
-    <input
-      class="topbar__search-input"
-      type="text"
-      placeholder="Buscar en Orbit2u..."
-      aria-label="Buscar"
-    />
+    <input class="topbar__search-input" type="text"
+      placeholder="Buscar en Orbit2u..." aria-label="Buscar"/>
   </div>
 
   <div class="topbar__actions">
@@ -55,8 +47,16 @@
       }
     </div>
 
-    <button class="topbar__btn topbar__btn--ghost" routerLink="/login">Entrar</button>
-    <button class="topbar__btn topbar__btn--primary" routerLink="/register">Unirme</button>
+    <!--verificar si esta logueado para mostrar botones-->
+    @if (isLoggedIn()) {
+      <button class="topbar__btn topbar__btn--ghost" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Salir
+      </button>
+    } @else {
+      <button class="topbar__btn topbar__btn--ghost" routerLink="/login">Entrar</button>
+      <button class="topbar__btn topbar__btn--primary" routerLink="/register">Unirme</button>
+    }
   </div>
 
 </header>
