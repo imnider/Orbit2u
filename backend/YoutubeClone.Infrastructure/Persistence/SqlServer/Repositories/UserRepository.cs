@@ -23,6 +23,7 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
                         .ThenInclude(userRoles => userRoles.Role)
                     .Include(user => user.UserMemberships)
                         .ThenInclude(membership => membership.MembershipPlan)
+                    .Include(user => user.UserWallet)
                     .FirstOrDefaultAsync(x => x.UserId == userId && x.DeletedAt == null);
             }
             catch (Exception)
@@ -41,7 +42,26 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
                         .ThenInclude(userRoles => userRoles.Role)
                     .Include(user => user.UserMemberships)
                         .ThenInclude(membership => membership.MembershipPlan)
+                    .Include(user => user.UserWallet)
                     .FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public new IQueryable<UserAccount> Queryable()
+        {
+            try
+            {
+                return context.UserAccounts
+                    .Include(u => u.UserAccountRoles)
+                        .ThenInclude(r => r.Role)
+                    .Include(u => u.UserMemberships)
+                        .ThenInclude(m => m.MembershipPlan)
+                    .Include(u => u.UserWallet);
             }
             catch (Exception)
             {

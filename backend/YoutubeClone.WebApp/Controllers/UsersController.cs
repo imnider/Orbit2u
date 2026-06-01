@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
+using YoutubeClone.Application.Models.Requests.CoinPackage;
 using YoutubeClone.Application.Models.Requests.Users;
 using YoutubeClone.Application.Models.Responses;
 using YoutubeClone.Shared.Constants;
@@ -12,7 +13,7 @@ namespace YoutubeClone.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController(IUserService userService) : ControllerBase
+    public class UsersController(IUserService userService, IWalletService walletService) : ControllerBase
     {
         [HttpGet("me")]
         [Authorize]
@@ -77,6 +78,17 @@ namespace YoutubeClone.WebApp.Controllers
         {
             var rsp = await userService.Update(id, model, this.UserClaim());
             return ResponseStatus.Updated(HttpContext, rsp);
+        }
+
+        [HttpPost("{userId:guid}/wallet")]
+        [Authorize(Roles = RoleConstants.Administrador)]
+        [EndpointSummary("Agregar monedas a la billetera de un usuario")]
+        [EndpointDescription("Añade monedas a la billetera de un usuario dependiendo del paquete de monedas enviado")]
+        [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<bool>> AddCoins(Guid userId, [FromBody] AddCoinsRequest request)
+        {
+            var rsp = await walletService.AddCoins(userId, request);
+            return ResponseStatus.Ok(HttpContext, rsp);
         }
     }
 }

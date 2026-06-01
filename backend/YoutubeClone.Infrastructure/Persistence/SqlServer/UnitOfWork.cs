@@ -17,7 +17,8 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer
         ISubscriptionRepository _subscriptionRepository,
         ICommunityMemberRepository _communityMemberRepository,
         ITagRepository _tagRepository,
-        IUserPreferenceTagRepository _userPreferenceTagRepository)
+        IUserPreferenceTagRepository _userPreferenceTagRepository,
+        ICoinPackageRepository _coinPackageRepository)
         : IUnitOfWork
     {
         private readonly Orbit2uContext context = _context;
@@ -34,6 +35,7 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer
         public ICommunityMemberRepository communityMemberRepository { get; set; } = _communityMemberRepository;
         public ITagRepository tagRepository { get; set; } = _tagRepository;
         public IUserPreferenceTagRepository userPreferenceTagRepository { get; set; } = _userPreferenceTagRepository;
+        public ICoinPackageRepository coinPackageRepository { get; set; } = _coinPackageRepository;
 
         public async Task SaveChangesAsync()
         {

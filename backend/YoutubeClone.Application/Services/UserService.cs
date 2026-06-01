@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Security.Claims;
@@ -139,11 +138,6 @@ namespace YoutubeClone.Application.Services
 
             // Paginación y consulta
             var users = queryable
-                .Include(user => user.UserAccountRoles)
-                    .ThenInclude(userRole => userRole.Role)
-                .Include(user => user.UserMemberships)
-                    .ThenInclude(membership => membership.MembershipPlan)
-                .AsQueryable()
                 .Skip(model.Offset)
                 .Take(model.Limit)
                 .Select(user => UserMapper.ToDto(user))

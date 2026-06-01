@@ -21,22 +21,9 @@ namespace YoutubeClone.Application.Helpers.Mappers
                 Location = user.Location,
                 Password = user.Password,
                 CreatedAt = user.CreatedAt,
-                Role = role != null ? new RoleDto
-                {
-                    Id = role.RoleId,
-                    Name = role.Name,
-                    Description = role.Description
-                } : null,
-                MembershipPlan = membershipPlan != null ? new MembershipPlanDto
-                {
-                    MembershipPlanId = membershipPlan.MembershipPlanId,
-                    DisplayName = membershipPlan.DisplayName,
-                    Description = membershipPlan.Description,
-                    MonthlyPrice = membershipPlan.MonthlyPrice,
-                    CoinsReward = membershipPlan.CoinsReward,
-                    MaxCommunities = membershipPlan.MaxCommunities,
-                    MaxVideosPerCommunity = membershipPlan.MaxVideosPerCommunity
-                } : null
+                Role = RoleMapper.ToDto(role),
+                MembershipPlan = MembershipPlanMapper.ToDto(membershipPlan),
+                Coins = user.UserWallet?.Balance ?? 0
             };
         }
     }

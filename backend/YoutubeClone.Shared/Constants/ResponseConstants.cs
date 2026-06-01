@@ -29,6 +29,9 @@
         public static string MembershipNotFound(int id) => $"La membresía con ID: {id} no existe";
         public const string MEMBERSHIP_WITHOUT_PERMISSIONS = "No tienes los permisos para modificar membresías";
 
+        // Paquetes
+        public static string PackageCoinNotFount(int id) => $"El paquete de monedas con ID: {id} no existe";
+
         // Auth - Token
         public const string AUTH_TOKEN_NOT_FOUND = "El token no es correcto o expiró";
         public const string AUTH_USER_OR_PASSWORD_NOT_FOUND = "Usuario o contraseña incorrectos";
