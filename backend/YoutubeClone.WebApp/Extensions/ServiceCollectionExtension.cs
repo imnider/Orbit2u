@@ -31,6 +31,7 @@ namespace YoutubeClone.WebApp.Extensions
             services.AddScoped<IAppService, AppService>();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserPreferenceService, UserPreferenceService>();
             services.AddScoped<IChannelService, ChannelService>();
             services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<ISubscriptionService, SubscriptionService>();
@@ -58,6 +59,7 @@ namespace YoutubeClone.WebApp.Extensions
             services.AddScoped<IUserWalletRepository, UserWalletRepository>();
             services.AddScoped<IMembershipPlanRepository, MembershipPlanRepository>();
             services.AddScoped<IUserPreferenceRepository, UserPreferenceRepository>();
+            services.AddScoped<IUserPreferenceTagRepository, UserPreferenceTagRepository>();
         }
 
         public static void AddMiddlewares(this IServiceCollection services)
