@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Helpers.Mappers;
 using YoutubeClone.Application.Interfaces.Services;
@@ -18,6 +19,15 @@ namespace YoutubeClone.Application.Services
         public async Task<GenericResponse<ChannelDto>> Create(CreateChannelRequest model, Claim claim)
         {
             var executor = await userService.GetExecutor(claim.Value);
+
+            var alreadyHasChannel = await uow.channelRepository.Queryable()
+                .AnyAsync(x => x.UserId == executor.UserId && x.DeletedAt == null);
+
+            if (alreadyHasChannel)
+            {
+                throw new BadRequestException("Ya tienes un canal creado.");
+            }
+
             var create = await uow.channelRepository.Create(new Channel
             {
                 ChannelId = Guid.NewGuid(),
