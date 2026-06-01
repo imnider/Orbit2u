@@ -8,6 +8,7 @@ import { AuthService } from '../../../../../features/services/auth/auth.service'
 import { CurrentUser } from '../../../../../features/interfaces/public/user.interface';
 import { JwtPayload } from 'jwt-decode';
 import { CLAIMS } from '../../../../../shared/constants/claims.constants';
+import { ChannelStateService } from '../../../../../features/services/models/channel-state.service';
 
 interface NavItem {
   label: string;
@@ -27,8 +28,10 @@ export class Sidebar{
   @Output() collapseToggle = new EventEmitter<void>();
 
   private readonly authService = inject(AuthService);
+  private readonly channelState = inject(ChannelStateService);
 
   readonly isLoggedIn = this.authService.isAuthenticated;
+  readonly isUser  = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'User');
   readonly isCreator  = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Creator');
   readonly isAdmin    = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Admin');
 
@@ -43,7 +46,6 @@ export class Sidebar{
   readonly libraryItems: NavItem[] = [
     { label: 'Playlists',     icon: 'queue_music',    route: '/playlists'     },
     { label: 'Suscripciones', icon: 'subscriptions',  route: '/subscriptions' },
-    { label: 'Crear Canal',      icon: 'explore',        route: '/create-channel'},
   ];
 
   //items del espacio personal
@@ -67,6 +69,9 @@ export class Sidebar{
     { label: 'About us', icon: 'info',  route: '/about'   },
     { label: 'Contacto', icon: 'email', route: '/contact' },
   ];
+
+  readonly hasChannel = computed(() => this.channelState.hasChannel());
+  readonly myChannelId = computed(() => this.channelState.channel()?.channelId ?? null);
 
   onCollapseToggle(): void {
     this.collapseToggle.emit();

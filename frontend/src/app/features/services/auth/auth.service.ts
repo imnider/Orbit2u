@@ -10,6 +10,7 @@ import { LoginRequest, LoginResponse } from '../../interfaces/public/login.inter
 import { ApiResponse } from '../../interfaces/public/api-response.interface';
 import { CLAIMS } from '../../../shared/constants/claims.constants';
 import { CompleteRegisterRequest, CompleteRegisterResponse, ValidateTokenResponse } from '../../interfaces/public/register.interface';
+import { ChannelStateService } from '../models/channel-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class AuthService {
   private readonly tokenService = inject(TokenService);
   //uso de signal
   private _token = signal<string | null>(this.tokenService.getToken());
+  private readonly channelState = inject(ChannelStateService);
 
   token = computed(() => this._token());
 
@@ -56,10 +58,8 @@ export class AuthService {
   login(credentials: LoginRequest) {
     return this.http.post<ApiResponse<LoginResponse>>(`${this.API}/auth/login`, credentials).pipe(
       tap((res) => {
-        this.saveSession(
-          res.data.token,
-          res.data.refreshToken
-        );
+        this.saveSession(res.data.token, res.data.refreshToken);
+        this.channelState.loadMyChannel(); //cargar canal
       })
     );
   }
@@ -68,6 +68,7 @@ export class AuthService {
   logout(): void {
     this.tokenService.removeTokens();
     this._token.set(null);
+    this.channelState.clear();
     this.router.navigate(['/login']);
   }
 
