@@ -1,0 +1,107 @@
+<div class="edit-channel-page">
+
+  <div class="edit-channel-topnav">
+    <button class="back-btn" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Volver al canal</span>
+    </button>
+    <h1>Editar canal</h1>
+  </div>
+
+  @if (loading()) {
+    <div class="edit-channel-loading">
+      <span class="loader"></span>
+    </div>
+  } @else {
+
+    <div class="edit-channel-card">
+
+      <!--banner-->
+      <div class="banner-upload" (click)="bannerInput.click()">
+        @if (bannerPreview()) {
+          <img class="banner-upload__img" [src]="bannerPreview()" alt="Banner">
+        } @else {
+          <div class="banner-upload__placeholder">
+            <mat-icon>add_photo_alternate</mat-icon>
+            <span>Subir banner</span>
+          </div>
+        }
+        @if (uploadingBanner()) {
+          <div class="upload-overlay"><span class="loader"></span></div>
+        }
+        <input #bannerInput type="file" accept="image/*" (change)="onBannerSelected($event)" hidden>
+      </div>
+
+      <!--avatar-->
+      <div class="avatar-upload-row">
+        <div class="avatar-upload" (click)="avatarInput.click()">
+          @if (avatarPreview()) {
+            <img [src]="avatarPreview()" alt="Avatar">
+          } @else {
+            <mat-icon>add_a_photo</mat-icon>
+          }
+          @if (uploadingAvatar()) {
+            <div class="upload-overlay"><span class="loader"></span></div>
+          }
+          <input #avatarInput type="file" accept="image/*" (change)="onAvatarSelected($event)" hidden>
+        </div>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="edit-channel-form">
+
+        <div class="row-fields">
+          <div class="field-group">
+            <label>Handle</label>
+            <div class="input-wrapper">
+              <input type="text" formControlName="handle" placeholder="mi-canal">
+            </div>
+            @if (getErrorMessage('handle')) {
+              <span class="field-error">{{ getErrorMessage('handle') }}</span>
+            }
+          </div>
+
+          <div class="field-group">
+            <label>Nombre para mostrar</label>
+            <div class="input-wrapper">
+              <input type="text" formControlName="displayName" placeholder="Mi Canal">
+            </div>
+            @if (getErrorMessage('displayName')) {
+              <span class="field-error">{{ getErrorMessage('displayName') }}</span>
+            }
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Descripción <span class="label-hint">(opcional)</span></label>
+          <div class="input-wrapper">
+            <textarea formControlName="description" rows="3"
+              placeholder="Descripción del canal..."></textarea>
+          </div>
+          @if (getErrorMessage('description')) {
+            <span class="field-error">{{ getErrorMessage('description') }}</span>
+          }
+        </div>
+
+        @if (error()) {
+          <div class="alert-error">{{ error() }}</div>
+        }
+        @if (success()) {
+          <div class="alert-success">{{ success() }}</div>
+        }
+
+        <div class="edit-channel-form__actions">
+          <button type="button" class="cancel-btn" (click)="goBack()">Cancelar</button>
+          <button type="submit" class="submit-btn"
+            [disabled]="saving() || uploadingAvatar() || uploadingBanner()">
+            @if (saving()) {
+              <span class="loader"></span>
+            } @else {
+              <span>Guardar cambios</span>
+            }
+          </button>
+        </div>
+
+      </form>
+    </div>
+  }
+</div>

@@ -57,6 +57,12 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./features/routes/channel.routes').then(m => m.MyChannelRedirect),
             },
+            {
+                path: 'edit-channel',
+                canActivate: [authGuard],
+                loadComponent: () =>
+                    import('./features/pages/private/channel/channel-edit/edit-channel').then(m => m.EditChannel),
+            }
         ],
     },
     {
