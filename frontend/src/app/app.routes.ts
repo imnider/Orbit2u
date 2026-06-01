@@ -69,6 +69,12 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./features/pages/public/video/upload-video').then(m => m.UploadVideo),
             },
+            {
+                path: 'video/:id',
+                canActivate: [authGuard],
+                loadComponent: () =>
+                    import('./features/pages/public/video/video-view/video-view').then(m => m.VideoView),
+                },
         ],
     },
     {

@@ -1,0 +1,151 @@
+<div class="video-view-page">
+
+  @if (loading()) {
+    <div class="video-skeleton">
+      <div class="skeleton skeleton--player"></div>
+      <div class="skeleton skeleton--text" style="width:60%;margin-top:16px"></div>
+      <div class="skeleton skeleton--text" style="width:40%"></div>
+    </div>
+
+  } @else if (error()) {
+    <div class="video-error">
+      <mat-icon>error_outline</mat-icon>
+      <p>{{ error() }}</p>
+    </div>
+
+  } @else if (video()) {
+
+    <div class="video-view-layout">
+
+      <!-- columna principal -->
+      <div class="video-main">
+
+        <!-- reproductor -->
+        <div class="video-player">
+          <video
+            [src]="video()!.videoUrl"
+            controls
+            controlsList="nodownload"
+            preload="metadata"
+            class="video-player__el"
+          ></video>
+        </div>
+
+        <!-- título -->
+        <h1 class="video-title">{{ video()!.title }}</h1>
+
+        <!-- info del canal + acciones -->
+        <div class="video-meta">
+
+          <div class="video-meta__channel" (click)="goToChannel()">
+            <div class="video-meta__avatar">
+              @if (channel()?.avatarURL) {
+                <img [src]="channel()!.avatarURL" [alt]="channel()!.displayName">
+              } @else {
+                <span>{{ channel()?.displayName?.charAt(0)?.toUpperCase() }}</span>
+              }
+            </div>
+            <div class="video-meta__channel-info">
+              <span class="video-meta__channel-name">{{ channel()?.displayName }}</span>
+              <span class="video-meta__channel-handle">@{{ channel()?.handle }}</span>
+            </div>
+          </div>
+
+          <div class="video-meta__actions">
+
+            <!-- suscribirse: solo si no es el owner -->
+            @if (!isOwner()) {
+              <button class="action-btn action-btn--subscribe">
+                <mat-icon>notifications</mat-icon>
+                <span>Suscribirse</span>
+              </button>
+            }
+
+            <!-- like / dislike -->
+            <div class="action-group">
+              <button class="action-icon-btn" [class.action-icon-btn--active]="liked()"
+                (click)="toggleLike()" matTooltip="Me gusta">
+                <mat-icon>{{ liked() ? 'thumb_up' : 'thumb_up_off_alt' }}</mat-icon>
+              </button>
+              <div class="action-group__divider"></div>
+              <button class="action-icon-btn" [class.action-icon-btn--active]="disliked()"
+                (click)="toggleDislike()" matTooltip="No me gusta">
+                <mat-icon>{{ disliked() ? 'thumb_down' : 'thumb_down_off_alt' }}</mat-icon>
+              </button>
+            </div>
+
+            <!-- compartir -->
+            <button class="action-icon-btn" (click)="copyShareUrl()" matTooltip="Copiar enlace">
+              <mat-icon>share</mat-icon>
+            </button>
+
+            <!-- guardar -->
+            <button class="action-icon-btn" [class.action-icon-btn--active]="saved()"
+              (click)="toggleSave()" matTooltip="Guardar en playlist">
+              <mat-icon>{{ saved() ? 'bookmark' : 'bookmark_border' }}</mat-icon>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- descripción -->
+        <div class="video-description">
+          <p class="video-description__date">
+            Publicado el {{ video()!.publishedAt | date:'mediumDate' }}
+            @if (video()!.ageRestriction) {
+              <span class="video-description__age">+18</span>
+            }
+          </p>
+          @if (video()!.description) {
+            <p class="video-description__text">{{ video()!.description }}</p>
+          } @else {
+            <p class="video-description__text video-description__text--empty">
+              Sin descripción
+            </p>
+          }
+        </div>
+
+        <!-- botón comentarios -->
+        <button class="comments-toggle-btn" (click)="toggleComments()">
+          <mat-icon>{{ showComments() ? 'expand_less' : 'comment' }}</mat-icon>
+          <span>{{ showComments() ? 'Ocultar comentarios' : 'Ver comentarios' }}</span>
+        </button>
+
+        @if (showComments()) {
+          <div class="comments-section">
+            <div class="comments-section__empty">
+              <mat-icon>hourglass_empty</mat-icon>
+              <p>Los comentarios estarán disponibles próximamente</p>
+            </div>
+          </div>
+        }
+
+      </div>
+
+      <!-- columna lateral: videos relacionados -->
+      <aside class="video-sidebar">
+        <span class="video-sidebar__title">Más videos</span>
+
+        @if (relatedVideos().length === 0) {
+          <p class="video-sidebar__empty">No hay más videos disponibles</p>
+        } @else {
+          @for (rv of relatedVideos(); track rv.videoId) {
+            <div class="related-card" (click)="goToRelated(rv.videoId)">
+              <div class="related-card__thumb">
+                <img [src]="rv.thumbnailUrl" [alt]="rv.title">
+                <span class="related-card__duration">{{ formatDuration(rv.durationSeconds) }}</span>
+              </div>
+              <div class="related-card__info">
+                <p class="related-card__title">{{ rv.title }}</p>
+                <span class="related-card__date">{{ rv.publishedAt | date:'mediumDate' }}</span>
+              </div>
+            </div>
+          }
+        }
+      </aside>
+
+    </div>
+
+  }
+
+</div>

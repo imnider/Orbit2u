@@ -8,13 +8,14 @@ import { ChannelService } from '../../../../services/models/channel.service';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { ChannelDto } from '../../../../interfaces/private/channel.interface';
 import { VideoDto } from '../../../../interfaces/private/video.interface';
+import { RouterModule } from '@angular/router';
 
 type ChannelTab = 'videos' | 'comunidad' | 'playlist';
 
 @Component({
   selector: 'app-channel-view',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatTooltipModule],
+  imports: [RouterModule, CommonModule, MatIconModule, MatTooltipModule],
   templateUrl: './channel-view.html',
   styleUrl: './channel-view.scss'
 })
