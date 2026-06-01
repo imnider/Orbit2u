@@ -1,0 +1,156 @@
+<div class="channel-view-page">
+
+  @if (loading()) {
+    <div class="channel-skeleton">
+      <div class="skeleton skeleton--banner"></div>
+      <div class="skeleton skeleton--avatar"></div>
+      <div class="skeleton skeleton--text"></div>
+      <div class="skeleton skeleton--text skeleton--short"></div>
+    </div>
+
+  } @else if (error()) {
+    <div class="channel-error">
+      <mat-icon>error_outline</mat-icon>
+      <p>{{ error() }}</p>
+    </div>
+
+  } @else if (channel()) {
+
+    <!--banner-->
+    <div class="channel-banner">
+      @if (channel()!.bannerURL) {
+        <img [src]="channel()!.bannerURL" [alt]="channel()!.displayName">
+      } @else {
+        <div class="channel-banner__placeholder"></div>
+      }
+
+      <!--editar banner: solo owner-->
+      @if (isOwner()) {
+        <button class="channel-banner__edit-btn" (click)="onEditChannel()"
+          matTooltip="Editar canal">
+          <mat-icon>edit</mat-icon>
+        </button>
+      }
+    </div>
+
+    <!--info principal-->
+    <div class="channel-info">
+
+      <div class="channel-info__left">
+        <div class="channel-info__avatar-wrap">
+          <div class="channel-info__avatar">
+            @if (channel()!.avatarURL) {
+              <img [src]="channel()!.avatarURL" [alt]="channel()!.displayName">
+            } @else {
+              <span class="channel-info__avatar-initials">
+                {{ channel()!.displayName.charAt(0).toUpperCase() }}
+              </span>
+            }
+          </div>
+          @if (isOwner()) {
+            <button class="channel-info__avatar-edit" (click)="onEditChannel()"
+              matTooltip="Cambiar foto">
+              <mat-icon>photo_camera</mat-icon>
+            </button>
+          }
+        </div>
+
+        <div class="channel-info__meta">
+          <div class="channel-info__name-row">
+            <h1>{{ channel()!.displayName }}</h1>
+            @if (channel()!.verification) {
+              <mat-icon class="channel-info__verified" matTooltip="Canal verificado">verified</mat-icon>
+            }
+          </div>
+          <span class="channel-info__handle">@{{ channel()!.handle }}</span>
+          @if (channel()!.description) {
+            <p class="channel-info__description">{{ channel()!.description }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="channel-info__actions">
+        @if (isOwner()) {
+          <!-- botones solo para el dueño del canal -->
+          <button class="channel-btn channel-btn--upload" (click)="onUploadVideo()">
+            <mat-icon>upload</mat-icon>
+            <span>Subir video</span>
+          </button>
+          <button class="channel-btn channel-btn--edit" (click)="onEditChannel()">
+            <mat-icon>edit</mat-icon>
+            <span>Editar canal</span>
+          </button>
+        } @else {
+          <!-- suscribirse: para visitantes -->
+          <button class="channel-btn channel-btn--subscribe">
+            <mat-icon>notifications</mat-icon>
+            <span>Suscribirse</span>
+          </button>
+        }
+      </div>
+
+    </div>
+
+    <div class="channel-tabs">
+      <button class="channel-tab" [class.channel-tab--active]="activeTab() === 'videos'"
+        (click)="setTab('videos')">Videos</button>
+      <button class="channel-tab" [class.channel-tab--active]="activeTab() === 'comunidad'"
+        (click)="setTab('comunidad')">Comunidad</button>
+      <button class="channel-tab" [class.channel-tab--active]="activeTab() === 'playlist'"
+        (click)="setTab('playlist')">Playlist</button>
+    </div>
+
+    <!--contenido-->
+    <div class="channel-content">
+
+      @if (activeTab() === 'videos') {
+        @if (videos().length === 0) {
+          <div class="channel-empty">
+            <mat-icon>video_library</mat-icon>
+            <p>Este canal aún no tiene videos publicados</p>
+            @if (isOwner()) {
+              <button class="channel-btn channel-btn--upload" (click)="onUploadVideo()">
+                <mat-icon>upload</mat-icon>
+                <span>Subir tu primer video</span>
+              </button>
+            }
+          </div>
+        } @else {
+          <div class="video-grid">
+            @for (video of videos(); track video.videoId) {
+              <div class="video-card">
+                <div class="video-card__thumb">
+                  <img [src]="video.thumbnailUrl" [alt]="video.title">
+                  <span class="video-card__duration">{{ formatDuration(video.durationSeconds) }}</span>
+                  @if (video.isPinned) {
+                    <span class="video-card__pinned" matTooltip="Video fijado">
+                      <mat-icon>push_pin</mat-icon>
+                    </span>
+                  }
+                </div>
+                <div class="video-card__info">
+                  <p class="video-card__title">{{ video.title }}</p>
+                  <span class="video-card__date">{{ video.publishedAt | date:'mediumDate' }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      }
+
+      @if (activeTab() === 'comunidad') {
+        <div class="channel-empty">
+          <mat-icon>public</mat-icon>
+          <p>Las comunidades estarán disponibles pronto</p>
+        </div>
+      }
+
+      @if (activeTab() === 'playlist') {
+        <div class="channel-empty">
+          <mat-icon>queue_music</mat-icon>
+          <p>Aún no hay playlists en este canal</p>
+        </div>
+      }
+    </div>
+  }
+</div>

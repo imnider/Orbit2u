@@ -12,7 +12,7 @@ interface FileUploadResponse {
 @Injectable({ providedIn: 'root' })
 export class StorageServiceVid {
   private readonly http = inject(HttpClient);
-  private readonly base = `${environment.apiUrl}/api/Storage`;
+  private readonly base = `${environment.apiUrl}/Storage`;
 
   //sube una imagen y retorna la URL de Cloudinary
   uploadImage(file: File): Observable<string> {

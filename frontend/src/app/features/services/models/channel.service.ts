@@ -6,11 +6,12 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../../environment/environment';
 import { ChannelDto, ChannelListResponse, ChannelResponse, CreateChannelRequest, UpdateChannelRequest } from '../../interfaces/private/channel.interface';
 import { ApiResponse } from '../../interfaces/public/api-response.interface';
+import { VideoDto, VideoListResponse } from '../../interfaces/private/video.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ChannelService {
   private readonly http = inject(HttpClient);
-  private readonly base = `${environment.apiUrl}/api/Channel`;
+  private readonly base = `${environment.apiUrl}/Channel`;
 
   //obtener canal por id
   getById(id: string): Observable<ChannelDto> {
@@ -19,7 +20,21 @@ export class ChannelService {
       .pipe(map(r => r.data));
   }
 
-  //obtener todos los canales (con filtro opcional)
+  //obtener mi canal (creador de contenido)
+  getMe(): Observable<ChannelDto> {
+    return this.http
+      .get<ChannelResponse>(`${this.base}/me`)
+      .pipe(map(r => r.data));
+  }
+
+  //videos de un canal
+  getVideos(channelId: string): Observable<VideoDto[]> {
+    return this.http
+      .get<VideoListResponse>(`${this.base}/${channelId}/videos`)
+      .pipe(map(r => r.data));
+  }
+
+  //obtener todos los canales
   getAll(displayName?: string, limit = 20, offset = 0): Observable<ChannelDto[]> {
     let params = new HttpParams()
       .set('Limit',  limit.toString())

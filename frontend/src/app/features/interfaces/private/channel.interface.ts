@@ -12,22 +12,23 @@ export interface ChannelDto {
     createdAt: string;
     updatedAt: string | null;
     deletedAt: string | null;
+    subscriberCount: number;
 }
 
 export interface CreateChannelRequest {
     handle: string;
     displayName: string;
-    description?: string;
-    avatarUrl?: string;
-    bannerUrl?: string;
+    description?: string | null;
+    avatarUrl?: string | null;
+    bannerUrl?: string | null;
 }
 
 export interface UpdateChannelRequest {
-    handle?: string;
-    displayName?: string;
-    description?: string;
-    avatarUrl?: string;
-    bannerUrl?: string;
+    handle?: string | null;
+    displayName?: string | null;
+    description?: string | null;
+    avatarUrl?: string | null;
+    bannerUrl?: string | null;
 }
 
 export type ChannelResponse = ApiResponse<ChannelDto>;

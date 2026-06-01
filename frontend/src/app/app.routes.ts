@@ -29,6 +29,24 @@ export const routes: Routes = [
                 loadChildren: () =>
                     import('./features/routes/profile.routes').then((m) => m.profileRoutes),
             },
+            {
+                path: 'create-channel',
+                canActivate: [authGuard],
+                loadComponent: () =>
+                    import('./features/pages/private/channel/create-channel/create-channel').then(m => m.CreateChannel),
+            },
+            {
+                path: 'channel/:id',
+                canActivate: [authGuard],
+                loadComponent: () =>
+                    import('./features/pages/private/channel/channel-view/channel-view').then(m => m.ChannelView),
+            },
+            {
+                path: 'my-channel',
+                canActivate: [authGuard],
+                loadComponent: () =>
+                    import('./features/routes/channel.routes').then(m => m.MyChannelRedirect),
+            },
         ],
     },
     {
