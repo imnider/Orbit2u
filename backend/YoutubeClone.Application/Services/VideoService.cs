@@ -94,13 +94,20 @@ namespace YoutubeClone.Application.Services
                 queryable = queryable.Where(x => x.Title.Contains(model.Title ?? ""));
             }
 
-            // Paginación y consulta
+            if (model.Tag?.Any() == true)
+            {
+                var tags = model.Tag
+                    .Select(x => x.Trim().ToLower())
+                    .ToList();
+
+                queryable = queryable.Where(video => video.Tags.Any(tag => tags.Contains(tag.DisplayName.ToLower())));
+            }
+
             var videos = queryable
-                // includes de ser necesario
-                .AsQueryable()
+                .OrderByDescending(x => x.PublishedAt)
                 .Skip(model.Offset)
                 .Take(model.Limit)
-                .Select(video => VideoMapper.ToDto(video))
+                .Select(VideoMapper.ToDto)
                 .ToList();
 
             return ResponseHelper.Create(videos);

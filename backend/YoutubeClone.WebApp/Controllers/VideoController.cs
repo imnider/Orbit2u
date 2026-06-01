@@ -26,7 +26,7 @@ namespace YoutubeClone.WebApp.Controllers
 
         [HttpGet]
         [EndpointSummary("Obtener todos los videos")]
-        [EndpointDescription("Retorna todos los videos del sistema")]
+        [EndpointDescription("Retorna todos los videos del sistema, estos se pueden filtrar por título y tag.")]
         [ProducesResponseType<GenericResponse<List<VideoDto>>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<List<VideoDto>>> GetAll([FromQuery] FilterVideoRequest model)
         {
