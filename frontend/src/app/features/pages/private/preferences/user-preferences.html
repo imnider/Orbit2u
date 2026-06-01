@@ -1,0 +1,36 @@
+<div class="preferences-page">
+  <div class="preferences-header">
+    <h1 class="preferences-header__title">Mis intereses</h1>
+    <p class="preferences-header__sub">
+      Selecciona los temas que más te interesan para personalizar tu feed.
+    </p>
+  </div>
+
+  @if (loading()) {
+    <div class="preferences-loading">
+      <span class="loader"></span>
+    </div>
+  } @else {
+    <div class="preferences-tags">
+      @for (tag of allTags(); track tag.tagId) {
+        <button
+          class="pref-chip"
+          [class.pref-chip--selected]="isSelected(tag.tagId)"
+          [disabled]="saving()"
+          (click)="toggle(tag)">
+          @if (isSelected(tag.tagId)) {
+            <mat-icon>check</mat-icon>
+          }
+          {{ tag.displayName }}
+        </button>
+      }
+    </div>
+
+    @if (tagPrefs.hasPreferences()) {
+      <p class="preferences-count">
+        <mat-icon>check_circle</mat-icon>
+        {{ tagPrefs.selectedTagIds().length }} tema(s) seleccionado(s)
+      </p>
+    }
+  }
+</div>

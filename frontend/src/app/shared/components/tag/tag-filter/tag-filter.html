@@ -1,0 +1,13 @@
+<div class="tag-filter-bar">
+  <button class="tag-filter-chip" [class.tag-filter-chip--active]="activeTagId() === null"
+    (click)="select(null)">
+    Todos
+  </button>
+
+  @for (tag of preferredTags; track tag.tagId) {
+    <button class="tag-filter-chip" [class.tag-filter-chip--active]="activeTagId() === tag.tagId"
+      (click)="select(tag.tagId)" >
+      {{ tag.displayName }}
+    </button>
+  }
+</div>

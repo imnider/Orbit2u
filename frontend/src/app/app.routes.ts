@@ -71,10 +71,15 @@ export const routes: Routes = [
             },
             {
                 path: 'video/:id',
-                canActivate: [authGuard],
                 loadComponent: () =>
                     import('./features/pages/public/video/video-view/video-view').then(m => m.VideoView),
-                },
+            },
+            {
+                path: 'preferences',
+                canActivate: [authGuard],
+                loadComponent: () =>
+                    import('./features/pages/private/preferences/user-preferences').then(m => m.UserPreferences),
+            },
         ],
     },
     {

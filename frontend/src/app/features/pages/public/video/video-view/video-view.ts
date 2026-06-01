@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy, inject, signal, computed, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { forkJoin, finalize } from 'rxjs';
+
 import { VideoService } from '../../../../services/video/video.service';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { ChannelService } from '../../../../services/models/channel.service';
@@ -13,7 +15,7 @@ import { ChannelDto } from '../../../../interfaces/private/channel.interface';
 @Component({
   selector: 'app-video-view',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatTooltipModule, RouterLink],
+  imports: [CommonModule, MatIconModule, MatTooltipModule],
   templateUrl: './video-view.html',
   styleUrl: './video-view.scss'
 })
@@ -31,13 +33,13 @@ export class VideoView implements OnInit {
   relatedVideos = signal<VideoDto[]>([]);
   showComments = signal(false);
 
-  //acciones UI (sin backend aun)
   liked = signal(false);
   disliked = signal(false);
   saved = signal(false);
 
-  //el canal es del usuario logueado
-  isOwner = computed(() => {
+  readonly isLoggedIn = this.authService.isAuthenticated;
+
+  readonly isOwner = computed(() => {
     const userId = this.authService.userId();
     return !!userId && this.channel()?.userId === userId;
   });
@@ -49,51 +51,54 @@ export class VideoView implements OnInit {
   }
 
   private loadVideo(id: string): void {
-    this.videoService.getById(id)
-      .subscribe({
-        next: (video) => {
-          this.video.set(video);
-          //carga canal y videos relacionados en paralelo
-          forkJoin({
-            channel: this.channelService.getById(video.channelId),
-            related: this.videoService.getAll(undefined, 4, 0),
-          })
-          .pipe(finalize(() => this.loading.set(false)))
-          .subscribe({
-            next: ({ channel, related }) => {
-              this.channel.set(channel);
-              //excluye el video actual de los relacionados
-              this.relatedVideos.set(related.filter(v => v.videoId !== id));
-            },
-            error: () => this.loading.set(false),
-          });
-        },
-        error: () => {
-          this.error.set('No se pudo cargar el video');
-          this.loading.set(false);
-        },
+    this.videoService.getById(id).subscribe({
+      next: (video) => {
+        this.video.set(video);
+        forkJoin({
+          channel: this.channelService.getById(video.channelId),
+          related: this.videoService.getAll(undefined, 4, 0),
+        })
+        .pipe(finalize(() => this.loading.set(false)))
+        .subscribe({
+          next: ({ channel, related }) => {
+            this.channel.set(channel);
+            this.relatedVideos.set(related.filter(v => v.videoId !== id));
+          },
+          error: () => this.loading.set(false),
+        });
+      },
+      error: () => {
+        this.error.set('No se pudo cargar el video');
+        this.loading.set(false);
+      },
+    });
+  }
+
+  //si no esta autenticado, devuelve al login
+  private requireAuth(): boolean {
+    if (!this.isLoggedIn()) {
+      this.router.navigate(['/login'], {
+        queryParams: { returnUrl: this.router.url }
       });
+      return false;
+    }
+    return true;
   }
 
   toggleLike(): void {
-    if (this.liked()) {
-      this.liked.set(false);
-    } else {
-      this.liked.set(true);
-      this.disliked.set(false);
-    }
+    if (!this.requireAuth()) return;
+    if (this.liked()) { this.liked.set(false); }
+    else { this.liked.set(true); this.disliked.set(false); }
   }
 
   toggleDislike(): void {
-    if (this.disliked()) {
-      this.disliked.set(false);
-    } else {
-      this.disliked.set(true);
-      this.liked.set(false);
-    }
+    if (!this.requireAuth()) return;
+    if (this.disliked()) { this.disliked.set(false); }
+    else { this.disliked.set(true); this.liked.set(false); }
   }
 
   toggleSave(): void {
+    if (!this.requireAuth()) return;
     this.saved.update(v => !v);
   }
 
@@ -106,12 +111,12 @@ export class VideoView implements OnInit {
   }
 
   goToChannel(): void {
+    if (!this.requireAuth()) return;
     const ch = this.channel();
     if (ch) this.router.navigate(['/channel', ch.channelId]);
   }
 
   goToRelated(videoId: string): void {
-    //recarga el componente con el nuevo video
     this.router.navigate(['/video', videoId]);
   }
 

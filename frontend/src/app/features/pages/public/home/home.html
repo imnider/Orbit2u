@@ -1,1 +1,53 @@
-<p>home works!</p>
+<div class="home-page">
+  @if (showTagDialog()) {
+    <app-tag-selector-dialog (closed)="onDialogClosed()"></app-tag-selector-dialog>
+  }
+
+  @if (tagPrefs.hasPreferences()) {
+    <app-tag-filter-bar
+      [activeTagId]="activeTagId()"
+      (tagSelected)="onTagSelected($event)"
+    ></app-tag-filter-bar>
+  }
+
+  <div class="home-content">
+
+    <div class="home-header">
+      <h2 class="home-header__title">
+        @if (activeTagId()) {
+          Videos de "{{  getActiveTagName() }}"
+        } @else {
+          Para ti
+        }
+      </h2>
+      <button class="home-header__prefs-btn" (click)="openTagDialog()" matTooltip="Editar intereses">
+        <mat-icon>tune</mat-icon>
+        Intereses
+      </button>
+    </div>
+
+    @if (loading()) {
+      <div class="video-grid">
+        @for (i of [1,2,3,4,5,6]; track i) {
+          <div class="video-card-skeleton">
+            <div class="skeleton skeleton--thumb"></div>
+            <div class="skeleton skeleton--text" style="width:80%"></div>
+            <div class="skeleton skeleton--text" style="width:50%"></div>
+          </div>
+        }
+      </div>
+    } @else if (filteredVideos().length === 0) {
+      <div class="home-empty">
+        <mat-icon>video_library</mat-icon>
+        <p>No hay videos con este tema aún</p>
+        <button class="home-empty__btn" (click)="activeTagId.set(null)">Ver todos</button>
+      </div>
+    } @else {
+      <div class="video-grid">
+        @for (video of filteredVideos(); track video.videoId) {
+          <app-video-card [video]="video"></app-video-card>
+        }
+      </div>
+    }
+  </div>
+</div>
