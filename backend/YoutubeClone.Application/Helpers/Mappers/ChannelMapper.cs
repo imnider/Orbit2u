@@ -10,7 +10,7 @@ namespace YoutubeClone.Application.Helpers.Mappers
             return new ChannelDto
             {
                 ChannelId = channel.ChannelId,
-                UserId = channel.ChannelId,
+                UserId = channel.UserId,
                 Handle = channel.Handle,
                 DisplayName = channel.DisplayName,
                 Verification = channel.Verification,

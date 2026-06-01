@@ -14,6 +14,7 @@ namespace YoutubeClone.Domain.Database
         IVideoRepository videoRepository { get; set; }
         ICommunityRepository communityRepository { get; set; }
         ISubscriptionRepository subscriptionRepository { get; set; }
+        ICommunityMemberRepository communityMemberRepository { get; set; }
         Task SaveChangesAsync();
     }
 }
