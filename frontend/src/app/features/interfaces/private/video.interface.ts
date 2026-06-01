@@ -18,4 +18,4 @@ export interface VideoDto {
     deletedAt: string | null;
 }
 
-export type VideoListResponse   = ApiResponse<VideoDto[]>;
+export type VideoListResponse = ApiResponse<VideoDto[]>;
