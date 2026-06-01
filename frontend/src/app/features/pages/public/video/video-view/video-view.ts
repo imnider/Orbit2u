@@ -17,7 +17,7 @@ import { ChannelDto } from '../../../../interfaces/private/channel.interface';
   standalone: true,
   imports: [CommonModule, MatIconModule, MatTooltipModule],
   templateUrl: './video-view.html',
-  styleUrl: './video-view.scss'
+  styleUrl: './video-view.scss',
 })
 export class VideoView implements OnInit {
   private readonly route = inject(ActivatedRoute);
@@ -45,9 +45,17 @@ export class VideoView implements OnInit {
   });
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (!id) { this.error.set('Video no encontrado'); this.loading.set(false); return; }
-    this.loadVideo(id);
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+
+      if (!id) {
+        this.error.set('Video no encontrado');
+        this.loading.set(false);
+        return;
+      }
+
+      this.loadVideo(id);
+    });
   }
 
   private loadVideo(id: string): void {
@@ -58,14 +66,14 @@ export class VideoView implements OnInit {
           channel: this.channelService.getById(video.channelId),
           related: this.videoService.getAll(undefined, 4, 0),
         })
-        .pipe(finalize(() => this.loading.set(false)))
-        .subscribe({
-          next: ({ channel, related }) => {
-            this.channel.set(channel);
-            this.relatedVideos.set(related.filter(v => v.videoId !== id));
-          },
-          error: () => this.loading.set(false),
-        });
+          .pipe(finalize(() => this.loading.set(false)))
+          .subscribe({
+            next: ({ channel, related }) => {
+              this.channel.set(channel);
+              this.relatedVideos.set(related.filter((v) => v.videoId !== id));
+            },
+            error: () => this.loading.set(false),
+          });
       },
       error: () => {
         this.error.set('No se pudo cargar el video');
@@ -78,7 +86,7 @@ export class VideoView implements OnInit {
   private requireAuth(): boolean {
     if (!this.isLoggedIn()) {
       this.router.navigate(['/login'], {
-        queryParams: { returnUrl: this.router.url }
+        queryParams: { returnUrl: this.router.url },
       });
       return false;
     }
@@ -87,23 +95,31 @@ export class VideoView implements OnInit {
 
   toggleLike(): void {
     if (!this.requireAuth()) return;
-    if (this.liked()) { this.liked.set(false); }
-    else { this.liked.set(true); this.disliked.set(false); }
+    if (this.liked()) {
+      this.liked.set(false);
+    } else {
+      this.liked.set(true);
+      this.disliked.set(false);
+    }
   }
 
   toggleDislike(): void {
     if (!this.requireAuth()) return;
-    if (this.disliked()) { this.disliked.set(false); }
-    else { this.disliked.set(true); this.liked.set(false); }
+    if (this.disliked()) {
+      this.disliked.set(false);
+    } else {
+      this.disliked.set(true);
+      this.liked.set(false);
+    }
   }
 
   toggleSave(): void {
     if (!this.requireAuth()) return;
-    this.saved.update(v => !v);
+    this.saved.update((v) => !v);
   }
 
   toggleComments(): void {
-    this.showComments.update(v => !v);
+    this.showComments.update((v) => !v);
   }
 
   copyShareUrl(): void {
