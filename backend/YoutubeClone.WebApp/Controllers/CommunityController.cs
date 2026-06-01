@@ -11,7 +11,7 @@ namespace YoutubeClone.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommunityController(ICommunityService communityService) : ControllerBase
+    public class CommunityController(ICommunityService communityService, ICommunityMemberService communityMemberService) : ControllerBase
     {
         [HttpPost]
         [Authorize]
@@ -46,7 +46,7 @@ namespace YoutubeClone.WebApp.Controllers
 
         [HttpGet("me")]
         [Authorize]
-        [EndpointSummary("Mis comunidades")]
+        [EndpointSummary("Mis comunidades (soy dueño)")]
         [EndpointDescription("Retorna las comunidades creadas por el usuario autenticado")]
         [ProducesResponseType<GenericResponse<List<CommunityDto>>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<List<CommunityDto>>> GetMyCommunities()
@@ -86,6 +86,39 @@ namespace YoutubeClone.WebApp.Controllers
         public async Task<GenericResponse<bool>> Delete(Guid id)
         {
             var rsp = await communityService.Delete(id, this.UserClaim());
+            return ResponseStatus.Ok(HttpContext, rsp);
+        }
+
+        [HttpPost("{id:guid}/join")]
+        [Authorize]
+        [EndpointSummary("Unirse a una comunidad")]
+        [EndpointDescription("Permite al usuario autenticado unirse a una comunidad")]
+        [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<bool>> Join(Guid id)
+        {
+            var rsp = await communityMemberService.Join(id, this.UserClaim());
+            return ResponseStatus.Ok(HttpContext, rsp);
+        }
+
+        [HttpDelete("{id:guid}/leave")]
+        [Authorize]
+        [EndpointSummary("Salir de una comunidad")]
+        [EndpointDescription("Permite al usuario autenticado abandonar una comunidad")]
+        [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<bool>> Leave(Guid id)
+        {
+            var rsp = await communityMemberService.Leave(id, this.UserClaim());
+            return ResponseStatus.Ok(HttpContext, rsp);
+        }
+
+        [HttpGet("memberships")]
+        [Authorize]
+        [EndpointSummary("Comunidades de las que soy miembro")]
+        [EndpointDescription("Retorna todas las comunidades de las que el usuario es miembro")]
+        [ProducesResponseType<GenericResponse<List<CommunityDto>>>(StatusCodes.Status200OK)]
+        public async Task<GenericResponse<List<CommunityDto>>> GetMyMemberships()
+        {
+            var rsp = await communityMemberService.GetMyMemberships(this.UserClaim());
             return ResponseStatus.Ok(HttpContext, rsp);
         }
     }

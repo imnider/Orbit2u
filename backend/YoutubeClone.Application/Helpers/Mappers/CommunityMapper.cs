@@ -5,7 +5,7 @@ namespace YoutubeClone.Application.Helpers.Mappers
 {
     public static class CommunityMapper
     {
-        public static CommunityDto ToDto(Community community)
+        public static CommunityDto ToDto(Community community, int memberCount = 0)
         {
             return new CommunityDto
             {
@@ -18,7 +18,8 @@ namespace YoutubeClone.Application.Helpers.Mappers
                 IsPrivate = community.IsPrivate,
                 CreatedAt = community.CreatedAt,
                 UpdatedAt = community.UpdatedAt,
-                DeletedAt = community.DeletedAt
+                DeletedAt = community.DeletedAt,
+                MembersCount = memberCount
             };
         }
     }

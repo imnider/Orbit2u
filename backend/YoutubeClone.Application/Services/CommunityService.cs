@@ -81,7 +81,7 @@ namespace YoutubeClone.Application.Services
                 .AsQueryable()
                 .Skip(model.Offset)
                 .Take(model.Limit)
-                .Select(community => CommunityMapper.ToDto(community))
+                .Select(community => CommunityMapper.ToDto(community, community.CommunityMembers.Count()))
                 .ToList();
 
             return ResponseHelper.Create(communities);
@@ -91,7 +91,11 @@ namespace YoutubeClone.Application.Services
         {
             var community = await GetCommunity(id);
 
-            return ResponseHelper.Create(CommunityMapper.ToDto(community));
+            var memberCount = uow.communityMemberRepository
+                .Queryable()
+                .Count(x => x.CommunityId == id);
+
+            return ResponseHelper.Create(CommunityMapper.ToDto(community, memberCount));
         }
 
         public async Task<GenericResponse<List<CommunityDto>>> GetMyCommunities(Claim claim)
@@ -101,7 +105,7 @@ namespace YoutubeClone.Application.Services
             var communities = uow.communityRepository.Queryable()
                 .Where(x => x.OwnerUserId == executor.UserId && x.DeletedAt == null)
                 .OrderByDescending(x => x.CreatedAt)
-                .Select(x => CommunityMapper.ToDto(x))
+                .Select(x => CommunityMapper.ToDto(x, x.CommunityMembers.Count()))
                 .ToList();
 
             return ResponseHelper.Create(communities);
