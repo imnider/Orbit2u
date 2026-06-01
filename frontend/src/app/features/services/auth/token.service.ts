@@ -6,9 +6,8 @@ import { environment } from '../../../../environment/environment';
 import { JwtPayload } from '../../interfaces/public/jwt.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class TokenService {
   private readonly TOKEN_KEY = environment.tokenKey;
   private readonly REFRESH_TOKEN_KEY = environment.refreshTokenKey;
@@ -19,10 +18,7 @@ export class TokenService {
   }
 
   saveRefreshToken(refreshToken: string): void {
-    this.storageService.set(
-      this.REFRESH_TOKEN_KEY,
-      refreshToken
-    );
+    this.storageService.set(this.REFRESH_TOKEN_KEY, refreshToken);
   }
 
   getToken(): string | null {
@@ -41,8 +37,7 @@ export class TokenService {
   decodeToken(token: string): JwtPayload | null {
     try {
       return jwtDecode<JwtPayload>(token);
-    }
-    catch {
+    } catch {
       return null;
     }
   }
@@ -55,5 +50,17 @@ export class TokenService {
 
     const currentTime = Math.floor(Date.now() / 1000);
     return payload.exp < currentTime;
+  }
+
+  isTokenExpiringSoon(token: string, seconds: number = 30): boolean {
+    const payload = this.decodeToken(token);
+
+    if (!payload) {
+      return true;
+    }
+
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    return payload.exp <= currentTime + seconds;
   }
 }

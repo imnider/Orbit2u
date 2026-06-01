@@ -1,7 +1,7 @@
-import {Injectable, computed, inject, signal} from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { finalize, Observable, shareReplay, tap } from 'rxjs';
 
 import { TokenService } from './token.service';
 import { environment } from '../../../../environment/environment';
@@ -9,13 +9,16 @@ import { JwtPayload } from '../../interfaces/public/jwt.interface';
 import { LoginRequest, LoginResponse } from '../../interfaces/public/login.interface';
 import { ApiResponse } from '../../interfaces/public/api-response.interface';
 import { CLAIMS } from '../../../shared/constants/claims.constants';
-import { CompleteRegisterRequest, CompleteRegisterResponse, ValidateTokenResponse } from '../../interfaces/public/register.interface';
+import {
+  CompleteRegisterRequest,
+  CompleteRegisterResponse,
+  ValidateTokenResponse,
+} from '../../interfaces/public/register.interface';
 import { ChannelStateService } from '../models/channel-state.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AuthService {
   private readonly API = environment.apiUrl;
   private readonly http = inject(HttpClient);
@@ -60,7 +63,7 @@ export class AuthService {
       tap((res) => {
         this.saveSession(res.data.token, res.data.refreshToken);
         this.channelState.loadMyChannel(); //cargar canal
-      })
+      }),
     );
   }
 
@@ -74,24 +77,21 @@ export class AuthService {
 
   // registro: pasos
   registerInit(email: string) {
-    return this.http.post<ApiResponse<null>>(
-      `${this.API}/auth/register/init`,
-      { email }
-    );
+    return this.http.post<ApiResponse<null>>(`${this.API}/auth/register/init`, { email });
   }
- 
+
   validateRegisterToken(token: string) {
     return this.http.get<ApiResponse<ValidateTokenResponse>>(
-      `${this.API}/auth/register/validate/${token}`
+      `${this.API}/auth/register/validate/${token}`,
     );
   }
- 
+
   completeRegister(token: string, data: CompleteRegisterRequest) {
     return this.http
-      .post<ApiResponse<CompleteRegisterResponse>>(
-        `${this.API}/auth/register/complete/${token}`,
-        data
-      ).pipe(tap((res) => this.saveSession(res.data.token, res.data.refreshToken)));
+      .post<
+        ApiResponse<CompleteRegisterResponse>
+      >(`${this.API}/auth/register/complete/${token}`, data)
+      .pipe(tap((res) => this.saveSession(res.data.token, res.data.refreshToken)));
   }
 
   // helpers
@@ -99,21 +99,41 @@ export class AuthService {
     return this._token();
   }
 
-  private saveSession(
-    token: string,
-    refreshToken: string
-  ): void {
-
+  saveSession(token: string, refreshToken: string): void {
     this.tokenService.saveToken(token);
     this.tokenService.saveRefreshToken(refreshToken);
     this._token.set(token);
   }
 
   verifyEmail(email: string) {
-    return this.http.post<ApiResponse<any>>(`${this.API}/auth/register/init`, {email});
+    return this.http.post<ApiResponse<any>>(`${this.API}/auth/register/init`, { email });
   }
 
   getCurrentUser(): JwtPayload | null {
     return this.payload();
+  }
+
+  private renewRequest$: Observable<any> | null = null;
+
+  renew() {
+    if (this.renewRequest$) {
+      return this.renewRequest$;
+    }
+
+    const refreshToken = this.tokenService.getRefreshToken();
+
+    this.renewRequest$ = this.http
+      .post<ApiResponse<LoginResponse>>(`${this.API}/auth/renew`, { refreshToken })
+      .pipe(
+        tap((res) => {
+          this.saveSession(res.data.token, res.data.refreshToken);
+        }),
+        finalize(() => {
+          this.renewRequest$ = null;
+        }),
+        shareReplay(1),
+      );
+
+    return this.renewRequest$;
   }
 }
