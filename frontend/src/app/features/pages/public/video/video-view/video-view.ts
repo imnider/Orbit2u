@@ -141,4 +141,11 @@ export class VideoView implements OnInit {
     const s = seconds % 60;
     return `${m}:${s.toString().padStart(2, '0')}`;
   }
+
+  goToEdit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) return;
+
+    this.router.navigate(['/edit-video', id]);
+  }
 }

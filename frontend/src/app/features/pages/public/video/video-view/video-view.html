@@ -1,25 +1,19 @@
 <div class="video-view-page">
-
   @if (loading()) {
     <div class="video-skeleton">
       <div class="skeleton skeleton--player"></div>
-      <div class="skeleton skeleton--text" style="width:60%;margin-top:16px"></div>
-      <div class="skeleton skeleton--text" style="width:40%"></div>
+      <div class="skeleton skeleton--text" style="width: 60%; margin-top: 16px"></div>
+      <div class="skeleton skeleton--text" style="width: 40%"></div>
     </div>
-
   } @else if (error()) {
     <div class="video-error">
       <mat-icon>error_outline</mat-icon>
       <p>{{ error() }}</p>
     </div>
-
   } @else if (video()) {
-
     <div class="video-view-layout">
-
       <!-- columna principal -->
       <div class="video-main">
-
         <!-- reproductor -->
         <div class="video-player">
           <video
@@ -36,11 +30,10 @@
 
         <!-- info del canal + acciones -->
         <div class="video-meta">
-
           <div class="video-meta__channel" (click)="goToChannel()">
             <div class="video-meta__avatar">
               @if (channel()?.avatarURL) {
-                <img [src]="channel()!.avatarURL" [alt]="channel()!.displayName">
+                <img [src]="channel()!.avatarURL" [alt]="channel()!.displayName" />
               } @else {
                 <span>{{ channel()?.displayName?.charAt(0)?.toUpperCase() }}</span>
               }
@@ -52,24 +45,36 @@
           </div>
 
           <div class="video-meta__actions">
-
             <!-- suscribirse: solo si no es el owner -->
             @if (!isOwner()) {
               <button class="action-btn action-btn--subscribe">
                 <mat-icon>notifications</mat-icon>
                 <span>Suscribirse</span>
               </button>
+            } @else {
+              <button class="action-btn action-btn--subscribe" (click)="goToEdit()">
+                <mat-icon>edit</mat-icon>
+                <span>Editar video</span>
+              </button>
             }
 
             <!-- like / dislike -->
             <div class="action-group">
-              <button class="action-icon-btn" [class.action-icon-btn--active]="liked()"
-                (click)="toggleLike()" matTooltip="Me gusta">
+              <button
+                class="action-icon-btn"
+                [class.action-icon-btn--active]="liked()"
+                (click)="toggleLike()"
+                matTooltip="Me gusta"
+              >
                 <mat-icon>{{ liked() ? 'thumb_up' : 'thumb_up_off_alt' }}</mat-icon>
               </button>
               <div class="action-group__divider"></div>
-              <button class="action-icon-btn" [class.action-icon-btn--active]="disliked()"
-                (click)="toggleDislike()" matTooltip="No me gusta">
+              <button
+                class="action-icon-btn"
+                [class.action-icon-btn--active]="disliked()"
+                (click)="toggleDislike()"
+                matTooltip="No me gusta"
+              >
                 <mat-icon>{{ disliked() ? 'thumb_down' : 'thumb_down_off_alt' }}</mat-icon>
               </button>
             </div>
@@ -80,18 +85,21 @@
             </button>
 
             <!-- guardar -->
-            <button class="action-icon-btn" [class.action-icon-btn--active]="saved()"
-              (click)="toggleSave()" matTooltip="Guardar en playlist">
+            <button
+              class="action-icon-btn"
+              [class.action-icon-btn--active]="saved()"
+              (click)="toggleSave()"
+              matTooltip="Guardar en playlist"
+            >
               <mat-icon>{{ saved() ? 'bookmark' : 'bookmark_border' }}</mat-icon>
             </button>
-
           </div>
         </div>
 
         <!-- descripción -->
         <div class="video-description">
           <p class="video-description__date">
-            Publicado el {{ video()!.publishedAt | date:'mediumDate' }}
+            Publicado el {{ video()!.publishedAt | date: 'mediumDate' }}
             @if (video()!.ageRestriction) {
               <span class="video-description__age">+18</span>
             }
@@ -99,9 +107,7 @@
           @if (video()!.description) {
             <p class="video-description__text">{{ video()!.description }}</p>
           } @else {
-            <p class="video-description__text video-description__text--empty">
-              Sin descripción
-            </p>
+            <p class="video-description__text video-description__text--empty">Sin descripción</p>
           }
         </div>
 
@@ -119,7 +125,6 @@
             </div>
           </div>
         }
-
       </div>
 
       <!-- columna lateral: videos relacionados -->
@@ -132,20 +137,17 @@
           @for (rv of relatedVideos(); track rv.videoId) {
             <div class="related-card" (click)="goToRelated(rv.videoId)">
               <div class="related-card__thumb">
-                <img [src]="rv.thumbnailUrl" [alt]="rv.title">
+                <img [src]="rv.thumbnailUrl" [alt]="rv.title" />
                 <span class="related-card__duration">{{ formatDuration(rv.durationSeconds) }}</span>
               </div>
               <div class="related-card__info">
                 <p class="related-card__title">{{ rv.title }}</p>
-                <span class="related-card__date">{{ rv.publishedAt | date:'mediumDate' }}</span>
+                <span class="related-card__date">{{ rv.publishedAt | date: 'mediumDate' }}</span>
               </div>
             </div>
           }
         }
       </aside>
-
     </div>
-
   }
-
 </div>

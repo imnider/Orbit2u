@@ -1,0 +1,100 @@
+<div class="upload-video-page">
+  <div class="upload-video-topnav">
+    <button class="back-btn" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Volver</span>
+    </button>
+    <h1>Editar video</h1>
+  </div>
+
+  <div class="upload-video-layout">
+    <!-- izquierda -->
+    <div class="upload-video-files">
+      <!-- thumbnail -->
+      <div class="thumb-upload">
+        <span class="thumb-upload__label">Miniatura del video</span>
+
+        <div class="thumb-upload__zone" (click)="thumbInput.click()">
+          @if (uploadingThumb()) {
+            <div class="upload-zone__loading">
+              <span class="loader"></span>
+            </div>
+          } @else if (thumbPreview()) {
+            <img [src]="thumbPreview()" alt="Thumbnail preview" />
+          } @else {
+            <mat-icon>add_photo_alternate</mat-icon>
+            <span>Actualizar miniatura</span>
+          }
+
+          <input
+            #thumbInput
+            type="file"
+            accept="image/*"
+            (change)="onThumbSelected($event)"
+            hidden
+          />
+        </div>
+
+        @if (form.get('thumbnailUrl')?.touched && !form.get('thumbnailUrl')?.value) {
+          <span class="field-error">Debes subir una miniatura</span>
+        }
+      </div>
+    </div>
+
+    <!-- derecha -->
+    <div class="upload-video-meta">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="field-group">
+          <label>Título</label>
+          <div class="input-wrapper">
+            <input type="text" formControlName="title" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Descripción</label>
+          <div class="input-wrapper">
+            <textarea rows="4" formControlName="description"></textarea>
+          </div>
+        </div>
+
+        <!-- visibilidad -->
+        <div class="field-group">
+          <label>Visibilidad</label>
+
+          <div class="visibility-options">
+            <label
+              class="visibility-option"
+              [class.visibility-option--active]="form.get('videoAccessibilityId')?.value === 1"
+            >
+              <input type="radio" formControlName="videoAccessibilityId" [value]="1" hidden />
+              <mat-icon>public</mat-icon>
+              <span>Público</span>
+            </label>
+
+            <label
+              class="visibility-option"
+              [class.visibility-option--active]="form.get('videoAccessibilityId')?.value === 2"
+            >
+              <input type="radio" formControlName="videoAccessibilityId" [value]="2" hidden />
+              <mat-icon>lock</mat-icon>
+              <span>Privado</span>
+            </label>
+          </div>
+        </div>
+
+        @if (error()) {
+          <div class="alert-error">{{ error() }}</div>
+        }
+
+        <button type="submit" class="submit-btn" [disabled]="loading() || uploadingThumb()">
+          @if (loading()) {
+            <span class="loader"></span>
+          } @else {
+            <span>Guardar cambios</span>
+          }
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

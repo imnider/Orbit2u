@@ -5,17 +5,27 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { finalize } from 'rxjs';
 
-import { VideoService } from '../../../services/video/video.service';
-import { StorageServiceVid } from '../../../services/models/storage.service';
-import { ChannelStateService } from '../../../services/models/channel-state.service';
-import { CreateVideoRequest } from '../../../interfaces/private/video.interface';
+import { VideoService } from '../../../../services/video/video.service';
+import { StorageServiceVid } from '../../../../services/models/storage.service';
+import { ChannelStateService } from '../../../../services/models/channel-state.service';
+import { CreateVideoRequest } from '../../../../interfaces/private/video.interface';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-upload-video',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   templateUrl: './upload-video.html',
-  styleUrl: './upload-video.scss'
+  styleUrl: './upload-video.scss',
 })
 export class UploadVideo implements OnInit {
   private readonly fb = inject(FormBuilder);
@@ -38,7 +48,7 @@ export class UploadVideo implements OnInit {
     videoUrl: ['', [Validators.required]],
     thumbnailUrl: ['', [Validators.required]],
     durationSeconds: [0],
-    videoAccessibilityId:[1, [Validators.required]],
+    videoAccessibilityId: [1, [Validators.required]],
     ageRestriction: [false],
   });
 
@@ -51,8 +61,9 @@ export class UploadVideo implements OnInit {
   getErrorMessage(controlName: string): string {
     const control = this.form.get(controlName);
     if (control?.touched && control?.errors) {
-      if (control.errors['required'])  return 'Este campo es obligatorio';
-      if (control.errors['maxlength']) return `Máximo ${control.errors['maxlength'].requiredLength} caracteres`;
+      if (control.errors['required']) return 'Este campo es obligatorio';
+      if (control.errors['maxlength'])
+        return `Máximo ${control.errors['maxlength'].requiredLength} caracteres`;
     }
     return '';
   }
@@ -75,10 +86,11 @@ export class UploadVideo implements OnInit {
 
     //subir a Cloudinary
     this.uploadingVideo.set(true);
-    this.storageService.uploadVideo(file)
+    this.storageService
+      .uploadVideo(file)
       .pipe(finalize(() => this.uploadingVideo.set(false)))
       .subscribe({
-        next:  (url) => this.form.patchValue({ videoUrl: url }),
+        next: (url) => this.form.patchValue({ videoUrl: url }),
         error: () => this.error.set('No se pudo subir el video'),
       });
   }
@@ -93,11 +105,12 @@ export class UploadVideo implements OnInit {
     reader.readAsDataURL(file);
 
     this.uploadingThumb.set(true);
-    this.storageService.uploadImage(file)
+    this.storageService
+      .uploadImage(file)
       .pipe(finalize(() => this.uploadingThumb.set(false)))
       .subscribe({
-        next:  (url) => this.form.patchValue({ thumbnailUrl: url }),
-        error: ()    => this.error.set('No se pudo subir el thumbnail'),
+        next: (url) => this.form.patchValue({ thumbnailUrl: url }),
+        error: () => this.error.set('No se pudo subir el thumbnail'),
       });
   }
 
@@ -110,11 +123,28 @@ export class UploadVideo implements OnInit {
     this.loading.set(true);
     this.error.set('');
 
-    const { title, description, videoUrl, thumbnailUrl, durationSeconds, videoAccessibilityId, ageRestriction } = this.form.getRawValue();
-    const payload: CreateVideoRequest = { title, description: description || null, videoUrl, thumbnailUrl,
-                                        durationSeconds, videoAccessibilityId, ageRestriction, communityId: null};
+    const {
+      title,
+      description,
+      videoUrl,
+      thumbnailUrl,
+      durationSeconds,
+      videoAccessibilityId,
+      ageRestriction,
+    } = this.form.getRawValue();
+    const payload: CreateVideoRequest = {
+      title,
+      description: description || null,
+      videoUrl,
+      thumbnailUrl,
+      durationSeconds,
+      videoAccessibilityId,
+      ageRestriction,
+      communityId: null,
+    };
 
-    this.videoService.create(payload)
+    this.videoService
+      .create(payload)
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
         next: (video) => {
