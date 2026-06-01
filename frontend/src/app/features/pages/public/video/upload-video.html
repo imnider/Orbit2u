@@ -1,0 +1,153 @@
+<div class="upload-video-page">
+
+  <div class="upload-video-topnav">
+    <button class="back-btn" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Volver al canal</span>
+    </button>
+    <h1>Subir video</h1>
+  </div>
+
+  <div class="upload-video-layout">
+
+    <!-- columna izquierda: archivos -->
+    <div class="upload-video-files">
+
+      <!-- zona de video -->
+      <div class="upload-zone" [class.upload-zone--done]="form.get('videoUrl')?.value"
+        (click)="videoInput.click()">
+        @if (uploadingVideo()) {
+          <div class="upload-zone__loading">
+            <span class="loader"></span>
+            <span>Subiendo video...</span>
+          </div>
+        } @else if (form.get('videoUrl')?.value) {
+          <div class="upload-zone__success">
+            <mat-icon>check_circle</mat-icon>
+            <span>Video listo</span>
+          </div>
+        } @else {
+          <mat-icon class="upload-zone__icon">cloud_upload</mat-icon>
+          <span class="upload-zone__label">Seleccionar video</span>
+          <span class="upload-zone__hint">MP4, MOV, AVI — máx. recomendado 500MB</span>
+        }
+        <input #videoInput type="file" accept="video/*"
+          (change)="onVideoSelected($event)" hidden>
+      </div>
+
+      @if (form.get('videoUrl')?.value && !uploadingVideo()) {
+        <span class="field-error upload-video__required-ok">
+          <mat-icon>check</mat-icon> Video subido correctamente
+        </span>
+      }
+      @if (form.get('videoUrl')?.touched && !form.get('videoUrl')?.value) {
+        <span class="field-error">Debes subir un video</span>
+      }
+
+      <!-- duración detectada -->
+      @if (form.get('durationSeconds')?.value) {
+        <p class="upload-video__duration">
+          <mat-icon>schedule</mat-icon>
+          Duración detectada: {{ formatDuration(form.get('durationSeconds')?.value) }}
+        </p>
+      }
+
+      <!-- thumbnail -->
+      <div class="thumb-upload">
+        <span class="thumb-upload__label">Miniatura del video</span>
+        <div class="thumb-upload__zone" (click)="thumbInput.click()">
+          @if (uploadingThumb()) {
+            <div class="upload-zone__loading">
+              <span class="loader"></span>
+            </div>
+          } @else if (thumbPreview()) {
+            <img [src]="thumbPreview()" alt="Thumbnail preview">
+          } @else {
+            <mat-icon>add_photo_alternate</mat-icon>
+            <span>Subir miniatura</span>
+          }
+          <input #thumbInput type="file" accept="image/*"
+            (change)="onThumbSelected($event)" hidden>
+        </div>
+        @if (form.get('thumbnailUrl')?.touched && !form.get('thumbnailUrl')?.value) {
+          <span class="field-error">Debes subir una miniatura</span>
+        }
+      </div>
+
+    </div>
+
+    <!-- columna derecha: metadatos -->
+    <div class="upload-video-meta">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="field-group">
+          <label>Título</label>
+          <div class="input-wrapper">
+            <input type="text" formControlName="title" placeholder="Título del video">
+          </div>
+          @if (getErrorMessage('title')) {
+            <span class="field-error">{{ getErrorMessage('title') }}</span>
+          }
+        </div>
+
+        <div class="field-group">
+          <label>Descripción <span class="label-hint">(opcional)</span></label>
+          <div class="input-wrapper">
+            <textarea formControlName="description" rows="4"
+              placeholder="Describe tu video..."></textarea>
+          </div>
+          @if (getErrorMessage('description')) {
+            <span class="field-error">{{ getErrorMessage('description') }}</span>
+          }
+        </div>
+
+        <!-- visibilidad -->
+        <div class="field-group">
+          <label>Visibilidad</label>
+          <div class="visibility-options">
+            <label class="visibility-option"
+              [class.visibility-option--active]="form.get('videoAccessibilityId')?.value === 1">
+              <input type="radio" formControlName="videoAccessibilityId" [value]="1" hidden>
+              <mat-icon>public</mat-icon>
+              <span>Público</span>
+            </label>
+            <label class="visibility-option"
+              [class.visibility-option--active]="form.get('videoAccessibilityId')?.value === 2">
+              <input type="radio" formControlName="videoAccessibilityId" [value]="2" hidden>
+              <mat-icon>lock</mat-icon>
+              <span>Privado</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- restricción de edad -->
+        <div class="field-group">
+          <label class="toggle-label">
+            <span>Contenido para adultos (+18)</span>
+            <div class="toggle" [class.toggle--on]="form.get('ageRestriction')?.value"
+              (click)="form.patchValue({ ageRestriction: !form.get('ageRestriction')?.value })">
+              <div class="toggle__thumb"></div>
+            </div>
+          </label>
+        </div>
+
+        @if (error()) {
+          <div class="alert-error">{{ error() }}</div>
+        }
+
+        <button type="submit" class="submit-btn"
+          [disabled]="loading() || uploadingVideo() || uploadingThumb()">
+          @if (loading()) {
+            <span class="loader"></span>
+          } @else {
+            <span>Publicar video</span>
+          }
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+
+</div>

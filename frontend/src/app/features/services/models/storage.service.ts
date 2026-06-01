@@ -22,4 +22,12 @@ export class StorageServiceVid {
       .post<ApiResponse<FileUploadResponse>>(`${this.base}/image`, form)
       .pipe(map(r => r.data.url));
   }
+
+  uploadVideo(file: File): Observable<string> {
+    const form = new FormData();
+    form.append('file', file);
+    return this.http
+      .post<ApiResponse<FileUploadResponse>>(`${this.base}/video`, form)
+      .pipe(map(r => r.data.url));
+  }
 }
