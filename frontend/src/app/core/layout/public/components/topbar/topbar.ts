@@ -2,8 +2,9 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Theme, ThemeService } from '../../../../services/theme/theme.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../features/services/auth/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 interface ThemeOption {
   value: Theme;
@@ -14,26 +15,28 @@ interface ThemeOption {
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [RouterLink, MatIconModule, MatTooltipModule],
+  imports: [RouterLink, MatIconModule, MatTooltipModule, FormsModule],
   templateUrl: './topbar.html',
-  styleUrls: ['./topbar.scss']
+  styleUrls: ['./topbar.scss'],
 })
 export class Topbar {
   @Output() toggleSidebar = new EventEmitter<void>();
-  
+
   private readonly themeService = inject(ThemeService);
-  private readonly authService  = inject(AuthService);
-  
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
+  searchQuery = '';
   showThemeMenu = false;
 
   //para actualizar al login/logout automaticamente
   readonly isLoggedIn = this.authService.isAuthenticated;
 
   readonly themes: ThemeOption[] = [
-    { value: 'dark',      icon: 'dark_mode',       label: 'Dark'      },
-    { value: 'light',     icon: 'light_mode',      label: 'Light'     },
-    { value: 'midnight',  icon: 'nights_stay',     label: 'Midnight'  },
-    { value: 'rosewave',  icon: 'local_florist',   label: 'Rosewave'  },
+    { value: 'dark', icon: 'dark_mode', label: 'Dark' },
+    { value: 'light', icon: 'light_mode', label: 'Light' },
+    { value: 'midnight', icon: 'nights_stay', label: 'Midnight' },
+    { value: 'rosewave', icon: 'local_florist', label: 'Rosewave' },
   ];
 
   get activeTheme(): Theme {
@@ -41,7 +44,7 @@ export class Topbar {
   }
 
   get activeThemeOption(): ThemeOption {
-    return this.themes.find(t => t.value === this.activeTheme) ?? this.themes[0];
+    return this.themes.find((t) => t.value === this.activeTheme) ?? this.themes[0];
   }
 
   selectTheme(theme: Theme): void {
@@ -63,5 +66,11 @@ export class Topbar {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  onSearch(query: string): void {
+    const q = query.trim();
+    if (!q) return;
+    this.router.navigate(['/home'], { queryParams: { q } });
   }
 }

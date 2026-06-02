@@ -77,7 +77,7 @@ namespace YoutubeClone.WebApp.Controllers
         public async Task<GenericResponse<UserDto>> Update(Guid id, [FromBody] UpdateUserRequest model)
         {
             var rsp = await userService.Update(id, model, this.UserClaim());
-            return ResponseStatus.Updated(HttpContext, rsp);
+            return ResponseStatus.Ok(HttpContext, rsp);
         }
 
         [HttpPost("{userId:guid}/wallet")]

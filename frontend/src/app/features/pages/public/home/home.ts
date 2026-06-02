@@ -15,6 +15,7 @@ import { VideoDto } from '../../../interfaces/private/video.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from '../../../services/auth/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,17 +29,28 @@ export class Home implements OnInit {
   private readonly dialog = inject(MatDialog);
   readonly tagPrefs = inject(TagPreferencesService);
   private readonly authService = inject(AuthService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   loading = signal(true);
   allVideos = signal<VideoDto[]>([]);
   activeTagId = signal<string | null>(null);
 
+  searchQuery = signal<string | null>(null);
+
   readonly isLoggedIn = this.authService.isAuthenticated;
 
   filteredVideos = computed(() => {
     const tagId = this.activeTagId();
+    const query = this.searchQuery()?.toLowerCase().trim();
     const videos = this.allVideos();
-    const filtered = tagId ? videos.filter((v) => v.tags?.some((t) => t.tagId === tagId)) : videos;
+
+    let filtered = tagId ? videos.filter((v) => v.tags?.some((t) => t.tagId === tagId)) : videos;
+
+    if (query) {
+      filtered = filtered.filter((v) => v.title?.toLowerCase().includes(query));
+    }
+
     return [...filtered].sort(() => Math.random() - 0.5);
   });
 
@@ -54,6 +66,11 @@ export class Home implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const q = params['q'] ?? null;
+      this.searchQuery.set(q);
+      this.activeTagId.set(null);
+    });
     if (!this.authService.userId() && !this.tagPrefs.dialogShown) {
       this.openTagDialog();
     }
@@ -85,5 +102,11 @@ export class Home implements OnInit {
   getActiveTagName(): string {
     const id = this.activeTagId();
     return this.tagPrefs.selectedTags().find((t) => t.tagId === id)?.displayName ?? '';
+  }
+
+  clearSearch(): void {
+    this.searchQuery.set(null);
+    this.activeTagId.set(null);
+    this.router.navigate(['/home']);
   }
 }

@@ -1,24 +1,33 @@
 <header class="topbar">
-  <button class="topbar__icon-btn topbar__icon-btn--menu"
-    (click)="onToggleSidebar()" aria-label="Toggle sidebar" matTooltip="Menú">
+  <button
+    class="topbar__icon-btn topbar__icon-btn--menu"
+    (click)="onToggleSidebar()"
+    aria-label="Toggle sidebar"
+    matTooltip="Menú"
+  >
     <mat-icon>menu</mat-icon>
   </button>
 
   <div class="topbar__logo">
     <div class="topbar__logo-icon">
-      <img src="/images/logo-orbit.png" alt="Orbit2u">
+      <img src="/images/logo-orbit.png" alt="Orbit2u" />
     </div>
     <span class="topbar__logo-text">Orbit<span class="topbar__logo-accent">2u</span></span>
   </div>
 
   <div class="topbar__search">
     <mat-icon class="topbar__search-icon">search</mat-icon>
-    <input class="topbar__search-input" type="text"
-      placeholder="Buscar en Orbit2u..." aria-label="Buscar"/>
+    <input
+      class="topbar__search-input"
+      type="text"
+      placeholder="Buscar en Orbit2u..."
+      aria-label="Buscar"
+      [(ngModel)]="searchQuery"
+      (keydown.enter)="onSearch(searchQuery)"
+    />
   </div>
 
   <div class="topbar__actions">
-
     <div class="topbar__theme-switcher" (clickOutside)="closeThemeMenu()">
       <button
         class="topbar__icon-btn topbar__icon-btn--theme"
@@ -58,5 +67,4 @@
       <button class="topbar__btn topbar__btn--primary" routerLink="/register">Unirme</button>
     }
   </div>
-
 </header>

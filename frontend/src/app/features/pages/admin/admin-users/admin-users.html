@@ -49,7 +49,7 @@
                   {{ user.role?.name ?? '—' }}
                 </span>
               </td>
-              <td class="text-muted">{{ user.membershipPlan?.displayName ?? 'Free' }}</td>
+              <td class="text-muted">{{ user.membershipPlan.displayName }}</td>
               <td class="text-muted">{{ user.createdAt | date: 'dd/MM/yy' }}</td>
               <td>
                 <div class="action-cell">

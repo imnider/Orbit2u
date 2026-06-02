@@ -9,7 +9,9 @@
   <div class="home-content">
     <div class="home-header">
       <h2 class="home-header__title">
-        @if (activeTagId()) {
+        @if (searchQuery()) {
+          Resultados para "{{ searchQuery() }}"
+        } @else if (activeTagId()) {
           Videos de "{{ getActiveTagName() }}"
         } @else {
           Para ti
@@ -35,7 +37,7 @@
       <div class="home-empty">
         <mat-icon>video_library</mat-icon>
         <p>No hay videos con este tema aún</p>
-        <button class="home-empty__btn" (click)="activeTagId.set(null)">Ver todos</button>
+        <button class="home-empty__btn" (click)="clearSearch()">Ver todos</button>
       </div>
     } @else {
       <div class="video-grid">
