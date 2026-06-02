@@ -40,10 +40,15 @@
   justify-content: center;
   gap: 10px;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
   background: var(--color-surface-alt);
 
-  &:hover { border-color: var(--color-primary); background: var(--color-primary-soft); }
+  &:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-soft);
+  }
 
   &--done {
     border-color: var(--color-primary);
@@ -68,7 +73,8 @@
     color: var(--color-text-muted);
   }
 
-  &__loading, &__success {
+  &__loading,
+  &__success {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,7 +99,11 @@
   font-size: 0.75rem;
   margin-top: 6px;
 
-  mat-icon { font-size: 14px; width: 14px; height: 14px; }
+  mat-icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+  }
 }
 
 .upload-video__duration {
@@ -104,7 +114,11 @@
   font-size: 0.8rem;
   margin: 8px 0 0;
 
-  mat-icon { font-size: 16px; width: 16px; height: 16px; }
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
 }
 
 //thumbnail
@@ -135,15 +149,30 @@
     overflow: hidden;
     background: var(--color-surface-alt);
     color: var(--color-text-muted);
-    transition: border-color 0.2s, background 0.2s;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
 
-    &:hover { border-color: var(--color-primary); background: var(--color-primary-soft); }
+    &:hover {
+      border-color: var(--color-primary);
+      background: var(--color-primary-soft);
+    }
 
-    img { width: 100%; height: 100%; object-fit: cover; }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-    mat-icon { font-size: 32px; width: 32px; height: 32px; }
+    mat-icon {
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+    }
 
-    span { font-size: 0.875rem; }
+    span {
+      font-size: 0.875rem;
+    }
   }
 }
 
@@ -177,7 +206,11 @@
   font-size: 0.875rem;
   transition: all 0.2s;
 
-  mat-icon { font-size: 18px; width: 18px; height: 18px; }
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
 
   &--active {
     border-color: var(--color-primary);
@@ -208,7 +241,9 @@
   &--on {
     background: var(--color-primary);
 
-    .toggle__thumb { transform: translateX(20px); }
+    .toggle__thumb {
+      transform: translateX(20px);
+    }
   }
 
   &__thumb {
@@ -237,7 +272,11 @@
   font-size: 0.875rem;
   transition: all 0.2s;
 
-  mat-icon { font-size: 18px; width: 18px; height: 18px; }
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
 
   &:hover {
     color: var(--color-text);
