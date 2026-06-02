@@ -14,7 +14,7 @@
     <h2 class="purchase-dialog__title">¡Casi listo!</h2>
     <p class="purchase-dialog__subtitle">Seleccionaste: <strong>{{ itemName() }}</strong>
       — <strong>${{ itemPrice() | number:'1.2-2' }}</strong>
-      {{ type() === 'plan' ? '/ mes' : '' }}
+      {{ type() === 'plan' ? '/ pago único' : '' }}
     </p>
 
     <div class="purchase-dialog__steps">

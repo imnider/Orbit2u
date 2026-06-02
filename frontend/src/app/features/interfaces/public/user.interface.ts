@@ -26,8 +26,8 @@ export interface CurrentUser {
     password: string;
     createdAt: string;
     deletedAt: string | null;
-    role: Role;
-    membershipPlan: MembershipPlan;
+    role: Role | null;
+    membershipPlan: MembershipPlan | null;
 }
 
 export interface UpdateUserRequest {
@@ -36,12 +36,18 @@ export interface UpdateUserRequest {
     email?: string | null;
     birthday?: string | null;
     location?: string | null;
-    roleId?: string | null; // solo el admin puede verlo
+    roleId?: string | null;
+    membershipPlanId?: number | null; //?
+}
+
+export interface AddCoinsRequest {
+    coinPackageId: number;
 }
 
 export interface ChangePasswordRequest {
-  currentPassword: string;
-  newPassword: string;
+    currentPassword: string;
+    newPassword: string;
 }
 
 export type MeResponse = ApiResponse<CurrentUser>;
+export type UserListResponse = ApiResponse<CurrentUser[]>;

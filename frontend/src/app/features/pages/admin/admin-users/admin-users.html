@@ -1,0 +1,155 @@
+<div class="admin-users">
+
+  <!-- buscador -->
+  <div class="admin-table-toolbar">
+    <div class="admin-search">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Buscar usuario..."
+        [value]="searchQuery()"
+        (input)="onSearch($any($event.target).value)">
+    </div>
+    <span class="admin-table-count">{{ users().length }} usuarios</span>
+  </div>
+
+  <!-- tabla -->
+  @if (loading()) {
+    <div class="admin-loading"><span class="loader"></span></div>
+  } @else {
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Membresía</th>
+            <th>Creado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of users(); track user.userId) {
+            <tr [class.admin-table__row--deleting]="deleting() === user.userId">
+              <td>
+                <div class="user-cell">
+                  <div class="user-cell__avatar">{{ user.displayName.charAt(0).toUpperCase() }}</div>
+                  <div>
+                    <span class="user-cell__name">{{ user.displayName }}</span>
+                    <span class="user-cell__username">@{{ user.userName }}</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-muted">{{ user.email }}</td>
+              <td>
+                <span class="role-badge role-badge--{{ user.role?.name?.toLowerCase() }}">
+                  {{ user.role?.name ?? '—' }}
+                </span>
+              </td>
+              <td class="text-muted">{{ user.membershipPlan?.displayName ?? 'Free' }}</td>
+              <td class="text-muted">{{ user.createdAt | date:'dd/MM/yy' }}</td>
+              <td>
+                <div class="action-cell">
+                  <button class="table-btn table-btn--icon"
+                    (click)="openEditModal(user)" matTooltip="Editar membresía">
+                    <mat-icon>card_membership</mat-icon>
+                  </button>
+                  <button class="table-btn table-btn--icon"
+                    (click)="openCoinsModal(user)" matTooltip="Dar monedas">
+                    <mat-icon>toll</mat-icon>
+                  </button>
+                  <button class="table-btn table-btn--icon table-btn--danger"
+                    (click)="requestDelete(user.userId)" matTooltip="Eliminar usuario">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  <!-- confirmación de borrado -->
+  @if (confirmDeleteId()) {
+    <div class="confirm-overlay" (click)="cancelDelete()">
+      <div class="confirm-dialog" (click)="$event.stopPropagation()">
+        <mat-icon class="confirm-dialog__icon">warning</mat-icon>
+        <h3>¿Eliminar usuario?</h3>
+        <p>Esta acción no se puede deshacer.</p>
+        <div class="confirm-dialog__actions">
+          <button class="table-btn" (click)="cancelDelete()">Cancelar</button>
+          <button class="table-btn table-btn--danger-solid" (click)="confirmDelete()">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- modal editar membresía -->
+  @if (showEditModal()) {
+    <div class="modal-overlay" (click)="closeEditModal()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <div class="modal__header">
+          <h3>Editar membresía</h3>
+          <button class="modal__close" (click)="closeEditModal()"><mat-icon>close</mat-icon></button>
+        </div>
+        <div class="modal__body">
+          <p class="modal__subtitle">{{ selectedUser()?.displayName }}</p>
+          <div class="field-group">
+            <label>Plan de membresía</label>
+            <div class="input-wrapper custom-material">
+              <select [formControl]="editForm.controls.membershipPlanId">
+                @for (plan of memberships(); track plan.membershipPlanId) {
+                  <option [value]="plan.membershipPlanId">{{ plan.displayName }}</option>
+                }
+              </select>
+            </div>
+          </div>
+          @if (error()) { <div class="alert-error">{{ error() }}</div> }
+          @if (success()) { <div class="alert-success">{{ success() }}</div> }
+        </div>
+        <div class="modal__footer">
+          <button class="table-btn" (click)="closeEditModal()">Cancelar</button>
+          <button class="table-btn table-btn--primary" (click)="saveEdit()" [disabled]="saving()">
+            @if (saving()) { <span class="loader loader--sm"></span> } @else { Guardar }
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- modal monedas -->
+  @if (showCoinsModal()) {
+    <div class="modal-overlay" (click)="closeCoinsModal()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <div class="modal__header">
+          <h3>Dar monedas</h3>
+          <button class="modal__close" (click)="closeCoinsModal()"><mat-icon>close</mat-icon></button>
+        </div>
+        <div class="modal__body">
+          <p class="modal__subtitle">{{ selectedUser()?.displayName }}</p>
+          <div class="field-group">
+            <label>Paquete de monedas</label>
+            <div class="input-wrapper custom-material">
+              <select [formControl]="coinsForm.controls.coinPackageId">
+                @for (pkg of coinPackages; track pkg.id) {
+                  <option [value]="pkg.id">{{ pkg.label }}</option>
+                }
+              </select>
+            </div>
+          </div>
+          @if (error()) { <div class="alert-error">{{ error() }}</div> }
+          @if (success()) { <div class="alert-success">{{ success() }}</div> }
+        </div>
+        <div class="modal__footer">
+          <button class="table-btn" (click)="closeCoinsModal()">Cancelar</button>
+          <button class="table-btn table-btn--primary" (click)="saveCoins()" [disabled]="saving()">
+            @if (saving()) { <span class="loader loader--sm"></span> } @else { Dar monedas }
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
