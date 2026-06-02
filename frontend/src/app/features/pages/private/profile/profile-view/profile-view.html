@@ -43,7 +43,7 @@
       <div class="profile-card__row">
         <span class="profile-card__label">Rol</span>
         <span class="profile-card__value profile-card__badge">
-          {{ getRoleLabel(user()!.role.name) }}
+          {{ getRoleLabel(user()!.role?.name ?? '') }}
         </span>
       </div>
       <div class="profile-card__row">

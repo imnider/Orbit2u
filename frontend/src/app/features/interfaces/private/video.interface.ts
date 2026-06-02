@@ -17,7 +17,7 @@ export interface VideoDto {
     createdAt: string;
     updatedAt: string | null;
     deletedAt: string | null;
-    tags: TagDto[];
+    tags: TagDto[] | null;
 }
 
 

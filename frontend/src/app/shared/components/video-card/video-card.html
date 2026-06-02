@@ -9,7 +9,7 @@
   <div class="video-card__info">
     <p class="video-card__title">{{ video().title }}</p>
     <div class="video-card__tags">
-      @for (tag of video().tags.slice(0, 2); track tag.tagId) {
+      @for (tag of (video().tags ?? []).slice(0, 2); track tag.tagId) {
         <span class="video-card__tag">{{ tag.displayName }}</span>
       }
     </div>

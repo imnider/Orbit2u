@@ -1,0 +1,25 @@
+<div class="admin-layout">
+  <nav class="admin-nav">
+    <span class="admin-nav__title">
+      <mat-icon>admin_panel_settings</mat-icon>
+      Panel Admin
+    </span>
+    <div class="admin-nav__tabs">
+      <a class="admin-nav__tab" routerLink="metrics" routerLinkActive="admin-nav__tab--active">
+        <mat-icon>bar_chart</mat-icon>
+        <span>Métricas</span>
+      </a>
+      <a class="admin-nav__tab" routerLink="users" routerLinkActive="admin-nav__tab--active">
+        <mat-icon>group</mat-icon>
+        <span>Usuarios</span>
+      </a>
+      <a class="admin-nav__tab" routerLink="videos" routerLinkActive="admin-nav__tab--active">
+        <mat-icon>video_library</mat-icon>
+        <span>Videos</span>
+      </a>
+    </div>
+  </nav>
+  <div class="admin-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

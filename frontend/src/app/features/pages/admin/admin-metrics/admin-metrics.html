@@ -1,0 +1,30 @@
+<div class="admin-metrics">
+  @if (loading()) {
+    <div class="metrics-loading">
+      <span class="loader"></span>
+    </div>
+  } @else {
+    <div class="metric-cards">
+      @for (card of cards(); track card.label) {
+        <div class="metric-card metric-card--{{ card.color }}">
+          <mat-icon class="metric-card__icon">{{ card.icon }}</mat-icon>
+          <div class="metric-card__body">
+            <span class="metric-card__value">{{ card.value }}</span>
+            <span class="metric-card__label">{{ card.label }}</span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="metrics-chart-card">
+      <h3 class="metrics-chart-card__title">Resumen del sistema</h3>
+      <div class="metrics-chart-card__chart">
+        <canvas baseChart
+          [data]="barChartData()"
+          [options]="barChartOptions"
+          type="bar">
+        </canvas>
+      </div>
+    </div>
+  }
+</div>

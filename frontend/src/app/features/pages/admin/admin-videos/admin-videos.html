@@ -1,0 +1,81 @@
+<div class="admin-videos">
+  <div class="admin-table-toolbar">
+    <div class="admin-search">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Buscar video..."
+        [value]="searchQuery()"
+        (input)="onSearch($any($event.target).value)">
+    </div>
+    <span class="admin-table-count">{{ videos().length }} videos</span>
+  </div>
+
+  @if (loading()) {
+    <div class="admin-loading"><span class="loader"></span></div>
+  } @else {
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Video</th>
+            <th>Duración</th>
+            <th>Tags</th>
+            <th>+18</th>
+            <th>Publicado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (video of videos(); track video.videoId) {
+            <tr [class.admin-table__row--deleting]="deleting() === video.videoId">
+              <td>
+                <div class="video-cell">
+                  <img class="video-cell__thumb" [src]="video.thumbnailUrl" [alt]="video.title">
+                  <span class="video-cell__title">{{ video.title }}</span>
+                </div>
+              </td>
+              <td class="text-muted">{{ formatDuration(video.durationSeconds) }}</td>
+              <td>
+                <div class="tag-list">
+                  @for (tag of video.tags?.slice(0,3); track tag.tagId) {
+                    <span class="tag-pill">{{ tag.displayName }}</span>
+                  }
+                </div>
+              </td>
+              <td>
+                @if (video.ageRestriction) {
+                  <span class="age-badge">+18</span>
+                } @else {
+                  <span class="text-muted">—</span>
+                }
+              </td>
+              <td class="text-muted">{{ video.publishedAt | date:'dd/MM/yy' }}</td>
+              <td>
+                <button class="table-btn table-btn--icon table-btn--danger"
+                  (click)="requestDelete(video.videoId)" matTooltip="Eliminar video">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  <!-- confirmación de borrado -->
+  @if (confirmDeleteId()) {
+    <div class="confirm-overlay" (click)="cancelDelete()">
+      <div class="confirm-dialog" (click)="$event.stopPropagation()">
+        <mat-icon class="confirm-dialog__icon">warning</mat-icon>
+        <h3>¿Eliminar video?</h3>
+        <p>Esta acción no se puede deshacer. El video será removido del sistema.</p>
+        <div class="confirm-dialog__actions">
+          <button class="table-btn" (click)="cancelDelete()">Cancelar</button>
+          <button class="table-btn table-btn--danger-solid" (click)="confirmDelete()">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

@@ -33,11 +33,11 @@ export class Sidebar {
   private readonly channelState = inject(ChannelStateService);
 
   readonly isLoggedIn = this.authService.isAuthenticated;
-  readonly isUser = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'User');
+  readonly isUser = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Usuario');
   readonly isCreator = computed(
-    () => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Creator',
+    () => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Creador de Contenido',
   );
-  readonly isAdmin = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Admin');
+  readonly isAdmin = computed(() => (this.authService.payload() as any)?.[CLAIMS.ROLE] === 'Administrador');
 
   //items visibles para todos
   readonly discoverItems: NavItem[] = [
@@ -66,7 +66,7 @@ export class Sidebar {
 
   //items solo para admin
   readonly adminItems: NavItem[] = [
-    { label: 'Panel admin', icon: 'admin_panel_settings', route: '/admin' },
+    { label: 'Panel admin', icon: 'admin_panel_settings', route: '/admin/metrics' },
   ];
 
   readonly footerItems: NavItem[] = [
