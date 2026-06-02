@@ -20,7 +20,7 @@ export class TagPreferencesService {
   readonly selectedTags = this._selectedTags.asReadonly();
   readonly selectedTagIds = computed(() => {
     const tags = this._selectedTags();
-    return Array.isArray(tags) ? tags.map(t => t.tagId) : [];
+    return Array.isArray(tags) ? tags.map((t) => t.tagId) : [];
   });
   readonly hasPreferences = computed(() => {
     const tags = this._selectedTags();
@@ -59,29 +59,25 @@ export class TagPreferencesService {
     const userId = this.authService.userId();
     const exists = this.isSelected(tag.tagId);
 
+    // optimistic update
+    const current = this._selectedTags();
+    const safe = Array.isArray(current) ? current : [];
+    const updated = exists ? safe.filter((t) => t.tagId !== tag.tagId) : [...safe, tag];
+    this._selectedTags.set(updated);
+
     if (userId) {
       const req$ = exists
         ? this.http.delete<void>(`${environment.apiUrl}/UserPreferences/tags/${tag.tagId}`)
         : this.http.post<void>(`${environment.apiUrl}/UserPreferences/tags/${tag.tagId}`, {});
 
       return req$.pipe(
-        tap(() => {
-          const current = this._selectedTags();
-          const safe    = Array.isArray(current) ? current : [];
-          const updated = exists
-            ? safe.filter(t => t.tagId !== tag.tagId)
-            : [...safe, tag];
-          this._selectedTags.set(updated);
+        catchError(() => {
+          // revertir si falla
+          this._selectedTags.set(safe);
+          return of(void 0);
         }),
-        catchError(() => of(void 0))
       );
     } else {
-      const current = this._selectedTags();
-      const safe    = Array.isArray(current) ? current : [];
-      const updated = exists
-        ? safe.filter(t => t.tagId !== tag.tagId)
-        : [...safe, tag];
-      this._selectedTags.set(updated);
       this.saveToSession(updated);
       return of(void 0);
     }
@@ -103,18 +99,18 @@ export class TagPreferencesService {
 
   private loadFromApi(): Observable<TagDto[]> {
     return this.http.get<any>(`${environment.apiUrl}/UserPreferences`).pipe(
-      map(r => {
-        if (Array.isArray(r))        return r as TagDto[];
-        if (Array.isArray(r?.data))  return r.data as TagDto[];
-        if (Array.isArray(r?.tags))  return r.tags as TagDto[];
+      map((r) => {
+        if (Array.isArray(r)) return r as TagDto[];
+        if (Array.isArray(r?.data)) return r.data as TagDto[];
+        if (Array.isArray(r?.tags)) return r.tags as TagDto[];
         if (Array.isArray(r?.data?.tags)) return r.data.tags as TagDto[];
         return [] as TagDto[];
       }),
-      tap(tags => this._selectedTags.set(tags)),
+      tap((tags) => this._selectedTags.set(tags)),
       catchError(() => {
         this._selectedTags.set([]);
         return of([]);
-      })
+      }),
     );
   }
 
@@ -123,7 +119,9 @@ export class TagPreferencesService {
       const raw = sessionStorage.getItem(SESSION_TAGS_KEY);
       const parsed = raw ? JSON.parse(raw) : [];
       return Array.isArray(parsed) ? parsed : [];
-    } catch { return []; }
+    } catch {
+      return [];
+    }
   }
 
   private saveToSession(tags: TagDto[]): void {

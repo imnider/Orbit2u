@@ -15,6 +15,7 @@
     font-weight: 700;
     color: var(--color-text);
     margin: 0;
+    flex: 1;
   }
 }
 
@@ -28,7 +29,6 @@
   }
 }
 
-//zona de subida de video
 .upload-zone {
   width: 100%;
   min-height: 180px;
@@ -121,7 +121,6 @@
   }
 }
 
-//thumbnail
 .thumb-upload {
   margin-top: 20px;
 
@@ -176,7 +175,6 @@
   }
 }
 
-//meta columna
 .upload-video-meta {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -186,7 +184,55 @@
   height: fit-content;
 }
 
-//visibilidad
+.field-group {
+  margin-bottom: 20px;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-label);
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  width: 100%;
+}
+
+.field-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+  resize: none;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+  }
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
 .visibility-options {
   display: flex;
   gap: 12px;
@@ -219,7 +265,6 @@
   }
 }
 
-//toggle
 .toggle-label {
   display: flex;
   align-items: center;
@@ -258,7 +303,74 @@
   }
 }
 
-//back btn (mismo que edit-channel)
+.tags-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
+  }
+
+  &__count {
+    margin-left: auto;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 1px 7px;
+    line-height: 1.6;
+  }
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-base);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    opacity 0.2s,
+    background 0.2s;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
 .back-btn {
   display: flex;
   align-items: center;
@@ -270,6 +382,7 @@
   padding: 8px 14px;
   cursor: pointer;
   font-size: 0.875rem;
+  font-family: inherit;
   transition: all 0.2s;
 
   mat-icon {
@@ -283,4 +396,49 @@
     border-color: var(--color-primary);
     background: var(--color-primary-soft);
   }
+}
+
+.delete-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  color: var(--color-text-muted);
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: all 0.2s;
+  margin-left: auto;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    color: var(--color-danger, #e53935);
+    border-color: var(--color-danger, #e53935);
+    background: color-mix(in srgb, var(--color-danger, #e53935) 8%, transparent);
+  }
+}
+
+.alert-error {
+  font-size: 0.8rem;
+  color: var(--color-danger, #e53935);
+  background: color-mix(in srgb, var(--color-danger, #e53935) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-danger, #e53935) 25%, transparent);
+  border-radius: var(--radius-base);
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}
+
+.upload-zone--disabled,
+.thumb-upload__zone--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }

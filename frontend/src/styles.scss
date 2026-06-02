@@ -34,3 +34,18 @@ body {
     color 0.25s ease;
 }
 /* You can add global styles to this file, and also import other style files */
+
+.loader {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

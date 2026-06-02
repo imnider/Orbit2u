@@ -1,0 +1,106 @@
+.cdk-overlay-container {
+  .mat-mdc-dialog-container,
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: var(--color-surface) !important;
+    color: var(--color-text) !important;
+    --mdc-dialog-container-color: var(--color-surface);
+    --mdc-dialog-subhead-color: var(--color-text);
+    --mdc-dialog-supporting-text-color: var(--color-text-muted);
+    border-radius: var(--radius-base) !important;
+    box-shadow: var(--shadow-card) !important;
+    border: 1px solid var(--color-border);
+  }
+}
+
+.confirm-dialog {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+
+  &__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(229, 57, 53, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+
+    mat-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      color: #e53935;
+    }
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    text-transform: capitalize;
+  }
+
+  &__message {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+    max-width: 300px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    width: 100%;
+  }
+
+  &__btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border-radius: var(--radius-base);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid var(--color-border);
+
+    mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+
+    &--cancel {
+      background: var(--color-surface-alt);
+      color: var(--color-text-muted);
+
+      &:hover {
+        color: var(--color-text);
+        border-color: var(--color-primary);
+      }
+    }
+
+    &--danger {
+      background: rgba(229, 57, 53, 0.1);
+      color: #e53935;
+      border-color: rgba(229, 57, 53, 0.3);
+
+      &:hover {
+        background: rgba(229, 57, 53, 0.18);
+        border-color: #e53935;
+      }
+    }
+  }
+}

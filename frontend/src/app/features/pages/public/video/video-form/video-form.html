@@ -5,32 +5,64 @@
       <span>Volver</span>
     </button>
 
-    <h1>
-      {{ isEditMode() ? 'Editar video' : 'Subir video' }}
-    </h1>
+    <h1>{{ isEditMode() ? 'Editar video' : 'Subir video' }}</h1>
+
+    @if (isEditMode()) {
+      <button class="delete-btn" type="button" (click)="onDelete()">
+        <mat-icon>delete_outline</mat-icon>
+        <span>Eliminar video</span>
+      </button>
+    }
   </div>
 
   <div class="upload-video-layout">
-    <!-- IZQUIERDA -->
     <div class="upload-video-files">
-      <!-- SOLO upload video si NO es edit -->
       @if (!isEditMode()) {
-        <div class="upload-zone" [class.upload-zone--done]="form.get('videoUrl')?.value">
-          <mat-icon class="upload-zone__icon">cloud_upload</mat-icon>
-          <span class="upload-zone__label">Seleccionar video</span>
+        <div
+          class="upload-zone"
+          [class.upload-zone--done]="form.get('videoUrl')?.value"
+          [class.upload-zone--disabled]="uploadingVideo()"
+          (click)="!uploadingVideo() && videoInput.click()"
+        >
+          @if (uploadingVideo()) {
+            <div class="upload-zone__loading">
+              <span class="loader"></span>
+              <span class="upload-zone__hint">Subiendo video...</span>
+            </div>
+          } @else if (form.get('videoUrl')?.value) {
+            <div class="upload-zone__success">
+              <mat-icon>check_circle</mat-icon>
+              <span class="upload-zone__label">Video subido</span>
+              <span class="upload-zone__hint">Haz clic para cambiar</span>
+            </div>
+          } @else {
+            <mat-icon class="upload-zone__icon">cloud_upload</mat-icon>
+            <span class="upload-zone__label">Seleccionar video</span>
+            <span class="upload-zone__hint">MP4, MOV, AVI...</span>
+          }
 
-          <input type="file" hidden />
+          <input
+            #videoInput
+            type="file"
+            accept="video/*"
+            hidden
+            (change)="onVideoSelected($event)"
+          />
         </div>
       }
 
-      <!-- thumbnail (ambos casos) -->
       <div class="thumb-upload">
         <span class="thumb-upload__label">Miniatura</span>
 
-        <div class="thumb-upload__zone" (click)="thumbInput.click()">
+        <div
+          class="thumb-upload__zone"
+          [class.thumb-upload__zone--disabled]="uploadingThumb()"
+          (click)="!uploadingThumb() && thumbInput.click()"
+        >
           @if (uploadingThumb()) {
             <div class="upload-zone__loading">
               <span class="loader"></span>
+              <span>Subiendo miniatura...</span>
             </div>
           } @else if (thumbPreview()) {
             <img [src]="thumbPreview()" />
@@ -39,31 +71,53 @@
             <span>Subir miniatura</span>
           }
 
-          <input #thumbInput type="file" hidden (change)="onThumbSelected($event)" />
+          <input
+            #thumbInput
+            type="file"
+            accept="image/*"
+            hidden
+            (change)="onThumbSelected($event)"
+          />
         </div>
       </div>
     </div>
 
-    <!-- DERECHA -->
     <div class="upload-video-meta">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="field-group">
-          <label>Título</label>
+          <label class="field-label">Título</label>
           <div class="input-wrapper">
-            <input type="text" formControlName="title" />
+            <input
+              class="field-input"
+              type="text"
+              formControlName="title"
+              placeholder="Título del video"
+            />
           </div>
         </div>
 
         <div class="field-group">
-          <label>Descripción</label>
+          <label class="field-label">Descripción</label>
           <div class="input-wrapper">
-            <textarea rows="4" formControlName="description"></textarea>
+            <textarea
+              class="field-input field-textarea"
+              rows="4"
+              formControlName="description"
+              placeholder="Descripción del video"
+            ></textarea>
           </div>
         </div>
 
         <div class="field-group">
-          <label>Visibilidad</label>
+          <label class="field-label">Etiquetas</label>
+          <button type="button" class="tags-btn" (click)="openTagsDialog()">
+            <mat-icon>label_outline</mat-icon>
+            <span>Gestionar etiquetas</span>
+          </button>
+        </div>
 
+        <div class="field-group">
+          <label class="field-label">Visibilidad</label>
           <div class="visibility-options">
             <label
               class="visibility-option"
@@ -73,7 +127,6 @@
               <mat-icon>public</mat-icon>
               <span>Público</span>
             </label>
-
             <label
               class="visibility-option"
               [class.visibility-option--active]="form.get('videoAccessibilityId')?.value === 2"
@@ -89,13 +142,15 @@
           <div class="alert-error">{{ error() }}</div>
         }
 
-        <button type="submit" class="submit-btn" [disabled]="loading() || uploadingThumb()">
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="loading() || uploadingThumb() || uploadingVideo()"
+        >
           @if (loading()) {
             <span class="loader"></span>
           } @else {
-            <span>
-              {{ isEditMode() ? 'Guardar cambios' : 'Publicar video' }}
-            </span>
+            <span>{{ isEditMode() ? 'Guardar cambios' : 'Publicar video' }}</span>
           }
         </button>
       </form>
