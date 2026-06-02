@@ -1,12 +1,14 @@
 <div class="admin-users">
-
   <!-- buscador -->
   <div class="admin-table-toolbar">
     <div class="admin-search">
       <mat-icon>search</mat-icon>
-      <input type="text" placeholder="Buscar usuario..."
+      <input
+        type="text"
+        placeholder="Buscar usuario..."
         [value]="searchQuery()"
-        (input)="onSearch($any($event.target).value)">
+        (input)="onSearch($any($event.target).value)"
+      />
     </div>
     <span class="admin-table-count">{{ users().length }} usuarios</span>
   </div>
@@ -32,7 +34,9 @@
             <tr [class.admin-table__row--deleting]="deleting() === user.userId">
               <td>
                 <div class="user-cell">
-                  <div class="user-cell__avatar">{{ user.displayName.charAt(0).toUpperCase() }}</div>
+                  <div class="user-cell__avatar">
+                    {{ user.displayName.charAt(0).toUpperCase() }}
+                  </div>
                   <div>
                     <span class="user-cell__name">{{ user.displayName }}</span>
                     <span class="user-cell__username">@{{ user.userName }}</span>
@@ -46,19 +50,28 @@
                 </span>
               </td>
               <td class="text-muted">{{ user.membershipPlan?.displayName ?? 'Free' }}</td>
-              <td class="text-muted">{{ user.createdAt | date:'dd/MM/yy' }}</td>
+              <td class="text-muted">{{ user.createdAt | date: 'dd/MM/yy' }}</td>
               <td>
                 <div class="action-cell">
-                  <button class="table-btn table-btn--icon"
-                    (click)="openEditModal(user)" matTooltip="Editar membresía">
+                  <button
+                    class="table-btn table-btn--icon"
+                    (click)="openEditModal(user)"
+                    matTooltip="Editar membresía"
+                  >
                     <mat-icon>card_membership</mat-icon>
                   </button>
-                  <button class="table-btn table-btn--icon"
-                    (click)="openCoinsModal(user)" matTooltip="Dar monedas">
+                  <button
+                    class="table-btn table-btn--icon"
+                    (click)="openCoinsModal(user)"
+                    matTooltip="Dar monedas"
+                  >
                     <mat-icon>toll</mat-icon>
                   </button>
-                  <button class="table-btn table-btn--icon table-btn--danger"
-                    (click)="requestDelete(user.userId)" matTooltip="Eliminar usuario">
+                  <button
+                    class="table-btn table-btn--icon table-btn--danger"
+                    (click)="requestDelete(user.userId)"
+                    matTooltip="Eliminar usuario"
+                  >
                     <mat-icon>delete</mat-icon>
                   </button>
                 </div>
@@ -93,7 +106,9 @@
       <div class="modal" (click)="$event.stopPropagation()">
         <div class="modal__header">
           <h3>Editar membresía</h3>
-          <button class="modal__close" (click)="closeEditModal()"><mat-icon>close</mat-icon></button>
+          <button class="modal__close" (click)="closeEditModal()">
+            <mat-icon>close</mat-icon>
+          </button>
         </div>
         <div class="modal__body">
           <p class="modal__subtitle">{{ selectedUser()?.displayName }}</p>
@@ -107,13 +122,21 @@
               </select>
             </div>
           </div>
-          @if (error()) { <div class="alert-error">{{ error() }}</div> }
-          @if (success()) { <div class="alert-success">{{ success() }}</div> }
+          @if (error()) {
+            <div class="alert-error">{{ error() }}</div>
+          }
+          @if (success()) {
+            <div class="alert-success">{{ success() }}</div>
+          }
         </div>
         <div class="modal__footer">
           <button class="table-btn" (click)="closeEditModal()">Cancelar</button>
           <button class="table-btn table-btn--primary" (click)="saveEdit()" [disabled]="saving()">
-            @if (saving()) { <span class="loader loader--sm"></span> } @else { Guardar }
+            @if (saving()) {
+              <span class="loader loader--sm"></span>
+            } @else {
+              Guardar
+            }
           </button>
         </div>
       </div>
@@ -126,7 +149,9 @@
       <div class="modal" (click)="$event.stopPropagation()">
         <div class="modal__header">
           <h3>Dar monedas</h3>
-          <button class="modal__close" (click)="closeCoinsModal()"><mat-icon>close</mat-icon></button>
+          <button class="modal__close" (click)="closeCoinsModal()">
+            <mat-icon>close</mat-icon>
+          </button>
         </div>
         <div class="modal__body">
           <p class="modal__subtitle">{{ selectedUser()?.displayName }}</p>
@@ -140,13 +165,21 @@
               </select>
             </div>
           </div>
-          @if (error()) { <div class="alert-error">{{ error() }}</div> }
-          @if (success()) { <div class="alert-success">{{ success() }}</div> }
+          @if (error()) {
+            <div class="alert-error">{{ error() }}</div>
+          }
+          @if (success()) {
+            <div class="alert-success">{{ success() }}</div>
+          }
         </div>
         <div class="modal__footer">
           <button class="table-btn" (click)="closeCoinsModal()">Cancelar</button>
           <button class="table-btn table-btn--primary" (click)="saveCoins()" [disabled]="saving()">
-            @if (saving()) { <span class="loader loader--sm"></span> } @else { Dar monedas }
+            @if (saving()) {
+              <span class="loader loader--sm"></span>
+            } @else {
+              Dar monedas
+            }
           </button>
         </div>
       </div>
