@@ -93,6 +93,11 @@ export const routes: Routes = [
             (m) => m.UserPreferences,
           ),
       },
+      {
+        path: 'communities',
+        loadChildren: () =>
+          import('./features/routes/community.routes').then(m => m.communityRoutes),
+      },
     ],
   },
   {

@@ -1,0 +1,98 @@
+<div class="comm-form-overlay" (click)="close()">
+  <div class="comm-form-dialog" (click)="$event.stopPropagation()">
+
+    <div class="comm-form-dialog__header">
+      <h2>{{ isEdit() ? 'Editar comunidad' : 'Crear comunidad' }}</h2>
+      <button class="comm-form-dialog__close" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="comm-form-dialog__body">
+
+      @if (bannerUrl) {
+        <div class="comm-form-preview comm-form-preview--banner">
+          <img [src]="bannerUrl" alt="Banner preview">
+        </div>
+      }
+
+      @if (avatarUrl) {
+        <div class="comm-form-preview comm-form-preview--avatar">
+          <img [src]="avatarUrl" alt="Avatar preview">
+        </div>
+      }
+
+      <div class="comm-form-field">
+        <label class="comm-form-label">
+          Nombre <span class="comm-form-required">*</span>
+        </label>
+        <input
+          class="comm-form-input"
+          type="text"
+          placeholder="Nombre de la comunidad"
+          [(ngModel)]="name"
+          maxlength="80"
+        />
+      </div>
+
+      <div class="comm-form-field">
+        <label class="comm-form-label">Descripción</label>
+        <textarea
+          class="comm-form-input comm-form-input--textarea"
+          placeholder="¿De qué trata esta comunidad?"
+          [(ngModel)]="description"
+          rows="3"
+          maxlength="300"
+        ></textarea>
+      </div>
+
+      <div class="comm-form-field">
+        <label class="comm-form-label">URL del avatar</label>
+        <input
+          class="comm-form-input" type="url"
+          placeholder="https://..." [(ngModel)]="avatarUrl"
+        />
+      </div>
+
+      <div class="comm-form-field">
+        <label class="comm-form-label">URL del banner</label>
+        <input class="comm-form-input" type="url"
+          placeholder="https://..." [(ngModel)]="bannerUrl"
+        />
+      </div>
+
+      <div class="comm-form-field comm-form-field--toggle">
+        <div class="comm-form-field__toggle-info">
+          <label class="comm-form-label">Comunidad privada</label>
+          <span class="comm-form-hint">Solo los miembros pueden ver el contenido</span>
+        </div>
+        <button
+          class="comm-toggle-btn"
+          [class.comm-toggle-btn--on]="isPrivate"
+          (click)="isPrivate = !isPrivate"
+          type="button">
+          <span class="comm-toggle-btn__knob"></span>
+        </button>
+      </div>
+
+      @if (error()) {
+        <div class="comm-form-error">
+          <mat-icon>error_outline</mat-icon>
+          <span>{{ error() }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="comm-form-dialog__footer">
+      <button class="comm-form-btn comm-form-btn--cancel" (click)="close()">Cancelar</button>
+      <button class="comm-form-btn comm-form-btn--save" [disabled]="saving()" (click)="submit()">
+        @if (saving()) {
+          <span class="loader-sm"></span>
+        } @else {
+          {{ isEdit() ? 'Guardar cambios' : 'Crear comunidad' }}
+        }
+      </button>
+    </div>
+
+  </div>
+</div>
