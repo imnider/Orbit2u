@@ -1,8 +1,4 @@
 <div class="home-page">
-  @if (showTagDialog()) {
-    <app-tag-selector-dialog (closed)="onDialogClosed()"></app-tag-selector-dialog>
-  }
-
   @if (tagPrefs.hasPreferences()) {
     <app-tag-filter-bar
       [activeTagId]="activeTagId()"
@@ -11,16 +7,15 @@
   }
 
   <div class="home-content">
-
     <div class="home-header">
       <h2 class="home-header__title">
         @if (activeTagId()) {
-          Videos de "{{  getActiveTagName() }}"
+          Videos de "{{ getActiveTagName() }}"
         } @else {
           Para ti
         }
       </h2>
-      <button class="home-header__prefs-btn" (click)="openTagDialog()" matTooltip="Editar intereses">
+      <button class="home-header__prefs-btn" (click)="openTagDialog()">
         <mat-icon>tune</mat-icon>
         Intereses
       </button>
@@ -28,11 +23,11 @@
 
     @if (loading()) {
       <div class="video-grid">
-        @for (i of [1,2,3,4,5,6]; track i) {
+        @for (i of [1, 2, 3, 4, 5, 6]; track i) {
           <div class="video-card-skeleton">
             <div class="skeleton skeleton--thumb"></div>
-            <div class="skeleton skeleton--text" style="width:80%"></div>
-            <div class="skeleton skeleton--text" style="width:50%"></div>
+            <div class="skeleton skeleton--text" style="width: 80%"></div>
+            <div class="skeleton skeleton--text" style="width: 50%"></div>
           </div>
         }
       </div>

@@ -1,10 +1,14 @@
 <div class="dialog-overlay" (click)="skip()">
   <div class="dialog" (click)="$event.stopPropagation()">
-
     <div class="dialog__header">
       <mat-icon class="dialog__header-icon">local_offer</mat-icon>
-      <h2>¿En qué estás interesado?</h2>
-      <p>Selecciona temas para personalizar tu feed.</p>
+      @if (data?.mode === 'video') {
+        <h2>Etiquetas del video</h2>
+        <p>Selecciona las etiquetas que describen tu video.</p>
+      } @else {
+        <h2>¿En qué estás interesado?</h2>
+        <p>Selecciona temas para personalizar tu feed.</p>
+      }
     </div>
 
     @if (loading()) {
@@ -14,8 +18,11 @@
     } @else {
       <div class="dialog__tags">
         @for (tag of tags(); track tag.tagId) {
-          <button class="tag-chip" [class.tag-chip--selected]="isSelected(tag.tagId)"
-            (click)="toggle(tag)">
+          <button
+            class="tag-chip"
+            [class.tag-chip--selected]="isSelected(tag.tagId)"
+            (click)="toggle(tag)"
+          >
             @if (isSelected(tag.tagId)) {
               <mat-icon>check</mat-icon>
             }
@@ -26,7 +33,9 @@
     }
 
     <div class="dialog__footer">
-      <button class="dialog__skip-btn" (click)="skip()">Omitir</button>
+      <button class="dialog__skip-btn" (click)="skip()">
+        {{ data?.mode === 'video' ? 'Cancelar' : 'Omitir' }}
+      </button>
       <button class="dialog__confirm-btn" (click)="confirm()">Listo</button>
     </div>
   </div>
