@@ -23,6 +23,11 @@ import {
 import { TagService } from '../../../../services/video/tag.service';
 import { CommunityService } from '../../../../services/models/community.service';
 import { CommunityDto } from '../../../../interfaces/private/community.interface';
+import { UserService } from '../../../../services/models/user.service';
+
+type CommunityWithCount = CommunityDto & {
+  videosCount: number;
+};
 
 @Component({
   selector: 'app-video-form',
@@ -48,6 +53,7 @@ export class VideoForm implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly dialog = inject(MatDialog);
   private readonly communityService = inject(CommunityService);
+  private readonly userService = inject(UserService);
 
   ownedCommunities = signal<CommunityDto[]>([]);
 
@@ -74,8 +80,6 @@ export class VideoForm implements OnInit {
   });
 
   ngOnInit(): void {
-    this.loadOwnedCommunities();
-
     this.videoId = this.route.snapshot.paramMap.get('id');
 
     if (this.videoId) {
@@ -84,6 +88,7 @@ export class VideoForm implements OnInit {
     } else {
       this.isEditMode.set(false);
     }
+    this.loadOwnedCommunities();
   }
 
   private loadVideo(id: string): void {
@@ -106,8 +111,33 @@ export class VideoForm implements OnInit {
 
   private loadOwnedCommunities(): void {
     this.communityService.getMyOwned().subscribe({
-      next: (communities) => this.ownedCommunities.set(communities),
-      error: () => {},
+      next: (communities) => {
+        if (this.isEditMode()) {
+          this.ownedCommunities.set(communities);
+          return;
+        }
+
+        this.userService.getMe().subscribe({
+          next: (user) => {
+            const limit = user.membershipPlan.maxVideosPerCommunity;
+
+            const requests = communities.map((c) => this.communityService.getVideos(c.communityId));
+
+            forkJoin(requests).subscribe({
+              next: (videosByCommunity) => {
+                const availableCommunities = communities.filter(
+                  (_, index) => videosByCommunity[index].length < limit,
+                );
+
+                this.ownedCommunities.set(availableCommunities);
+              },
+              error: () => {
+                this.ownedCommunities.set([]);
+              },
+            });
+          },
+        });
+      },
     });
   }
 

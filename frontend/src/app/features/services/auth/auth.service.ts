@@ -15,6 +15,10 @@ import {
   ValidateTokenResponse,
 } from '../../interfaces/public/register.interface';
 import { ChannelStateService } from '../models/channel-state.service';
+import {
+  RecoverPassowrdSendOTPRequest,
+  RecoverPasswordAuthRequest,
+} from '../../interfaces/public/recover-password.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -92,6 +96,15 @@ export class AuthService {
         ApiResponse<CompleteRegisterResponse>
       >(`${this.API}/auth/register/complete/${token}`, data)
       .pipe(tap((res) => this.saveSession(res.data.token, res.data.refreshToken)));
+  }
+
+  // recuperar contraseña: pasos
+  recoverPasswordSendOTP(data: RecoverPassowrdSendOTPRequest) {
+    return this.http.post<ApiResponse<string>>(`${this.API}/auth/recoverPassword`, data);
+  }
+
+  recoverPassword(otp: string, data: RecoverPasswordAuthRequest) {
+    return this.http.post<ApiResponse<string>>(`${this.API}/auth/recoverPassword/${otp}`, data);
   }
 
   // helpers
