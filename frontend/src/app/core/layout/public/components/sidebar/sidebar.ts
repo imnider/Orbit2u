@@ -43,7 +43,8 @@ export class Sidebar {
   readonly discoverItems: NavItem[] = [
     { label: 'Inicio', icon: 'home', route: '/home' },
     { label: 'Comunidades', icon: 'public', route: '/communities' },
-    { label: 'Planes', icon: 'card_membership', route: '/planes' },
+    { label: 'Planes', icon: 'card_membership', route: '/planes/membership' },
+    { label: 'Paquetes', icon: 'paid', route: '/planes/coins'},
   ];
 
   //items solo para usuarios logueados
@@ -61,7 +62,6 @@ export class Sidebar {
   //items solo para creadores
   readonly creatorItems: NavItem[] = [
     { label: 'Mi canal', icon: 'play_circle', route: '/my-channel' },
-    { label: 'Dashboard', icon: 'bar_chart', route: '/dashboard' },
   ];
 
   //items solo para admin

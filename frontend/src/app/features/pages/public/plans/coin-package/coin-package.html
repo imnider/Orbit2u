@@ -1,0 +1,74 @@
+<div class="coins-page">
+  <div class="coins-header">
+    <div class="coins-header__left">
+      <h1 class="coins-header__title">Paquetes de monedas</h1>
+      <p class="coins-header__sub">Escoge el paquete que se ajuste a tus necesidades</p>
+    </div>
+    <div class="coins-header__right">
+      <div class="coins-wallet">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <div class="coins-wallet__info">
+          <span class="coins-wallet__label">Mi billetera</span>
+          <span class="coins-wallet__balance">
+            <mat-icon>paid</mat-icon> — monedas </span>
+        </div>
+      </div>
+      <a class="coins-header__plans-link" routerLink="/planes/membership">
+        <mat-icon>workspace_premium</mat-icon>
+        <span>Planes de membresía</span>
+        <mat-icon>chevron_right</mat-icon>
+      </a>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="coins-grid">
+      @for (i of [1,2,3,4,5,6]; track i) {
+        <div class="coin-card-skeleton">
+          <div class="skeleton skeleton--icon"></div>
+          <div class="skeleton skeleton--title"></div>
+          <div class="skeleton skeleton--price"></div>
+          <div class="skeleton skeleton--btn"></div>
+        </div>
+      }
+    </div>
+  } @else if (packages().length === 0) {
+    <div class="coins-empty">
+      <mat-icon>paid</mat-icon>
+      <p>No hay paquetes disponibles en este momento</p>
+    </div>
+  } @else {
+    <div class="coins-grid">
+      @for (pack of packages(); track pack.coinPackageId) {
+        <div class="coin-card">
+          <div class="coin-card__icon-wrap">
+            <mat-icon class="coin-card__icon">paid</mat-icon>
+            <span class="coin-card__coins-amount">{{ pack.coinsAmount | number }}</span>
+          </div>
+
+          <h3 class="coin-card__name">{{ pack.displayName }}</h3>
+
+          @if (pack.description) {
+            <p class="coin-card__desc">{{ pack.description }}</p>
+          }
+
+          <div class="coin-card__price">
+            <span class="coin-card__price-amount">${{ pack.price | number:'1.2-2' }}</span>
+          </div>
+
+          <button class="coin-card__btn" (click)="choosePack(pack)">
+            <mat-icon>shopping_cart</mat-icon>Comprar
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+@if (selectedPackage()) {
+  <app-purchase-dialog
+    [itemName]="selectedPackage()!.displayName"
+    [itemPrice]="selectedPackage()!.price"
+    type="coins" (closed)="closeDialog()"
+  ></app-purchase-dialog>
+}

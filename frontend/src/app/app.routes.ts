@@ -96,6 +96,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./features/routes/community.routes').then(m => m.communityRoutes),
       },
+      {
+        path: 'planes',
+        loadChildren: () =>
+          import('./features/routes/plans.routes').then(m => m.plansRoutes),
+      },
     ],
   },
   {

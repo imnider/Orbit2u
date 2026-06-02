@@ -1,0 +1,77 @@
+<div class="purchase-overlay" (click)="close()">
+  <div class="purchase-dialog" (click)="$event.stopPropagation()">
+
+    <button class="purchase-dialog__close" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <div class="purchase-dialog__icon-wrap">
+      <mat-icon class="purchase-dialog__icon">
+        {{ type() === 'plan' ? 'workspace_premium' : 'paid' }}
+      </mat-icon>
+    </div>
+
+    <h2 class="purchase-dialog__title">¡Casi listo!</h2>
+    <p class="purchase-dialog__subtitle">Seleccionaste: <strong>{{ itemName() }}</strong>
+      — <strong>${{ itemPrice() | number:'1.2-2' }}</strong>
+      {{ type() === 'plan' ? '/ mes' : '' }}
+    </p>
+
+    <div class="purchase-dialog__steps">
+      <div class="purchase-dialog__step">
+        <span class="purchase-dialog__step-num">1</span>
+        <div class="purchase-dialog__step-body">
+          <p class="purchase-dialog__step-title">Realiza la transferencia</p>
+          <p class="purchase-dialog__step-desc">Transfiere el monto exacto a la siguiente cuenta bancaria:</p>
+          <div class="purchase-dialog__bank">
+            <div class="purchase-dialog__bank-row">
+              <mat-icon>account_balance</mat-icon>
+              <span><strong>Banco:</strong> Banco Internacional</span>
+            </div>
+            <div class="purchase-dialog__bank-row">
+              <mat-icon>person</mat-icon>
+              <span><strong>Titular:</strong> Orbit2U S.A.</span>
+            </div>
+            <div class="purchase-dialog__bank-row">
+              <mat-icon>tag</mat-icon>
+              <span><strong>Cuenta:</strong> 1111-2222-3333-4444</span>
+            </div>
+            <div class="purchase-dialog__bank-row">
+              <mat-icon>badge</mat-icon>
+              <span><strong>RUC/ID:</strong> 0999999999001</span>
+            </div>
+            <div class="purchase-dialog__bank-row purchase-dialog__bank-row--amount">
+              <mat-icon>attach_money</mat-icon>
+              <span><strong>Monto exacto:</strong> ${{ itemPrice() | number:'1.2-2' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="purchase-dialog__step">
+        <span class="purchase-dialog__step-num">2</span>
+        <div class="purchase-dialog__step-body">
+          <p class="purchase-dialog__step-title">Envía tu comprobante</p>
+          <p class="purchase-dialog__step-desc">Una vez realizada la transferencia, envía la captura o PDF del comprobante a:</p>
+          <a class="purchase-dialog__email" href="mailto:orbitbusiness@orbit2u.com">
+            <mat-icon>mail</mat-icon>orbitbusiness@orbit2u.com</a>
+        </div>
+      </div>
+
+      <div class="purchase-dialog__step">
+        <span class="purchase-dialog__step-num">3</span>
+        <div class="purchase-dialog__step-body">
+          <p class="purchase-dialog__step-title">Espera la confirmación</p>
+          <p class="purchase-dialog__step-desc">
+            En un plazo máximo de <strong>24 horas</strong> tu
+            {{ type() === 'plan' ? 'plan de membresía' : 'paquete de monedas' }}
+            estará activo en tu cuenta.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <button class="purchase-dialog__done-btn" (click)="close()">Entendido</button>
+
+  </div>
+</div>

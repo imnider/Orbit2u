@@ -1,0 +1,93 @@
+<div class="plans-page">
+  <div class="plans-header">
+    <div>
+      <h1 class="plans-header__title">Planes de membresía</h1>
+      <p class="plans-header__sub">Escoge el plan que se ajuste a tus necesidades</p>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="plans-grid">
+      @for (i of [1,2,3,4]; track i) {
+        <div class="plan-card-skeleton">
+          <div class="skeleton skeleton--title"></div>
+          <div class="skeleton skeleton--price"></div>
+          <div class="skeleton skeleton--line"></div>
+          <div class="skeleton skeleton--line" style="width:70%"></div>
+          <div class="skeleton skeleton--line" style="width:80%"></div>
+          <div class="skeleton skeleton--btn"></div>
+        </div>
+      }
+    </div>
+
+  } @else {
+    <div class="plans-grid">
+      @for (plan of plans(); track plan.membershipPlanId) {
+        <div class="plan-card" [class.plan-card--free]="isFree(plan)" [class.plan-card--featured]="plan.membershipPlanId === 2">
+
+          @if (plan.membershipPlanId === 2) {
+            <span class="plan-card__badge">Más popular</span>
+          }
+
+          <div class="plan-card__header">
+            <h2 class="plan-card__name">{{ plan.displayName }}</h2>
+            <div class="plan-card__price">
+              @if (isFree(plan)) {
+                <span class="plan-card__price-amount">Gratis</span>
+              } @else {
+                <span class="plan-card__price-amount">${{ plan.monthlyPrice | number:'1.0-0' }}</span>
+                <span class="plan-card__price-period">/ mes</span>
+              }
+            </div>
+            @if (plan.description) {
+              <p class="plan-card__desc">{{ plan.description }}</p>
+            }
+          </div>
+
+          <ul class="plan-card__features">
+            <li class="plan-card__feature">
+              <mat-icon>groups</mat-icon>
+              <span>
+                @if (plan.maxCommunities === -1) { Comunidades ilimitadas }
+                @else { Hasta {{ plan.maxCommunities }} comunidad{{ plan.maxCommunities !== 1 ? 'es' : '' }} }
+              </span>
+            </li>
+            <li class="plan-card__feature">
+              <mat-icon>video_library</mat-icon>
+              <span>
+                @if (plan.maxVideosPerCommunity === -1) { Videos ilimitados por comunidad }
+                @else { {{ plan.maxVideosPerCommunity }} videos por comunidad }
+              </span>
+            </li>
+            @if (plan.coinsReward > 0) {
+              <li class="plan-card__feature plan-card__feature--coins">
+                <mat-icon>paid</mat-icon>
+                <span>{{ plan.coinsReward }} monedas de bienvenida</span>
+              </li>
+            }
+          </ul>
+
+          <button
+            class="plan-card__btn"
+            [class.plan-card__btn--free]="isFree(plan)"
+            [disabled]="isFree(plan)"
+            (click)="choosePlan(plan)">
+            @if (isFree(plan)) {
+              <mat-icon>check_circle</mat-icon>Plan actual
+            } @else {
+              <mat-icon>workspace_premium</mat-icon>Elegir plan
+            }
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+@if (selectedPlan()) {
+  <app-purchase-dialog
+    [itemName]="selectedPlan()!.displayName"
+    [itemPrice]="selectedPlan()!.monthlyPrice"
+    type="plan" (closed)="closeDialog()"
+  ></app-purchase-dialog>
+}

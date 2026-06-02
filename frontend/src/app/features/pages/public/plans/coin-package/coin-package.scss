@@ -1,0 +1,240 @@
+.coins-page {
+  padding: 28px 24px;
+  min-height: 100%;
+}
+
+.coins-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  &__sub {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__plans-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+
+    mat-icon { font-size: 18px; width: 18px; height: 18px; }
+
+    &:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: var(--color-primary-soft);
+    }
+  }
+}
+
+.coins-wallet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+
+  > mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: var(--color-primary);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__label {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  &__balance {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text);
+
+    mat-icon { font-size: 14px; width: 14px; height: 14px; color: #f59e0b; }
+  }
+}
+
+.coins-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.coin-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+  }
+
+  &__icon-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 14px;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 50%;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+  }
+
+  &__icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    color: #f59e0b;
+  }
+
+  &__coins-amount {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #f59e0b;
+    line-height: 1;
+  }
+
+  &__name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  &__desc {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  &__price {
+    margin-top: auto;
+  }
+
+  &__price-amount {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 9px 14px;
+    background: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-base);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    mat-icon { font-size: 16px; width: 16px; height: 16px; }
+    &:hover { opacity: 0.88; }
+  }
+}
+
+.coin-card-skeleton {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.skeleton {
+  background: var(--color-surface-alt);
+  border-radius: 4px;
+  animation: shimmer 1.5s ease-in-out infinite;
+
+  &--icon  { width: 60px; height: 60px; border-radius: 50%; }
+  &--title { height: 15px; width: 70%; }
+  &--price { height: 28px; width: 50%; border-radius: 6px; }
+  &--btn   { height: 36px; width: 100%; border-radius: var(--radius-base); }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+
+.coins-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 80px 24px;
+  color: var(--color-text-muted);
+
+  mat-icon { font-size: 44px; width: 44px; height: 44px; opacity: 0.35; }
+  p { margin: 0; font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+  .coins-grid { grid-template-columns: repeat(2, 1fr); }
+}
