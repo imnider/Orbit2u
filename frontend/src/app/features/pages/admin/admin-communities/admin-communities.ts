@@ -1,62 +1,55 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { debounceTime, distinctUntilChanged, Subject, finalize, switchMap } from 'rxjs';
 
-import { VideoDto } from '../../../../features/interfaces/private/video.interface';
-import { AdminVideoService } from '../../../services/admin/admin-video.service';
+import { CommunityDto } from '../../../../features/interfaces/private/community.interface';
+import { CommunityService } from '../../../../features/services/models/community.service'; // ajusta el path
 
 @Component({
-  selector: 'app-admin-videos',
+  selector: 'app-admin-communities',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatIconModule, MatTooltipModule],
-  templateUrl: './admin-videos.html',
-  styleUrl: './admin-videos.scss',
+  imports: [CommonModule, MatIconModule, MatTooltipModule],
+  templateUrl: './admin-communities.html',
+  styleUrl: './admin-communities.scss',
 })
-export class AdminVideos implements OnInit {
-  private readonly adminVideoService = inject(AdminVideoService);
+export class AdminCommunities implements OnInit {
+  private readonly communityService = inject(CommunityService);
   private readonly search$ = new Subject<string>();
 
   loading = signal(true);
   deleting = signal<string | null>(null);
-  videos = signal<VideoDto[]>([]);
+  communities = signal<CommunityDto[]>([]);
   searchQuery = signal('');
   confirmDeleteId = signal<string | null>(null);
 
   ngOnInit(): void {
-    this.loadVideos();
+    this.loadCommunities();
     this.search$
       .pipe(
         debounceTime(400),
         distinctUntilChanged(),
         switchMap((q) => {
           this.loading.set(true);
-          return this.adminVideoService
+          return this.communityService
             .getAll(q || undefined, 50, 0)
             .pipe(finalize(() => this.loading.set(false)));
         }),
       )
-      .subscribe({ next: (v) => this.videos.set(v) });
+      .subscribe({ next: (c) => this.communities.set(c) });
   }
 
-  private loadVideos(): void {
-    this.adminVideoService
+  private loadCommunities(): void {
+    this.communityService
       .getAll(undefined, 50, 0)
       .pipe(finalize(() => this.loading.set(false)))
-      .subscribe({ next: (v) => this.videos.set(v) });
+      .subscribe({ next: (c) => this.communities.set(c) });
   }
 
   onSearch(query: string): void {
     this.searchQuery.set(query);
     this.search$.next(query);
-  }
-
-  formatDuration(s: number): string {
-    const m = Math.floor(s / 60);
-    const sec = s % 60;
-    return `${m}:${sec.toString().padStart(2, '0')}`;
   }
 
   requestDelete(id: string): void {
@@ -71,7 +64,7 @@ export class AdminVideos implements OnInit {
     if (!id) return;
 
     this.deleting.set(id);
-    this.adminVideoService
+    this.communityService
       .delete(id)
       .pipe(
         finalize(() => {
@@ -80,8 +73,8 @@ export class AdminVideos implements OnInit {
         }),
       )
       .subscribe({
-        next: () => this.videos.update((list) => list.filter((v) => v.videoId !== id)),
-        error: (err) => alert(err?.error?.message ?? 'No se pudo eliminar el video'),
+        next: () => this.communities.update((list) => list.filter((c) => c.communityId !== id)),
+        error: (err) => alert(err?.error?.message ?? 'No se pudo eliminar la comunidad'),
       });
   }
 }

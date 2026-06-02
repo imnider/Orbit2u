@@ -25,6 +25,7 @@
             <th>Email</th>
             <th>Rol</th>
             <th>Membresía</th>
+            <th>Monedas</th>
             <th>Creado</th>
             <th>Acciones</th>
           </tr>
@@ -50,6 +51,11 @@
                 </span>
               </td>
               <td class="text-muted">{{ user.membershipPlan.displayName }}</td>
+              <td>
+                <span class="coins-badge">
+                  <mat-icon>paid</mat-icon>{{ user.coins | number }}
+                </span>
+              </td>
               <td class="text-muted">{{ user.createdAt | date: 'dd/MM/yy' }}</td>
               <td>
                 <div class="action-cell">

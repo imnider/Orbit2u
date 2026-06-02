@@ -1,0 +1,98 @@
+<div class="admin-communities">
+  <div class="admin-table-toolbar">
+    <div class="admin-search">
+      <mat-icon>search</mat-icon>
+      <input
+        type="text"
+        placeholder="Buscar comunidad..."
+        [value]="searchQuery()"
+        (input)="onSearch($any($event.target).value)"
+      />
+    </div>
+    <span class="admin-table-count">{{ communities().length }} comunidades</span>
+  </div>
+
+  @if (loading()) {
+    <div class="admin-loading"><span class="loader"></span></div>
+  } @else {
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Comunidad</th>
+            <th>Miembros</th>
+            <th>Privada</th>
+            <th>Creada</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (community of communities(); track community.communityId) {
+            <tr [class.admin-table__row--deleting]="deleting() === community.communityId">
+              <td>
+                <div class="user-cell">
+                  <div class="user-cell__avatar">
+                    @if (community.avatarUrl) {
+                      <img
+                        [src]="community.avatarUrl"
+                        [alt]="community.name"
+                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%"
+                      />
+                    } @else {
+                      {{ community.name.charAt(0).toUpperCase() }}
+                    }
+                  </div>
+                  <div>
+                    <span class="user-cell__name">{{ community.name }}</span>
+                    @if (community.description) {
+                      <span class="user-cell__username"
+                        >{{ community.description | slice: 0 : 50
+                        }}{{ community.description.length > 50 ? '…' : '' }}</span
+                      >
+                    }
+                  </div>
+                </div>
+              </td>
+              <td class="text-muted">{{ community.membersCount }}</td>
+              <td>
+                @if (community.isPrivate) {
+                  <span class="role-badge role-badge--admin">Privada</span>
+                } @else {
+                  <span class="role-badge role-badge--user">Pública</span>
+                }
+              </td>
+              <td class="text-muted">{{ community.createdAt | date: 'dd/MM/yy' }}</td>
+              <td>
+                <button
+                  class="table-btn table-btn--icon table-btn--danger"
+                  (click)="requestDelete(community.communityId)"
+                  matTooltip="Eliminar comunidad"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  @if (confirmDeleteId()) {
+    <div class="confirm-overlay" (click)="cancelDelete()">
+      <div class="confirm-dialog" (click)="$event.stopPropagation()">
+        <mat-icon class="confirm-dialog__icon">warning</mat-icon>
+        <h3>¿Eliminar comunidad?</h3>
+        <p>
+          Esta acción no se puede deshacer. La comunidad y su contenido serán removidos del sistema.
+        </p>
+        <div class="confirm-dialog__actions">
+          <button class="table-btn" (click)="cancelDelete()">Cancelar</button>
+          <button class="table-btn table-btn--danger-solid" (click)="confirmDelete()">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

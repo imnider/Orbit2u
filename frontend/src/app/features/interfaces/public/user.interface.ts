@@ -28,6 +28,7 @@ export interface CurrentUser {
   deletedAt: string | null;
   role: Role | null;
   membershipPlan: MembershipPlan;
+  coins: number;
 }
 
 export interface UpdateUserRequest {

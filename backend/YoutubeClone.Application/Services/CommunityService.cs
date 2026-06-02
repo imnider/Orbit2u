@@ -52,7 +52,12 @@ namespace YoutubeClone.Application.Services
 
             var community = await GetCommunity(id);
 
-            if (community.OwnerUserId != executor.UserId)
+            var isAdmin = executor.UserAccountRoles
+                .Any(x => x.Role.Name == RoleConstants.Administrador);
+
+            var isOwner = community.OwnerUserId == executor.UserId;
+
+            if (!isAdmin && !isOwner)
             {
                 throw new ForbiddenException(ResponseConstants.COMMUNITY_WITHOUT_PERMISSIONS);
             }

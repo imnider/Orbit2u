@@ -10,7 +10,6 @@
 
   <div class="login-container">
     <div class="login-card">
-
       <!-- Validando token -->
       @if (state() === 'validating') {
         <div class="login-header">
@@ -31,7 +30,11 @@
         <div class="expired-feedback">
           <i class="fa-solid fa-link-slash"></i>
           <p>Podés solicitar un nuevo enlace desde la pantalla de registro.</p>
-          <a routerLink="/register" class="submit-btn" style="display:inline-block; text-align:center; text-decoration:none;">
+          <a
+            routerLink="/register"
+            class="submit-btn"
+            style="display: inline-block; text-align: center; text-decoration: none"
+          >
             Volver al registro
           </a>
         </div>
@@ -48,7 +51,6 @@
         </header>
 
         <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
-
           <div class="field-group">
             <label>Email verificado</label>
             <div class="input-wrapper">
@@ -79,37 +81,99 @@
             </div>
           </div>
 
-          <div class="row-fields">
-            <div class="field-group">
-              <label>Cumpleaños</label>
-              <div class="input-wrapper custom-material">
-                <input
-                  matInput
-                  [matDatepicker]="picker"
-                  formControlName="birthday"
-                  placeholder="DD/MM/AAAA"
-                />
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+          <div class="field-group">
+            <label>Cumpleaños</label>
+            <div class="date-spinner">
+              <!-- Día -->
+              <div class="date-spinner__unit">
+                <button type="button" (click)="stepDate('day', 1)">
+                  <i class="fa-solid fa-chevron-up"></i>
+                </button>
+                <span>{{ displayDay() }}</span>
+                <button type="button" (click)="stepDate('day', -1)">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
               </div>
-              @if (getError('birthday')) {
-                <span class="field-error">{{ getError('birthday') }}</span>
-              }
-            </div>
 
-            <div class="field-group">
-              <label>Ubicación</label>
-              <div class="input-wrapper custom-material">
-                <mat-select formControlName="location" placeholder="Selecciona país">
-                  @for (country of countries; track country) {
-                    <mat-option [value]="country">{{ country }}</mat-option>
-                  }
-                </mat-select>
+              <span class="date-spinner__sep">/</span>
+
+              <!-- Mes -->
+              <div class="date-spinner__unit">
+                <button type="button" (click)="stepDate('month', 1)">
+                  <i class="fa-solid fa-chevron-up"></i>
+                </button>
+                <span>{{ displayMonth() }}</span>
+                <button type="button" (click)="stepDate('month', -1)">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
               </div>
-              @if (getError('location')) {
-                <span class="field-error">{{ getError('location') }}</span>
-              }
+
+              <span class="date-spinner__sep">/</span>
+
+              <!-- Año -->
+              <div class="date-spinner__unit date-spinner__unit--year">
+                <button type="button" (click)="stepDate('year', 1)">
+                  <i class="fa-solid fa-chevron-up"></i>
+                </button>
+                <span>{{ displayYear() }}</span>
+                <button type="button" (click)="stepDate('year', -1)">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+              </div>
+
+              <!-- Botón calendario -->
+              <button
+                type="button"
+                class="date-spinner__cal-btn"
+                (click)="calendarPicker.open()"
+                matTooltip="Buscar en calendario"
+              >
+                <i class="fa-solid fa-calendar"></i>
+              </button>
+
+              <!-- Input oculto pegado al botón para que el calendario aparezca ahí -->
+              <span style="position: relative; width: 0; height: 0; overflow: visible">
+                <input
+                  [matDatepicker]="calendarPicker"
+                  [value]="calendarDate()"
+                  (dateChange)="onCalendarPick($event.value)"
+                  style="
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    opacity: 0;
+                    pointer-events: none;
+                  "
+                />
+                <mat-datepicker #calendarPicker></mat-datepicker>
+              </span>
+
+              <!-- Datepicker oculto solo para el calendario -->
+              <input
+                [matDatepicker]="calendarPicker"
+                [value]="calendarDate()"
+                (dateChange)="onCalendarPick($event.value)"
+                style="display: none"
+              />
+              <mat-datepicker #calendarPicker></mat-datepicker>
             </div>
+            @if (getError('birthday')) {
+              <span class="field-error">{{ getError('birthday') }}</span>
+            }
+          </div>
+
+          <div class="field-group">
+            <label>Ubicación</label>
+            <div class="input-wrapper custom-material">
+              <mat-select formControlName="location" placeholder="Selecciona país">
+                @for (country of countries; track country) {
+                  <mat-option [value]="country">{{ country }}</mat-option>
+                }
+              </mat-select>
+            </div>
+            @if (getError('location')) {
+              <span class="field-error">{{ getError('location') }}</span>
+            }
           </div>
 
           @if (error()) {
@@ -121,7 +185,6 @@
           </button>
         </form>
       }
-
     </div>
   </div>
 </div>

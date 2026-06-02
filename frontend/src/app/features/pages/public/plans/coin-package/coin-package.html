@@ -10,7 +10,8 @@
         <div class="coins-wallet__info">
           <span class="coins-wallet__label">Mi billetera</span>
           <span class="coins-wallet__balance">
-            <mat-icon>paid</mat-icon> — monedas </span>
+            <mat-icon>paid</mat-icon> {{ userCoins() | number }} monedas
+          </span>
         </div>
       </div>
       <a class="coins-header__plans-link" routerLink="/planes/membership">
@@ -23,7 +24,7 @@
 
   @if (loading()) {
     <div class="coins-grid">
-      @for (i of [1,2,3,4,5,6]; track i) {
+      @for (i of [1, 2, 3, 4, 5, 6]; track i) {
         <div class="coin-card-skeleton">
           <div class="skeleton skeleton--icon"></div>
           <div class="skeleton skeleton--title"></div>
@@ -53,7 +54,7 @@
           }
 
           <div class="coin-card__price">
-            <span class="coin-card__price-amount">${{ pack.price | number:'1.2-2' }}</span>
+            <span class="coin-card__price-amount">${{ pack.price | number: '1.2-2' }}</span>
           </div>
 
           <button class="coin-card__btn" (click)="choosePack(pack)">
@@ -69,6 +70,7 @@
   <app-purchase-dialog
     [itemName]="selectedPackage()!.displayName"
     [itemPrice]="selectedPackage()!.price"
-    type="coins" (closed)="closeDialog()"
+    type="coins"
+    (closed)="closeDialog()"
   ></app-purchase-dialog>
 }

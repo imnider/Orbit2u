@@ -81,7 +81,7 @@ namespace YoutubeClone.WebApp.Controllers
         [HttpDelete("{id:guid}")]
         [Authorize]
         [EndpointSummary("Eliminar comunidad")]
-        [EndpointDescription("Elimina una comunidad perteneciente al usuario autenticado")]
+        [EndpointDescription("Elimina una comunidad perteneciente al usuario autenticado (o si eres administrador)")]
         [ProducesResponseType<GenericResponse<bool>>(StatusCodes.Status200OK)]
         public async Task<GenericResponse<bool>> Delete(Guid id)
         {

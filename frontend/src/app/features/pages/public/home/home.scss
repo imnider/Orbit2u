@@ -32,7 +32,11 @@
     cursor: pointer;
     transition: all 0.2s;
 
-    mat-icon { font-size: 16px; width: 16px; height: 16px; }
+    mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
 
     &:hover {
       border-color: var(--color-primary);
@@ -71,8 +75,13 @@
 }
 
 @keyframes shimmer {
-  0%, 100% { opacity: 0.5; }
-  50%       { opacity: 1;   }
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .home-empty {
@@ -83,8 +92,16 @@
   padding: 80px 24px;
   color: var(--color-text-muted);
 
-  mat-icon { font-size: 48px; width: 48px; height: 48px; opacity: 0.4; }
-  p { margin: 0; font-size: 0.9rem; }
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    opacity: 0.4;
+  }
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
 
   &__btn {
     padding: 10px 24px;
@@ -96,6 +113,9 @@
     cursor: pointer;
     transition: background 0.2s;
 
-    &:hover { background: var(--color-primary); color: #fff; }
+    &:hover {
+      background: var(--color-primary);
+      color: #fff;
+    }
   }
 }

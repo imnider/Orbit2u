@@ -17,9 +17,16 @@
   width: 300px;
   transition: border-color 0.2s;
 
-  &:focus-within { border-color: var(--color-primary); }
+  &:focus-within {
+    border-color: var(--color-primary);
+  }
 
-  mat-icon { color: var(--color-text-muted); font-size: 18px; width: 18px; height: 18px; }
+  mat-icon {
+    color: var(--color-text-muted);
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
 
   input {
     flex: 1;
@@ -28,7 +35,9 @@
     outline: none;
     font-size: 0.875rem;
     color: var(--color-text);
-    &::placeholder { color: var(--color-text-muted); }
+    &::placeholder {
+      color: var(--color-text-muted);
+    }
   }
 }
 
@@ -76,8 +85,12 @@
 
   tbody tr {
     transition: background 0.15s;
-    &:hover { background: var(--color-surface-alt); }
-    &:last-child td { border-bottom: none; }
+    &:hover {
+      background: var(--color-surface-alt);
+    }
+    &:last-child td {
+      border-bottom: none;
+    }
   }
 
   &__row--deleting {
@@ -86,7 +99,9 @@
   }
 }
 
-.text-muted { color: var(--color-text-muted); }
+.text-muted {
+  color: var(--color-text-muted);
+}
 
 //celdas especiales
 .user-cell {
@@ -153,9 +168,18 @@
   font-size: 0.72rem;
   font-weight: 700;
 
-  &--admin   { background: #fef3c7; color: #d97706; }
-  &--creator { background: var(--color-primary-soft); color: var(--color-primary); }
-  &--user    { background: var(--color-surface-alt); color: var(--color-text-muted); }
+  &--admin {
+    background: #fef3c7;
+    color: #d97706;
+  }
+  &--creator {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+  &--user {
+    background: var(--color-surface-alt);
+    color: var(--color-text-muted);
+  }
 }
 
 .age-badge {
@@ -167,7 +191,11 @@
   border-radius: 4px;
 }
 
-.tag-list { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
 .tag-pill {
   font-size: 0.7rem;
   background: var(--color-surface-alt);
@@ -176,7 +204,11 @@
   padding: 2px 8px;
 }
 
-.action-cell { display: flex; gap: 6px; align-items: center; }
+.action-cell {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
 
 //botones de tabla
 .table-btn {
@@ -194,35 +226,52 @@
   color: var(--color-text-muted);
   transition: all 0.2s;
 
-  &:hover { background: var(--color-surface-alt); color: var(--color-text); }
-  &:disabled { opacity: 0.5; cursor: not-allowed; }
+  &:hover {
+    background: var(--color-surface-alt);
+    color: var(--color-text);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
   &--icon {
     width: 34px;
     height: 34px;
     padding: 0;
     border-radius: 8px;
-    mat-icon { font-size: 18px; width: 18px; height: 18px; }
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
   }
 
   &--primary {
     background: var(--color-btn-join-bg);
     border-color: transparent;
     color: #fff;
-    &:hover { background: var(--color-btn-join-hover); }
+    &:hover {
+      background: var(--color-btn-join-hover);
+    }
   }
 
   &--danger {
     color: #ef4444;
     border-color: transparent;
-    &:hover { background: #fee2e2; border-color: #ef4444; }
+    &:hover {
+      background: #fee2e2;
+      border-color: #ef4444;
+    }
   }
 
   &--danger-solid {
     background: #ef4444;
     border-color: #ef4444;
     color: #fff;
-    &:hover { background: #dc2626; }
+    &:hover {
+      background: #dc2626;
+    }
   }
 }
 
@@ -236,7 +285,7 @@
 .confirm-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,17 +310,30 @@
     margin-bottom: 12px;
   }
 
-  h3 { font-size: 1.1rem; font-weight: 700; color: var(--color-text); margin: 0 0 8px; }
-  p  { font-size: 0.875rem; color: var(--color-text-muted); margin: 0 0 24px; }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 8px;
+  }
+  p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0 0 24px;
+  }
 
-  &__actions { display: flex; justify-content: center; gap: 12px; }
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
 }
 
 //modal
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -293,7 +355,12 @@
     padding: 20px 24px 16px;
     border-bottom: 1px solid var(--color-border);
 
-    h3 { font-size: 1rem; font-weight: 700; color: var(--color-text); margin: 0; }
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 0;
+    }
   }
 
   &__close {
@@ -306,8 +373,14 @@
     padding: 4px;
     border-radius: 4px;
     transition: color 0.2s;
-    &:hover { color: var(--color-text); }
-    mat-icon { font-size: 20px; width: 20px; height: 20px; }
+    &:hover {
+      color: var(--color-text);
+    }
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
   }
 
   &__body {
@@ -326,5 +399,77 @@
     gap: 10px;
     padding: 16px 24px;
     border-top: 1px solid var(--color-border);
+  }
+}
+
+.coins-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: var(--color-accent);
+  }
+}
+
+.input-wrapper {
+  position: relative;
+
+  &.custom-material {
+    select {
+      width: 100%;
+      padding: 10px 36px 10px 14px;
+      border-radius: var(--radius-base);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text);
+      font-size: 0.875rem;
+      appearance: none;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: var(--color-primary);
+      }
+
+      option {
+        background: var(--color-surface);
+        color: var(--color-text);
+      }
+    }
+
+    // flecha personalizada
+    &::after {
+      content: '';
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--color-text-muted);
+      pointer-events: none;
+    }
+  }
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 }

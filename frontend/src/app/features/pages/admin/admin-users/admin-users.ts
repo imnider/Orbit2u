@@ -14,7 +14,7 @@ import { MembershipPlanDto } from '../../../interfaces/private/plans.interface';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MatIconModule, MatTooltipModule],
   templateUrl: './admin-users.html',
-  styleUrl: './admin-users.scss'
+  styleUrl: './admin-users.scss',
 })
 export class AdminUsers implements OnInit {
   private readonly fb = inject(FormBuilder);
@@ -46,34 +46,37 @@ export class AdminUsers implements OnInit {
 
   //paquetes de monedas disponibles (hardcoded, ajustar si el back los expone)
   readonly coinPackages = [
-    { id: 1, label: '100 monedas'},
-    { id: 2, label: '500 monedas'},
-    { id: 3, label: '1000 monedas'},
+    { id: 1, label: '100 monedas', amount: 100 },
+    { id: 2, label: '500 monedas', amount: 500 },
+    { id: 3, label: '1000 monedas', amount: 1000 },
   ];
 
   ngOnInit(): void {
     this.loadUsers();
     this.loadMemberships();
-    this.search$.pipe(
-      debounceTime(400),
-      distinctUntilChanged(),
-      switchMap(q => {
-        this.loading.set(true);
-        return this.adminUserService.getAll(q || undefined, 50, 0)
-          .pipe(finalize(() => this.loading.set(false)));
-      })
-    ).subscribe({ next: (u) => this.users.set(u) });
+    this.search$
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+        switchMap((q) => {
+          this.loading.set(true);
+          return this.adminUserService
+            .getAll(q || undefined, 50, 0)
+            .pipe(finalize(() => this.loading.set(false)));
+        }),
+      )
+      .subscribe({ next: (u) => this.users.set(u) });
   }
 
   private loadUsers(): void {
-    this.adminUserService.getAll(undefined, 50, 0)
+    this.adminUserService
+      .getAll(undefined, 50, 0)
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({ next: (u) => this.users.set(u) });
   }
 
   private loadMemberships(): void {
-    this.membershipService.getAll()
-      .subscribe({ next: (m) => this.memberships.set(m) });
+    this.membershipService.getAll().subscribe({ next: (m) => this.memberships.set(m) });
   }
 
   onSearch(query: string): void {
@@ -101,16 +104,15 @@ export class AdminUsers implements OnInit {
     this.saving.set(true);
     this.error.set('');
     const payload: UpdateUserRequest = {
-      membershipPlanId: this.editForm.getRawValue().membershipPlanId
+      membershipPlanId: this.editForm.getRawValue().membershipPlanId,
     };
 
-    this.adminUserService.update(user.userId, payload)
+    this.adminUserService
+      .update(user.userId, payload)
       .pipe(finalize(() => this.saving.set(false)))
       .subscribe({
         next: (updated) => {
-          this.users.update(list =>
-            list.map(u => u.userId === updated.userId ? updated : u)
-          );
+          this.users.update((list) => list.map((u) => (u.userId === updated.userId ? updated : u)));
           this.success.set('Membresía actualizada');
           setTimeout(() => this.closeEditModal(), 1000);
         },
@@ -139,10 +141,16 @@ export class AdminUsers implements OnInit {
     this.error.set('');
 
     const { coinPackageId } = this.coinsForm.getRawValue();
-    this.adminUserService.addCoins(user.userId, coinPackageId)
+    const coinsToAdd = this.coinPackages.find((p) => p.id === +coinPackageId)?.amount ?? 0;
+
+    this.adminUserService
+      .addCoins(user.userId, coinPackageId)
       .pipe(finalize(() => this.saving.set(false)))
       .subscribe({
         next: () => {
+          this.users.update((list) =>
+            list.map((u) => (u.userId === user.userId ? { ...u, coins: u.coins + coinsToAdd } : u)),
+          );
           this.success.set('Monedas agregadas correctamente');
           setTimeout(() => this.closeCoinsModal(), 1000);
         },
@@ -163,10 +171,16 @@ export class AdminUsers implements OnInit {
     if (!id) return;
 
     this.deleting.set(id);
-    this.adminUserService.delete(id)
-      .pipe(finalize(() => { this.deleting.set(null); this.confirmDeleteId.set(null); }))
+    this.adminUserService
+      .delete(id)
+      .pipe(
+        finalize(() => {
+          this.deleting.set(null);
+          this.confirmDeleteId.set(null);
+        }),
+      )
       .subscribe({
-        next: () => this.users.update(list => list.filter(u => u.userId !== id)),
+        next: () => this.users.update((list) => list.filter((u) => u.userId !== id)),
         error: (err) => alert(err?.error?.message ?? 'No se pudo eliminar el usuario'),
       });
   }

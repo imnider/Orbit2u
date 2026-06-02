@@ -118,19 +118,28 @@ export const routes: Routes = [
           {
             path: 'metrics',
             loadComponent: () =>
-              import('./features/pages/admin/admin-metrics/admin-metrics').then(m => m.AdminMetrics)
+              import('./features/pages/admin/admin-metrics/admin-metrics').then(
+                (m) => m.AdminMetrics,
+              ),
           },
           {
             path: 'users',
             loadComponent: () =>
-              import('./features/pages/admin/admin-users/admin-users').then(m => m.AdminUsers)
+              import('./features/pages/admin/admin-users/admin-users').then((m) => m.AdminUsers),
           },
           {
             path: 'videos',
             loadComponent: () =>
-              import('./features/pages/admin/admin-videos/admin-videos').then(m => m.AdminVideos)
+              import('./features/pages/admin/admin-videos/admin-videos').then((m) => m.AdminVideos),
           },
-        ]
+          {
+            path: 'communities',
+            loadComponent: () =>
+              import('./features/pages/admin/admin-communities/admin-communities').then(
+                (m) => m.AdminCommunities,
+              ),
+          },
+        ],
       },
     ],
   },

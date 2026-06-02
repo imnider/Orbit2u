@@ -49,3 +49,195 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.cdk-overlay-container {
+  color-scheme: light;
+}
+
+.mat-datepicker-content,
+.mat-mdc-calendar,
+.mat-mdc-dialog-container {
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-card);
+}
+
+body.theme-dark {
+  .mat-datepicker-content,
+  .mat-mdc-calendar {
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
+  }
+
+  .mat-calendar-body-cell-content {
+    color: var(--color-text) !important;
+  }
+
+  .mat-calendar-body-selected {
+    background: var(--color-primary) !important;
+    color: #fff !important;
+  }
+
+  .mat-calendar-body-cell-content:hover {
+    background: var(--color-primary-soft) !important;
+  }
+
+  .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+    border-color: var(--color-primary) !important;
+  }
+
+  .mat-calendar-table-header,
+  .mat-calendar-body-label {
+    color: var(--color-text-muted) !important;
+  }
+
+  .mat-calendar-period-button,
+  .mat-calendar-previous-button,
+  .mat-calendar-next-button {
+    color: var(--color-text) !important;
+  }
+}
+
+body.theme-midnight {
+  .mat-datepicker-content,
+  .mat-mdc-calendar {
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
+  }
+
+  .mat-calendar-body-selected {
+    background: var(--color-primary) !important;
+    color: #fff !important;
+  }
+
+  .mat-calendar-body-cell-content:hover {
+    background: var(--color-primary-soft) !important;
+  }
+
+  .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+    border-color: var(--color-primary) !important;
+  }
+
+  .mat-calendar-table-header,
+  .mat-calendar-body-label {
+    color: var(--color-text-muted) !important;
+  }
+}
+
+body.theme-rosewave {
+  .mat-datepicker-content,
+  .mat-mdc-calendar {
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
+  }
+
+  .mat-calendar-body-cell-content {
+    color: var(--color-text) !important;
+  }
+
+  .mat-calendar-body-selected {
+    background: var(--color-primary) !important;
+    color: #fff !important;
+  }
+
+  .mat-calendar-body-cell-content:hover {
+    background: var(--color-primary-soft) !important;
+  }
+
+  .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+    border-color: var(--color-primary) !important;
+  }
+}
+
+body.theme-light {
+  .mat-datepicker-content,
+  .mat-mdc-calendar {
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
+  }
+
+  .mat-calendar-body-cell-content {
+    color: var(--color-text) !important;
+  }
+
+  .mat-calendar-body-selected {
+    background: var(--color-primary) !important;
+    color: #fff !important;
+  }
+
+  .mat-calendar-body-cell-content:hover {
+    background: var(--color-primary-soft) !important;
+  }
+
+  .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+    border-color: rgba(124, 58, 237, 0.6) !important;
+  }
+
+  .mat-calendar-table-header,
+  .mat-calendar-body-label {
+    color: var(--color-text-muted) !important;
+  }
+
+  .mat-calendar-period-button,
+  .mat-calendar-previous-button,
+  .mat-calendar-next-button {
+    color: var(--color-text) !important;
+  }
+}
+
+body.theme-dark .cdk-overlay-container {
+  color-scheme: dark;
+}
+
+body.theme-midnight .cdk-overlay-container {
+  color-scheme: dark;
+}
+
+body.theme-rosewave .cdk-overlay-container {
+  color-scheme: light;
+}
+
+body.theme-light .cdk-overlay-container {
+  color-scheme: light;
+}
+
+// Panel del dropdown
+.mat-mdc-select-panel {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-base) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+// Opciones
+.mat-mdc-option {
+  color: var(--color-text) !important;
+  font-size: 0.875rem !important;
+
+  &:hover:not(.mat-mdc-option-disabled) {
+    background: var(--color-primary-soft) !important;
+  }
+
+  &.mdc-list-item--selected {
+    background: var(--color-primary-soft) !important;
+    color: var(--color-primary) !important;
+  }
+}
+
+// El texto seleccionado dentro del trigger
+.mat-mdc-select-value {
+  color: var(--color-text) !important;
+}
+
+// La flecha
+.mat-mdc-select-arrow {
+  color: var(--color-text-muted) !important;
+}
+
+// Scrollbar dentro del panel
+.mat-mdc-select-panel::-webkit-scrollbar {
+  width: 4px;
+}
+.mat-mdc-select-panel::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar);
+  border-radius: 4px;
+}
