@@ -17,7 +17,7 @@ type ChannelTab = 'videos' | 'comunidad' | 'playlist';
   standalone: true,
   imports: [RouterModule, CommonModule, MatIconModule, MatTooltipModule],
   templateUrl: './channel-view.html',
-  styleUrl: './channel-view.scss'
+  styleUrl: './channel-view.scss',
 })
 export class ChannelView implements OnInit {
   private readonly route = inject(ActivatedRoute);
@@ -38,28 +38,32 @@ export class ChannelView implements OnInit {
   });
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (!id) {
-      this.error.set('Canal no encontrado');
-      this.loading.set(false);
-      return;
-    }
-    this.loadChannel(id);
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+
+      if (!id) {
+        this.error.set('Canal no encontrado');
+        this.loading.set(false);
+        return;
+      }
+
+      this.loadChannel(id);
+    });
   }
 
   private loadChannel(id: string): void {
     forkJoin({
       channel: this.channelService.getById(id),
-      videos:  this.channelService.getVideos(id),
+      videos: this.channelService.getVideos(id),
     })
-    .pipe(finalize(() => this.loading.set(false)))
-    .subscribe({
-      next: ({ channel, videos }) => {
-        this.channel.set(channel);
-        this.videos.set(videos);
-      },
-      error: () => this.error.set('No se pudo cargar el canal'),
-    });
+      .pipe(finalize(() => this.loading.set(false)))
+      .subscribe({
+        next: ({ channel, videos }) => {
+          this.channel.set(channel);
+          this.videos.set(videos);
+        },
+        error: () => this.error.set('No se pudo cargar el canal'),
+      });
   }
 
   setTab(tab: ChannelTab): void {
@@ -74,7 +78,7 @@ export class ChannelView implements OnInit {
   }
 
   onUploadVideo(): void {
-    this.router.navigate(['/upload-video']);
+    this.router.navigate(['/video/form']);
   }
 
   onEditChannel(): void {

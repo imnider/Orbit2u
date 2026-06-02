@@ -4,15 +4,28 @@
       <mat-icon>arrow_back</mat-icon>
       <span>Volver</span>
     </button>
-    <h1>Editar video</h1>
+
+    <h1>
+      {{ isEditMode() ? 'Editar video' : 'Subir video' }}
+    </h1>
   </div>
 
   <div class="upload-video-layout">
-    <!-- izquierda -->
+    <!-- IZQUIERDA -->
     <div class="upload-video-files">
-      <!-- thumbnail -->
+      <!-- SOLO upload video si NO es edit -->
+      @if (!isEditMode()) {
+        <div class="upload-zone" [class.upload-zone--done]="form.get('videoUrl')?.value">
+          <mat-icon class="upload-zone__icon">cloud_upload</mat-icon>
+          <span class="upload-zone__label">Seleccionar video</span>
+
+          <input type="file" hidden />
+        </div>
+      }
+
+      <!-- thumbnail (ambos casos) -->
       <div class="thumb-upload">
-        <span class="thumb-upload__label">Miniatura del video</span>
+        <span class="thumb-upload__label">Miniatura</span>
 
         <div class="thumb-upload__zone" (click)="thumbInput.click()">
           @if (uploadingThumb()) {
@@ -20,28 +33,18 @@
               <span class="loader"></span>
             </div>
           } @else if (thumbPreview()) {
-            <img [src]="thumbPreview()" alt="Thumbnail preview" />
+            <img [src]="thumbPreview()" />
           } @else {
             <mat-icon>add_photo_alternate</mat-icon>
-            <span>Actualizar miniatura</span>
+            <span>Subir miniatura</span>
           }
 
-          <input
-            #thumbInput
-            type="file"
-            accept="image/*"
-            (change)="onThumbSelected($event)"
-            hidden
-          />
+          <input #thumbInput type="file" hidden (change)="onThumbSelected($event)" />
         </div>
-
-        @if (form.get('thumbnailUrl')?.touched && !form.get('thumbnailUrl')?.value) {
-          <span class="field-error">Debes subir una miniatura</span>
-        }
       </div>
     </div>
 
-    <!-- derecha -->
+    <!-- DERECHA -->
     <div class="upload-video-meta">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="field-group">
@@ -58,7 +61,6 @@
           </div>
         </div>
 
-        <!-- visibilidad -->
         <div class="field-group">
           <label>Visibilidad</label>
 
@@ -91,7 +93,9 @@
           @if (loading()) {
             <span class="loader"></span>
           } @else {
-            <span>Guardar cambios</span>
+            <span>
+              {{ isEditMode() ? 'Guardar cambios' : 'Publicar video' }}
+            </span>
           }
         </button>
       </form>

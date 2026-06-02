@@ -67,18 +67,16 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'upload-video',
+        path: 'video/form',
         canActivate: [authGuard],
         loadComponent: () =>
-          import('./features/pages/public/video/video-upload/upload-video').then(
-            (m) => m.UploadVideo,
-          ),
+          import('./features/pages/public/video/video-form/video-form').then((m) => m.VideoForm),
       },
       {
-        path: 'edit-video/:id',
+        path: 'video/form/:id',
         canActivate: [authGuard],
         loadComponent: () =>
-          import('./features/pages/public/video/video-edit/video-edit').then((m) => m.VideoEdit),
+          import('./features/pages/public/video/video-form/video-form').then((m) => m.VideoForm),
       },
       {
         path: 'video/:id',
