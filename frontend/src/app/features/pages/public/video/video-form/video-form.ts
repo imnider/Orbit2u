@@ -4,20 +4,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { finalize } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 
 import { VideoService } from '../../../../services/video/video.service';
 import { StorageServiceVid } from '../../../../services/models/storage.service';
 import { ChannelStateService } from '../../../../services/models/channel-state.service';
 
 @Component({
-  selector: 'app-video-edit',
+  selector: 'app-video-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatIconModule, MatButtonModule],
-  templateUrl: './video-edit.html',
+  templateUrl: './video-form.html',
   styleUrl: '../video-upload/upload-video.scss',
 })
-export class VideoEdit implements OnInit {
+export class VideoForm implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly videoService = inject(VideoService);
   private readonly storageService = inject(StorageServiceVid);
@@ -25,6 +25,7 @@ export class VideoEdit implements OnInit {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
+  // estado
   loading = signal(false);
   uploadingThumb = signal(false);
   error = signal('');
@@ -32,22 +33,26 @@ export class VideoEdit implements OnInit {
 
   videoId: string | null = null;
 
+  isEditMode = signal(false);
+
   form = this.fb.nonNullable.group({
     title: ['', [Validators.required, Validators.maxLength(100)]],
     description: ['', [Validators.maxLength(255)]],
     thumbnailUrl: ['', [Validators.required]],
+    videoUrl: [''], // solo requerido en create (no en edit)
     videoAccessibilityId: [1, [Validators.required]],
+    ageRestriction: [false],
   });
 
   ngOnInit(): void {
     this.videoId = this.route.snapshot.paramMap.get('id');
 
-    if (!this.videoId) {
-      this.error.set('Video no encontrado');
-      return;
+    if (this.videoId) {
+      this.isEditMode.set(true);
+      this.loadVideo(this.videoId);
+    } else {
+      this.isEditMode.set(false);
     }
-
-    this.loadVideo(this.videoId);
   }
 
   private loadVideo(id: string): void {
@@ -81,12 +86,12 @@ export class VideoEdit implements OnInit {
       .pipe(finalize(() => this.uploadingThumb.set(false)))
       .subscribe({
         next: (url) => this.form.patchValue({ thumbnailUrl: url }),
-        error: () => this.error.set('No se pudo subir el thumbnail'),
+        error: () => this.error.set('No se pudo subir la miniatura'),
       });
   }
 
   onSubmit(): void {
-    if (this.form.invalid || !this.videoId) {
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
@@ -96,18 +101,28 @@ export class VideoEdit implements OnInit {
 
     const payload = this.form.getRawValue();
 
-    this.videoService
-      .update(this.videoId, payload)
-      .pipe(finalize(() => this.loading.set(false)))
-      .subscribe({
-        next: () => {
-          this.goBack();
-        },
-        error: (err) => this.error.set(err?.error?.message ?? 'No se pudo actualizar el video'),
-      });
+    const request$: Observable<any> = this.isEditMode()
+      ? this.videoService.update(this.videoId!, payload)
+      : this.videoService.create({
+          ...payload,
+          durationSeconds: 0,
+          communityId: null,
+        });
+
+    request$.pipe(finalize(() => this.loading.set(false))).subscribe({
+      next: (video: any) => {
+        this.goBack();
+      },
+      error: (err) => this.error.set(err?.error?.message ?? 'Error al guardar video'),
+    });
   }
 
   goBack(): void {
-    this.router.navigate(['/video', this.videoId]);
+    if (this.isEditMode()) {
+      this.router.navigate(['/video', this.videoId]);
+    } else {
+      const channelId = this.channelState.channel()?.channelId;
+      this.router.navigate(['/channel', channelId]);
+    }
   }
 }
