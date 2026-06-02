@@ -17,14 +17,19 @@ namespace YoutubeClone.Application.Services
         {
             var template = templateData.Data.First(x => x.Name == name);
 
+            var body = template.Body;
+
             foreach (var variable in variables)
             {
-                template.Body = template.Body.Replace("{{" + variable.Key + "}}", variable.Value);
+                body = body.Replace(
+                    "{{" + variable.Key + "}}",
+                    variable.Value
+                );
             }
 
             return new EmailTemplateDto
             {
-                Body = template.Body,
+                Body = body,
                 Subject = template.Subject,
             };
         }

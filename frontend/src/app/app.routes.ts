@@ -30,6 +30,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/pages/public/register.form/register.form').then((m) => m.RegisterForm),
       },
+      {
+        path: 'recover-password',
+        loadComponent: () =>
+          import('./features/pages/public/recover-password/recover-password').then(
+            (m) => m.RecoverPassword,
+          ),
+      },
       // rutas privadas
       {
         path: 'profile',
@@ -94,12 +101,11 @@ export const routes: Routes = [
       {
         path: 'communities',
         loadChildren: () =>
-          import('./features/routes/community.routes').then(m => m.communityRoutes),
+          import('./features/routes/community.routes').then((m) => m.communityRoutes),
       },
       {
         path: 'planes',
-        loadChildren: () =>
-          import('./features/routes/plans.routes').then(m => m.plansRoutes),
+        loadChildren: () => import('./features/routes/plans.routes').then((m) => m.plansRoutes),
       },
     ],
   },

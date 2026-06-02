@@ -91,6 +91,7 @@ namespace YoutubeClone.Application.Services
                 {
                     { "otp", otp }
                 });
+
                 await smtp.Send(model.Email, template.Subject, template.Body);
 
                 cacheService.Create(cacheKey.Key, cacheKey.Expiration, user.UserId);
@@ -116,6 +117,10 @@ namespace YoutubeClone.Application.Services
 
             var template = await emailTemplateService.Get(EmailTemplateNameConstants.AUTH_PASSWORD_CHANGED, []);
             await smtp.Send(user.Email, template.Subject, template.Body);
+
+            cacheService.Delete(
+                CacheHelper.AuthRecoverPasswordOTPKey(code)
+            );
 
             await uow.SaveChangesAsync();
 

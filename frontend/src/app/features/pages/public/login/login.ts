@@ -1,21 +1,23 @@
-import {Component, inject, signal} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../../services/auth/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RecoverPasswordDialog } from '../recover-password/recover-password-dialog/recover-password-dialog';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
-  styleUrl: './login.scss'
+  styleUrl: './login.scss',
 })
-
-export class Login{
+export class Login {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly dialog = inject(MatDialog);
 
   loading = signal(false);
   error = signal('');
@@ -23,7 +25,7 @@ export class Login{
 
   form = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   getErrorMessage(controlName: string): string {
@@ -31,7 +33,8 @@ export class Login{
     if (control?.touched && control?.errors) {
       if (control.errors['required']) return 'Este campo es obligatorio';
       if (control.errors['email']) return 'Formato de correo inválido';
-      if (control.errors['minlength']) return `Mínimo ${control.errors['minlength'].requiredLength} caracteres`;
+      if (control.errors['minlength'])
+        return `Mínimo ${control.errors['minlength'].requiredLength} caracteres`;
     }
     return '';
   }
@@ -50,22 +53,29 @@ export class Login{
       .pipe(
         finalize(() => {
           this.loading.set(false);
-        })
+        }),
       )
       .subscribe({
         next: () => {
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
-          const message =
-            err?.error?.message ??
-            'No fue posible iniciar sesión';
+          const message = err?.error?.message ?? 'No fue posible iniciar sesión';
           this.error.set(message);
-        }
+        },
       });
   }
 
   togglePassword(): void {
-    this.showPassword.update(v => !v);
+    this.showPassword.update((v) => !v);
+  }
+
+  openRecoverPasswordDialog(): void {
+    this.dialog.open(RecoverPasswordDialog, {
+      width: '420px',
+      maxWidth: '95vw',
+      disableClose: false,
+      autoFocus: true,
+    });
   }
 }
