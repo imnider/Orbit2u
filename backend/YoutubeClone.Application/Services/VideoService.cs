@@ -161,7 +161,7 @@ namespace YoutubeClone.Application.Services
                 }
             }
 
-            video.CommunityId = model.CommunityId ?? video.CommunityId;
+            video.CommunityId = model.CommunityId; // si es null, quita el video de la comunidad
             video.VideoAccessibilityId = model.VideoAccessibilityId ?? video.VideoAccessibilityId;
             video.Title = model.Title ?? video.Title;
             video.Description = model.Description ?? video.Description;

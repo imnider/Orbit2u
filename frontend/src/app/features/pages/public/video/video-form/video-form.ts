@@ -21,6 +21,8 @@ import {
   TagSelectorDialog,
 } from '../../../../../shared/components/tag/tag-dialog/tag-dialog';
 import { TagService } from '../../../../services/video/tag.service';
+import { CommunityService } from '../../../../services/models/community.service';
+import { CommunityDto } from '../../../../interfaces/private/community.interface';
 
 @Component({
   selector: 'app-video-form',
@@ -45,6 +47,9 @@ export class VideoForm implements OnInit {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly dialog = inject(MatDialog);
+  private readonly communityService = inject(CommunityService);
+
+  ownedCommunities = signal<CommunityDto[]>([]);
 
   loading = signal(false);
   uploadingThumb = signal(false);
@@ -64,10 +69,13 @@ export class VideoForm implements OnInit {
     videoAccessibilityId: [1, [Validators.required]],
     ageRestriction: [false],
     durationSeconds: [0],
+    communityId: [null as string | null],
     tags: [[] as string[]],
   });
 
   ngOnInit(): void {
+    this.loadOwnedCommunities();
+
     this.videoId = this.route.snapshot.paramMap.get('id');
 
     if (this.videoId) {
@@ -86,12 +94,20 @@ export class VideoForm implements OnInit {
           description: video.description ?? '',
           thumbnailUrl: video.thumbnailUrl,
           videoAccessibilityId: video.videoAccessibilityId,
+          communityId: video.communityId,
           tags: video.tags?.map((t: any) => t.tagId) ?? [],
         });
         this.originalTagIds.set(video.tags?.map((t) => t.tagId) ?? []);
         this.thumbPreview.set(video.thumbnailUrl);
       },
       error: () => this.error.set('No se pudo cargar el video'),
+    });
+  }
+
+  private loadOwnedCommunities(): void {
+    this.communityService.getMyOwned().subscribe({
+      next: (communities) => this.ownedCommunities.set(communities),
+      error: () => {},
     });
   }
 
@@ -163,6 +179,8 @@ export class VideoForm implements OnInit {
     this.error.set('');
 
     const { tags, ...videoPayload } = this.form.getRawValue();
+    console.log(videoPayload.communityId);
+    console.log(typeof videoPayload.communityId);
     const selectedTags: string[] = tags ?? [];
 
     if (this.isEditMode()) {
@@ -185,7 +203,7 @@ export class VideoForm implements OnInit {
         });
     } else {
       this.videoService
-        .create({ ...videoPayload, communityId: null })
+        .create({ ...videoPayload })
         .pipe(
           switchMap((video) => {
             if (selectedTags.length === 0) return of(null);

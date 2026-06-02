@@ -1,21 +1,23 @@
 <div class="community-view-page">
-
   @if (loading()) {
     <div class="comm-skeleton">
       <div class="skeleton skeleton--banner"></div>
       <div class="comm-skeleton__body">
         <div class="skeleton skeleton--avatar"></div>
-        <div style="flex:1">
-          <div class="skeleton skeleton--text" style="width:40%;height:20px;margin-bottom:8px"></div>
-          <div class="skeleton skeleton--text" style="width:60%"></div>
+        <div style="flex: 1">
+          <div
+            class="skeleton skeleton--text"
+            style="width: 40%; height: 20px; margin-bottom: 8px"
+          ></div>
+          <div class="skeleton skeleton--text" style="width: 60%"></div>
         </div>
       </div>
-      <div class="video-grid" style="margin-top:32px">
-        @for (i of [1,2,3]; track i) {
+      <div class="video-grid" style="margin-top: 32px">
+        @for (i of [1, 2, 3]; track i) {
           <div class="video-card-skeleton">
             <div class="skeleton skeleton--thumb"></div>
-            <div class="skeleton skeleton--text" style="width:80%;margin:10px 12px 6px"></div>
-            <div class="skeleton skeleton--text" style="width:50%;margin:0 12px"></div>
+            <div class="skeleton skeleton--text" style="width: 80%; margin: 10px 12px 6px"></div>
+            <div class="skeleton skeleton--text" style="width: 50%; margin: 0 12px"></div>
           </div>
         }
       </div>
@@ -29,7 +31,7 @@
   } @else if (community()) {
     <div class="comm-banner">
       @if (community()!.bannerUrl) {
-        <img [src]="community()!.bannerUrl" [alt]="community()!.name" class="comm-banner__img">
+        <img [src]="community()!.bannerUrl" [alt]="community()!.name" class="comm-banner__img" />
       } @else {
         <div class="comm-banner__placeholder"></div>
       }
@@ -38,7 +40,7 @@
     <div class="comm-header">
       <div class="comm-header__avatar">
         @if (community()!.avatarUrl) {
-          <img [src]="community()!.avatarUrl" [alt]="community()!.name">
+          <img [src]="community()!.avatarUrl" [alt]="community()!.name" />
         } @else {
           <span>{{ getInitial(community()!.name) }}</span>
         }
@@ -67,27 +69,24 @@
           <mat-icon>share</mat-icon>
         </button>
 
-        @if (!isOwner()) {
+        @if (isOwner()) {
+          <button class="comm-join-btn" (click)="openEdit()">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+        } @else {
           <button
             class="comm-join-btn"
             [class.comm-join-btn--leave]="isMember()"
             [disabled]="joining()"
-            (click)="toggleMembership()">
+            (click)="toggleMembership()"
+          >
             @if (joining()) {
-              <span class="loader-sm"></span>
+              <span class="loader"></span>
             } @else {
               <mat-icon>{{ isMember() ? 'exit_to_app' : 'group_add' }}</mat-icon>
               <span>{{ isMember() ? 'Salir' : 'Unirse' }}</span>
             }
-          </button>
-        }
-
-        @if (isOwner()) {
-          <button class="action-icon-btn" (click)="openEdit()" matTooltip="Editar comunidad">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button class="action-icon-btn action-icon-btn--danger" (click)="confirmDelete()" matTooltip="Eliminar comunidad">
-            <mat-icon>delete</mat-icon>
           </button>
         }
       </div>
@@ -109,29 +108,5 @@
         </div>
       }
     </div>
-
   }
-
 </div>
-
-@if (showConfirmDelete()) {
-  <div class="confirm-overlay" (click)="cancelDelete()">
-    <div class="confirm-dialog" (click)="$event.stopPropagation()">
-      <mat-icon class="confirm-dialog__icon">warning</mat-icon>
-      <h3>¿Eliminar comunidad?</h3>
-      <p>Esta acción no se puede deshacer. Se eliminará permanentemente "{{ community()?.name }}".</p>
-      <div class="confirm-dialog__actions">
-        <button class="confirm-dialog__cancel" (click)="cancelDelete()">Cancelar</button>
-        <button class="confirm-dialog__confirm" [disabled]="deletingComm()" (click)="deleteCommunity()">
-          @if (deletingComm()) { <span class="loader-sm"></span> } @else { Eliminar }
-        </button>
-      </div>
-    </div>
-  </div>
-}
-
-@if (showEditForm()) {
-  <app-community-form [community]="community()!"
-    (saved)="onEditSaved($event)" (closed)="onEditClosed()"
-  ></app-community-form>
-}

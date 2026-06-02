@@ -1,31 +1,77 @@
 <div class="comm-form-overlay" (click)="close()">
   <div class="comm-form-dialog" (click)="$event.stopPropagation()">
-
     <div class="comm-form-dialog__header">
       <h2>{{ isEdit() ? 'Editar comunidad' : 'Crear comunidad' }}</h2>
-      <button class="comm-form-dialog__close" (click)="close()">
-        <mat-icon>close</mat-icon>
-      </button>
+      <div class="comm-form-dialog__header-actions">
+        @if (isEdit()) {
+          <button class="comm-form-delete-btn" type="button" (click)="onDelete()">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        }
+        <button class="comm-form-dialog__close" (click)="close()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
     </div>
 
     <div class="comm-form-dialog__body">
-
-      @if (bannerUrl) {
-        <div class="comm-form-preview comm-form-preview--banner">
-          <img [src]="bannerUrl" alt="Banner preview">
+      <div class="comm-form-field comm-form-field--avatar">
+        <label class="comm-form-label">Avatar</label>
+        <div
+          class="comm-form-upload comm-form-upload--avatar"
+          [class.comm-form-upload--uploading]="uploadingAvatar()"
+          (click)="!uploadingAvatar() && avatarInput.click()"
+        >
+          @if (uploadingAvatar()) {
+            <span class="loader"></span>
+          } @else if (avatarUrl) {
+            <img [src]="avatarUrl" alt="Avatar preview" />
+            <div class="comm-form-upload__overlay">
+              <mat-icon>edit</mat-icon>
+            </div>
+          } @else {
+            <mat-icon>person</mat-icon>
+            <span>Subir avatar</span>
+          }
+          <input
+            #avatarInput
+            type="file"
+            accept="image/*"
+            hidden
+            (change)="onAvatarSelected($event)"
+          />
         </div>
-      }
-
-      @if (avatarUrl) {
-        <div class="comm-form-preview comm-form-preview--avatar">
-          <img [src]="avatarUrl" alt="Avatar preview">
+      </div>
+      <div class="comm-form-field">
+        <label class="comm-form-label">Banner</label>
+        <div
+          class="comm-form-upload comm-form-upload--banner"
+          [class.comm-form-upload--uploading]="uploadingBanner()"
+          (click)="!uploadingBanner() && bannerInput.click()"
+        >
+          @if (uploadingBanner()) {
+            <span class="loader"></span>
+          } @else if (bannerUrl) {
+            <img [src]="bannerUrl" alt="Banner preview" />
+            <div class="comm-form-upload__overlay">
+              <mat-icon>edit</mat-icon>
+            </div>
+          } @else {
+            <mat-icon>add_photo_alternate</mat-icon>
+            <span>Subir banner</span>
+          }
+          <input
+            #bannerInput
+            type="file"
+            accept="image/*"
+            hidden
+            (change)="onBannerSelected($event)"
+          />
         </div>
-      }
+      </div>
 
       <div class="comm-form-field">
-        <label class="comm-form-label">
-          Nombre <span class="comm-form-required">*</span>
-        </label>
+        <label class="comm-form-label"> Nombre <span class="comm-form-required">*</span> </label>
         <input
           class="comm-form-input"
           type="text"
@@ -46,21 +92,6 @@
         ></textarea>
       </div>
 
-      <div class="comm-form-field">
-        <label class="comm-form-label">URL del avatar</label>
-        <input
-          class="comm-form-input" type="url"
-          placeholder="https://..." [(ngModel)]="avatarUrl"
-        />
-      </div>
-
-      <div class="comm-form-field">
-        <label class="comm-form-label">URL del banner</label>
-        <input class="comm-form-input" type="url"
-          placeholder="https://..." [(ngModel)]="bannerUrl"
-        />
-      </div>
-
       <div class="comm-form-field comm-form-field--toggle">
         <div class="comm-form-field__toggle-info">
           <label class="comm-form-label">Comunidad privada</label>
@@ -70,7 +101,8 @@
           class="comm-toggle-btn"
           [class.comm-toggle-btn--on]="isPrivate"
           (click)="isPrivate = !isPrivate"
-          type="button">
+          type="button"
+        >
           <span class="comm-toggle-btn__knob"></span>
         </button>
       </div>
@@ -85,14 +117,17 @@
 
     <div class="comm-form-dialog__footer">
       <button class="comm-form-btn comm-form-btn--cancel" (click)="close()">Cancelar</button>
-      <button class="comm-form-btn comm-form-btn--save" [disabled]="saving()" (click)="submit()">
+      <button
+        class="comm-form-btn comm-form-btn--save"
+        [disabled]="saving() || uploadingAvatar() || uploadingBanner()"
+        (click)="submit()"
+      >
         @if (saving()) {
-          <span class="loader-sm"></span>
+          <span class="loader"></span>
         } @else {
           {{ isEdit() ? 'Guardar cambios' : 'Crear comunidad' }}
         }
       </button>
     </div>
-
   </div>
 </div>

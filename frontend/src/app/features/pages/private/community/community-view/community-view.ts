@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog } from '@angular/material/dialog';
 import { forkJoin, finalize } from 'rxjs';
 
 import { CommunityService } from '../../../../services/models/community.service';
@@ -10,140 +11,136 @@ import { AuthService } from '../../../../services/auth/auth.service';
 import { CommunityDto } from '../../../../interfaces/private/community.interface';
 import { VideoDto } from '../../../../interfaces/private/video.interface';
 import { VideoCard } from '../../../../../shared/components/video-card/video-card';
-import { CommunityForm } from '../community-form/community-form';
+import { CommunityForm, CommunityDialogData } from '../community-form/community-form';
 
 @Component({
-    selector: 'app-community-view',
-    standalone: true,
-    imports: [CommonModule, MatIconModule, MatTooltipModule, VideoCard, CommunityForm],
-    templateUrl: './community-view.html',
-    styleUrl: './community-view.scss',
+  selector: 'app-community-view',
+  standalone: true,
+  imports: [CommonModule, MatIconModule, MatTooltipModule, VideoCard],
+  templateUrl: './community-view.html',
+  styleUrl: './community-view.scss',
 })
 export class CommunityView implements OnInit {
-    private readonly route = inject(ActivatedRoute);
-    private readonly router = inject(Router);
-    private readonly communityService = inject(CommunityService);
-    private readonly authService = inject(AuthService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly communityService = inject(CommunityService);
+  private readonly authService = inject(AuthService);
+  private readonly dialog = inject(MatDialog);
 
-    loading = signal(true);
-    error = signal('');
-    joining = signal(false);
-    showEditForm = signal(false);
-    showConfirmDelete = signal(false);
-    deletingComm = signal(false);
+  loading = signal(true);
+  error = signal('');
+  joining = signal(false);
 
-    community = signal<CommunityDto | null>(null);
-    videos = signal<VideoDto[]>([]);
+  community = signal<CommunityDto | null>(null);
+  videos = signal<VideoDto[]>([]);
+  isMember = signal(false);
 
-    isMember = signal(false);
+  readonly isOwner = computed(() => {
+    const userId = this.authService.userId();
+    return !!userId && this.community()?.ownerUserId === userId;
+  });
 
-    readonly isOwner = computed(() => {
-        const userId = this.authService.userId();
-        return !!userId && this.community()?.userId === userId;
-    });
+  readonly memberCount = computed(() => this.community()?.membersCount ?? 0);
 
-    readonly memberCount = computed(() => this.community()?.memberCount ?? 0);
-
-    ngOnInit(): void {
-        const id = this.route.snapshot.paramMap.get('id');
-        if (!id) { this.error.set('Comunidad no encontrada'); this.loading.set(false); return; }
-        this.loadCommunity(id);
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) {
+      this.error.set('Comunidad no encontrada');
+      this.loading.set(false);
+      return;
     }
+    this.loadCommunity(id);
+  }
 
-    private loadCommunity(id: string): void {
-        forkJoin({
-        community: this.communityService.getById(id),
-        videos: this.communityService.getVideos(id),
-        })
-        .pipe(finalize(() => this.loading.set(false)))
-        .subscribe({
+  private loadCommunity(id: string): void {
+    forkJoin({
+      community: this.communityService.getById(id),
+      videos: this.communityService.getVideos(id),
+    })
+      .pipe(finalize(() => this.loading.set(false)))
+      .subscribe({
         next: ({ community, videos }) => {
-            this.community.set(community);
-            this.videos.set(videos);
-            if (this.isOwner()) this.isMember.set(true);
-            else this.checkMembership();
+          this.community.set(community);
+          this.videos.set(videos);
+
+          const userId = this.authService.userId();
+          const isOwner = !!userId && community.ownerUserId === userId;
+          console.log('userId:', userId);
+          console.log(community);
+          console.log('community.userId:', community.ownerUserId);
+          console.log('isOwner:', !!userId && community.ownerUserId === userId);
+
+          if (isOwner) {
+            this.isMember.set(true);
+          } else {
+            this.checkMembership();
+          }
         },
         error: () => this.error.set('No se pudo cargar la comunidad'),
-        });
-    }
+      });
+  }
 
-    private checkMembership(): void {
-        this.communityService.getMemberships().subscribe({
-        next: (memberships) => {
-            const id = this.community()?.communityId;
-            this.isMember.set(memberships.some(m => m.communityId === id));
-        },
-        error: () => this.isMember.set(false),
-        });
-    }
-
-    toggleMembership(): void {
+  private checkMembership(): void {
+    this.communityService.getMemberships().subscribe({
+      next: (memberships) => {
         const id = this.community()?.communityId;
-        if (!id) return;
-        this.joining.set(true);
+        this.isMember.set(memberships.some((m) => m.communityId === id));
+      },
+      error: () => this.isMember.set(false),
+    });
+  }
 
-        const action$ = this.isMember()
-        ? this.communityService.leave(id)
-        : this.communityService.join(id);
+  toggleMembership(): void {
+    const id = this.community()?.communityId;
+    if (!id) return;
+    this.joining.set(true);
 
-        action$.pipe(finalize(() => this.joining.set(false))).subscribe({
-        next: () => {
-            const joining = !this.isMember();
-            this.isMember.set(joining);
-            this.community.update(c => c ? ({ ...c, memberCount: c.memberCount + (joining ? 1 : -1),}) : c);
-        },
-        error: () => {},
-        });
-    }
+    const action$ = this.isMember()
+      ? this.communityService.leave(id)
+      : this.communityService.join(id);
 
-    copyShareUrl(): void {
-        navigator.clipboard.writeText(window.location.href);
-    }
+    action$.pipe(finalize(() => this.joining.set(false))).subscribe({
+      next: () => {
+        const joining = !this.isMember();
+        this.isMember.set(joining);
+        this.community.update((c) =>
+          c ? { ...c, memberCount: c.membersCount + (joining ? 1 : -1) } : c,
+        );
+      },
+      error: () => {},
+    });
+  }
 
-    openEdit(): void {
-        this.showEditForm.set(true);
-    }
+  openEdit(): void {
+    const ref = this.dialog.open(CommunityForm, {
+      width: '520px',
+      data: { community: this.community()! } satisfies CommunityDialogData,
+    });
 
-    onEditSaved(updated: CommunityDto): void {
-        this.community.set(updated);
-        this.showEditForm.set(false);
-    }
+    ref.afterClosed().subscribe((result) => {
+      if (result?.saved) {
+        this.community.set(result.saved);
+      } else if (result?.deleted) {
+        this.router.navigate(['/communities']);
+      }
+    });
+  }
 
-    onEditClosed(): void {
-        this.showEditForm.set(false);
-    }
+  copyShareUrl(): void {
+    navigator.clipboard.writeText(window.location.href);
+  }
 
-    confirmDelete(): void {
-        this.showConfirmDelete.set(true);
-    }
+  goToVideo(videoId: string): void {
+    this.router.navigate(['/video', videoId]);
+  }
 
-    cancelDelete(): void {
-        this.showConfirmDelete.set(false);
-    }
+  formatDuration(seconds: number): string {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  }
 
-    deleteCommunity(): void {
-        const id = this.community()?.communityId;
-        if (!id) return;
-        this.deletingComm.set(true);
-        this.communityService.delete(id)
-        .pipe(finalize(() => this.deletingComm.set(false)))
-        .subscribe({
-            next: () => this.router.navigate(['/communities']),
-            error: () => {},
-        });
-    }
-
-    goToVideo(videoId: string): void {
-        this.router.navigate(['/video', videoId]);
-    }
-
-    formatDuration(seconds: number): string {
-        const m = Math.floor(seconds / 60);
-        const s = seconds % 60;
-        return `${m}:${s.toString().padStart(2, '0')}`;
-    }
-
-    getInitial(name: string): string {
-        return name.charAt(0).toUpperCase();
-    }
+  getInitial(name: string): string {
+    return name.charAt(0).toUpperCase();
+  }
 }

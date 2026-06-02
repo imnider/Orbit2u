@@ -115,7 +115,21 @@
             <span>Gestionar etiquetas</span>
           </button>
         </div>
+        <div class="field-group">
+          <label class="field-label">Añadir a comunidad:</label>
 
+          <div class="input-wrapper">
+            <select class="field-input" formControlName="communityId">
+              <option [ngValue]="null">No</option>
+
+              @for (community of ownedCommunities(); track community.communityId) {
+                <option [value]="community.communityId">
+                  {{ community.name }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
         <div class="field-group">
           <label class="field-label">Visibilidad</label>
           <div class="visibility-options">

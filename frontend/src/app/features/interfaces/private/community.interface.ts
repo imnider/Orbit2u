@@ -1,35 +1,35 @@
 export interface CommunityDto {
-    communityId: string;
-    name: string;
-    description: string | null;
-    avatarUrl: string | null;
-    bannerUrl: string | null;
-    isPrivate: boolean;
-    memberCount: number;
-    userId: string;
-    createdAt: string;
+  communityId: string;
+  name: string;
+  description: string | null;
+  avatarUrl: string | null;
+  bannerUrl: string | null;
+  isPrivate: boolean;
+  membersCount: number;
+  ownerUserId: string;
+  createdAt: string;
 }
 
 export interface CommunityListResponse {
-    data: CommunityDto[];
+  data: CommunityDto[];
 }
 
 export interface CommunityResponse {
-    data: CommunityDto;
+  data: CommunityDto;
 }
 
 export interface CreateCommunityRequest {
-    name: string;
-    description?: string | null;
-    avatarUrl?: string | null;
-    bannerUrl?: string | null;
-    isPrivate: boolean;
+  name: string;
+  description?: string | null;
+  avatarUrl?: string | null;
+  bannerUrl?: string | null;
+  isPrivate: boolean;
 }
 
 export interface UpdateCommunityRequest {
-    name?: string | null;
-    description?: string | null;
-    avatarUrl?: string | null;
-    bannerUrl?: string | null;
-    isPrivate?: boolean | null;
+  name?: string | null;
+  description?: string | null;
+  avatarUrl?: string | null;
+  bannerUrl?: string | null;
+  isPrivate?: boolean | null;
 }
