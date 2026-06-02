@@ -15,7 +15,7 @@ import { ChannelStateService } from '../../../../services/models/channel-state.s
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatIconModule, MatButtonModule],
   templateUrl: './video-form.html',
-  styleUrl: '../video-upload/upload-video.scss',
+  styleUrl: './video-form.scss',
 })
 export class VideoForm implements OnInit {
   private readonly fb = inject(FormBuilder);
