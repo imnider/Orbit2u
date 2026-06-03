@@ -1,5 +1,5 @@
 .admin-metrics {
-  max-width: 900px;
+  max-width: 1020px;
 }
 
 .metrics-loading {
@@ -33,7 +33,10 @@
     opacity: 0.85;
   }
 
-  &__body { display: flex; flex-direction: column; }
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
 
   &__value {
     font-size: 1.75rem;
@@ -49,10 +52,21 @@
   }
 
   //colores por tipo
-  &--purple  .metric-card__icon { color: #8b5cf6; }
-  &--violet  .metric-card__icon { color: #a78bfa; }
-  &--indigo  .metric-card__icon { color: #818cf8; }
-  &--fuchsia .metric-card__icon { color: #c026d3; }
+  &--purple .metric-card__icon {
+    color: #8b5cf6;
+  }
+  &--violet .metric-card__icon {
+    color: #a78bfa;
+  }
+  &--indigo .metric-card__icon {
+    color: #818cf8;
+  }
+  &--fuchsia .metric-card__icon {
+    color: #c026d3;
+  }
+  &--pink .metric-card__icon {
+    color: var(--color-accent);
+  }
 }
 
 .metrics-chart-card {

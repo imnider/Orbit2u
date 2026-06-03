@@ -241,3 +241,7 @@ body.theme-light .cdk-overlay-container {
   background: var(--color-scrollbar);
   border-radius: 4px;
 }
+
+.cdk-overlay-container {
+  z-index: 1100;
+}

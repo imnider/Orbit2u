@@ -51,7 +51,11 @@
     transition: all 0.2s;
     white-space: nowrap;
 
-    mat-icon { font-size: 18px; width: 18px; height: 18px; }
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
 
     &:hover {
       border-color: var(--color-primary);
@@ -97,13 +101,18 @@
     font-weight: 700;
     color: var(--color-text);
 
-    mat-icon { font-size: 14px; width: 14px; height: 14px; color: #f59e0b; }
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+      color: #f59e0b;
+    }
   }
 }
 
 .coins-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
 }
 
@@ -111,44 +120,58 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg, 12px);
-  padding: 20px 18px;
+  padding: 28px 20px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   text-align: center;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
   cursor: pointer;
 
   &:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
   }
 
   &__icon-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    padding: 14px;
+    padding: 16px;
     background: rgba(245, 158, 11, 0.1);
     border-radius: 50%;
     border: 1px solid rgba(245, 158, 11, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__icon {
-    font-size: 28px;
-    width: 28px;
-    height: 28px;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
     color: #f59e0b;
   }
 
+  &__coins {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
   &__coins-amount {
-    font-size: 0.78rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: #f59e0b;
     line-height: 1;
+  }
+
+  &__coins-label {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
   }
 
   &__name {
@@ -167,10 +190,11 @@
 
   &__price {
     margin-top: auto;
+    padding-top: 4px;
   }
 
   &__price-amount {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: var(--color-primary);
   }
@@ -181,21 +205,28 @@
     justify-content: center;
     gap: 6px;
     width: 100%;
-    padding: 9px 14px;
+    padding: 10px 14px;
     background: var(--color-primary);
     border: none;
     border-radius: var(--radius-base);
     color: #fff;
     font-size: 0.82rem;
     font-weight: 600;
+    font-family: inherit;
     cursor: pointer;
     transition: opacity 0.2s;
 
-    mat-icon { font-size: 16px; width: 16px; height: 16px; }
-    &:hover { opacity: 0.88; }
+    mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      opacity: 0.88;
+    }
   }
 }
-
 .coin-card-skeleton {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -212,15 +243,35 @@
   border-radius: 4px;
   animation: shimmer 1.5s ease-in-out infinite;
 
-  &--icon  { width: 60px; height: 60px; border-radius: 50%; }
-  &--title { height: 15px; width: 70%; }
-  &--price { height: 28px; width: 50%; border-radius: 6px; }
-  &--btn   { height: 36px; width: 100%; border-radius: var(--radius-base); }
+  &--icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  &--title {
+    height: 15px;
+    width: 70%;
+  }
+  &--price {
+    height: 28px;
+    width: 50%;
+    border-radius: 6px;
+  }
+  &--btn {
+    height: 36px;
+    width: 100%;
+    border-radius: var(--radius-base);
+  }
 }
 
 @keyframes shimmer {
-  0%, 100% { opacity: 0.4; }
-  50%       { opacity: 0.8; }
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .coins-empty {
@@ -231,10 +282,40 @@
   padding: 80px 24px;
   color: var(--color-text-muted);
 
-  mat-icon { font-size: 44px; width: 44px; height: 44px; opacity: 0.35; }
-  p { margin: 0; font-size: 0.9rem; }
+  mat-icon {
+    font-size: 44px;
+    width: 44px;
+    height: 44px;
+    opacity: 0.35;
+  }
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .coins-grid { grid-template-columns: repeat(2, 1fr); }
+  .coins-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.coin-card__coins-amount {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #f59e0b;
+  line-height: 1;
+}
+
+.coin-card__price-amount {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.coin-card__icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: #f59e0b;
 }

@@ -8,11 +8,19 @@ import { AdminUserService } from '../../../services/admin/admin-user.service';
 import { MembershipService } from '../../../services/admin/membership.service';
 import { CurrentUser, UpdateUserRequest } from '../../../interfaces/public/user.interface';
 import { MembershipPlanDto } from '../../../interfaces/private/plans.interface';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-admin-users',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatIconModule, MatTooltipModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSelectModule,
+  ],
   templateUrl: './admin-users.html',
   styleUrl: './admin-users.scss',
 })

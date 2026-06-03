@@ -1,6 +1,6 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { forkJoin, finalize } from 'rxjs';
+import { forkJoin, finalize, Subject, takeUntil } from 'rxjs';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartOptions } from 'chart.js';
 import {
@@ -16,6 +16,8 @@ import { AdminUserService } from '../../../services/admin/admin-user.service';
 import { AdminVideoService } from '../../../services/admin/admin-video.service';
 import { ChannelService } from '../../../services/models/channel.service';
 import { MatIconModule } from '@angular/material/icon';
+import { CommunityService } from '../../../services/models/community.service';
+import { ThemeService } from '../../../../core/services/theme/theme.service';
 
 Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -26,6 +28,14 @@ interface MetricCard {
   color: string;
 }
 
+// colores por tema, valores RGB directos que Chart.js entiende
+const THEME_COLORS: Record<string, { primary: string; accent: string }> = {
+  dark: { primary: '#e245fc', accent: '#6d4aff' },
+  midnight: { primary: '#6fa3e0', accent: '#4a6fbd' },
+  rosewave: { primary: '#d84d86', accent: '#7a1d35' },
+  light: { primary: '#7c3aed', accent: '#a855f7' },
+};
+
 @Component({
   selector: 'app-admin-metrics',
   standalone: true,
@@ -33,10 +43,14 @@ interface MetricCard {
   templateUrl: './admin-metrics.html',
   styleUrl: './admin-metrics.scss',
 })
-export class AdminMetrics implements OnInit {
+export class AdminMetrics implements OnInit, OnDestroy {
+  private readonly themeService = inject(ThemeService);
+  private readonly destroy$ = new Subject<void>();
+
   private readonly userService = inject(AdminUserService);
   private readonly videoService = inject(AdminVideoService);
   private readonly channelService = inject(ChannelService);
+  private readonly communityService = inject(CommunityService);
 
   loading = signal(true);
 
@@ -44,21 +58,23 @@ export class AdminMetrics implements OnInit {
 
   //datos del grafico
   barChartData = signal<ChartData<'bar'>>({
-    labels: ['Usuarios', 'Canales', 'Videos', 'Premium'],
+    labels: ['Usuarios', 'Canales', 'Videos', 'Comunidades', 'Premium'],
     datasets: [
       {
         label: 'Total en el sistema',
-        data: [0, 0, 0, 0],
+        data: [0, 0, 0, 0, 0],
         backgroundColor: [
           'rgba(139, 92, 246, 0.7)',
           'rgba(167, 139, 250, 0.7)',
           'rgba(196, 181, 253, 0.7)',
+          'rgba(236, 72, 153, 0.7)',
           'rgba(109, 40, 217, 0.7)',
         ],
         borderColor: [
           'rgb(139, 92, 246)',
           'rgb(167, 139, 250)',
           'rgb(196, 181, 253)',
+          'rgb(236, 72, 153)',
           'rgb(109, 40, 217)',
         ],
         borderWidth: 2,
@@ -90,15 +106,22 @@ export class AdminMetrics implements OnInit {
     },
   };
 
+  private buildChartColors(theme: string): { bg: string[]; border: string[] } {
+    const { primary, accent } = THEME_COLORS[theme] ?? THEME_COLORS['dark'];
+    const colors = [primary, accent, primary, accent, primary];
+    return { bg: colors, border: colors };
+  }
+
   ngOnInit(): void {
     forkJoin({
       users: this.userService.getAll(undefined, 1000, 0),
       videos: this.videoService.getAll(undefined, 1000, 0),
       channels: this.channelService.getAll(undefined, 1000, 0),
+      communities: this.communityService.getAll(undefined, 1000, 0),
     })
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
-        next: ({ users, videos, channels }) => {
+        next: ({ users, videos, channels, communities }) => {
           const creators = users.filter(
             (u) => u.membershipPlan?.membershipPlanId && u.membershipPlan.membershipPlanId > 1,
           ).length;
@@ -117,6 +140,7 @@ export class AdminMetrics implements OnInit {
               icon: 'video_library',
               color: 'indigo',
             },
+            { label: 'Comunidades', value: communities.length, icon: 'people', color: 'pink' },
             {
               label: 'Usuarios premium',
               value: creators,
@@ -125,16 +149,30 @@ export class AdminMetrics implements OnInit {
             },
           ]);
 
-          this.barChartData.update((d) => ({
-            ...d,
-            datasets: [
-              {
-                ...d.datasets[0],
-                data: [users.length, channels.length, videos.length, creators],
-              },
-            ],
-          }));
+          const data = [users.length, channels.length, videos.length, communities.length, creators];
+
+          this.themeService.theme$.pipe(takeUntil(this.destroy$)).subscribe((theme) => {
+            const { bg, border } = this.buildChartColors(theme);
+            this.barChartData.set({
+              labels: ['Usuarios', 'Canales', 'Videos', 'Comunidades', 'Premium'],
+              datasets: [
+                {
+                  label: 'Total en el sistema',
+                  data,
+                  backgroundColor: bg,
+                  borderColor: border,
+                  borderWidth: 2,
+                  borderRadius: 8,
+                },
+              ],
+            });
+          });
         },
       });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
