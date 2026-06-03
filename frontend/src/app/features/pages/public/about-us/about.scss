@@ -1,0 +1,136 @@
+.about-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+
+.about-hero {
+  position: relative;
+  padding: 48px 0 36px;
+  text-align: center;
+  overflow: hidden;
+
+  &__orbit {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    width: 320px;
+    height: 320px;
+    border: 1px solid var(--color-border);
+    margin: auto;
+    opacity: 0.25;
+    pointer-events: none;
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      inset: 24px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+    }
+    &::after { inset: 52px; }
+  }
+
+  &__title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 10px;
+    position: relative;
+
+    span { color: var(--color-primary); }
+  }
+
+  &__sub {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    position: relative;
+  }
+}
+
+.about-section {
+  margin-top: 36px;
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    margin: 0 0 16px;
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    margin: 0 0 12px;
+  }
+}
+
+.about-team {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.about-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  &__roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__role {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+
+    &--shared {
+      background: var(--color-surface-alt);
+      color: var(--color-text-muted);
+      border-color: var(--color-border);
+    }
+  }
+}
