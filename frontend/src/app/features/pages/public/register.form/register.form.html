@@ -62,8 +62,9 @@
           <div class="row-fields">
             <div class="field-group">
               <label>Username</label>
-              <div class="input-wrapper">
-                <input type="text" formControlName="username" placeholder="@usuario" />
+              <div class="input-wrapper input-wrapper--prefix">
+                <span class="input-prefix">@</span>
+                <input type="text" formControlName="username" placeholder="usuario" />
               </div>
               @if (getError('username')) {
                 <span class="field-error">{{ getError('username') }}</span>
@@ -83,55 +84,62 @@
 
           <div class="field-group">
             <label>Cumpleaños</label>
-            <div class="date-spinner">
-              <!-- Día -->
-              <div class="date-spinner__unit">
-                <button type="button" (click)="stepDate('day', 1)">
-                  <i class="fa-solid fa-chevron-up"></i>
-                </button>
-                <span>{{ displayDay() }}</span>
-                <button type="button" (click)="stepDate('day', -1)">
-                  <i class="fa-solid fa-chevron-down"></i>
-                </button>
+            <div class="date-input-group">
+              <div class="date-input-group__field">
+                <input
+                  class="date-input-group__input"
+                  type="number"
+                  min="1"
+                  max="31"
+                  placeholder="DD"
+                  [value]="displayDay()"
+                  (input)="onDayInput($event)"
+                  (blur)="onDayBlur()"
+                />
+                <span class="date-input-group__label">Día</span>
               </div>
 
-              <span class="date-spinner__sep">/</span>
+              <span class="date-input-group__sep">/</span>
 
-              <!-- Mes -->
-              <div class="date-spinner__unit">
-                <button type="button" (click)="stepDate('month', 1)">
-                  <i class="fa-solid fa-chevron-up"></i>
-                </button>
-                <span>{{ displayMonth() }}</span>
-                <button type="button" (click)="stepDate('month', -1)">
-                  <i class="fa-solid fa-chevron-down"></i>
-                </button>
+              <div class="date-input-group__field">
+                <input
+                  class="date-input-group__input"
+                  type="number"
+                  min="1"
+                  max="12"
+                  placeholder="MM"
+                  [value]="displayMonth()"
+                  (input)="onMonthInput($event)"
+                  (blur)="onMonthBlur()"
+                />
+                <span class="date-input-group__label">Mes</span>
               </div>
 
-              <span class="date-spinner__sep">/</span>
+              <span class="date-input-group__sep">/</span>
 
-              <!-- Año -->
-              <div class="date-spinner__unit date-spinner__unit--year">
-                <button type="button" (click)="stepDate('year', 1)">
-                  <i class="fa-solid fa-chevron-up"></i>
-                </button>
-                <span>{{ displayYear() }}</span>
-                <button type="button" (click)="stepDate('year', -1)">
-                  <i class="fa-solid fa-chevron-down"></i>
-                </button>
+              <div class="date-input-group__field date-input-group__field--year">
+                <input
+                  class="date-input-group__input"
+                  type="number"
+                  min="1900"
+                  [max]="maxYear()"
+                  placeholder="AAAA"
+                  [value]="displayYear()"
+                  (input)="onYearInput($event)"
+                  (blur)="onYearBlur()"
+                />
+                <span class="date-input-group__label">Año</span>
               </div>
 
-              <!-- Botón calendario -->
               <button
                 type="button"
-                class="date-spinner__cal-btn"
+                class="date-input-group__cal-btn"
                 (click)="calendarPicker.open()"
-                matTooltip="Buscar en calendario"
+                matTooltip="Abrir calendario"
               >
                 <i class="fa-solid fa-calendar"></i>
               </button>
 
-              <!-- Input oculto pegado al botón para que el calendario aparezca ahí -->
               <span style="position: relative; width: 0; height: 0; overflow: visible">
                 <input
                   [matDatepicker]="calendarPicker"
@@ -147,16 +155,8 @@
                 />
                 <mat-datepicker #calendarPicker></mat-datepicker>
               </span>
-
-              <!-- Datepicker oculto solo para el calendario -->
-              <input
-                [matDatepicker]="calendarPicker"
-                [value]="calendarDate()"
-                (dateChange)="onCalendarPick($event.value)"
-                style="display: none"
-              />
-              <mat-datepicker #calendarPicker></mat-datepicker>
             </div>
+
             @if (getError('birthday')) {
               <span class="field-error">{{ getError('birthday') }}</span>
             }

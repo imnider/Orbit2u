@@ -7,13 +7,14 @@ import { finalize } from 'rxjs';
 import { ChannelService } from '../../../../services/models/channel.service';
 import { StorageServiceVid } from '../../../../services/models/storage.service';
 import { ChannelDto, UpdateChannelRequest } from '../../../../interfaces/private/channel.interface';
+import { getFieldError } from '../../../../../shared/utils/form-error';
 
 @Component({
   selector: 'app-edit-channel',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './edit-channel.html',
-  styleUrl: './edit-channel.scss'
+  styleUrl: './edit-channel.scss',
 })
 export class EditChannel implements OnInit {
   private readonly fb = inject(FormBuilder);
@@ -32,15 +33,25 @@ export class EditChannel implements OnInit {
   bannerPreview = signal<string | null>(null);
 
   form = this.fb.nonNullable.group({
-    handle:      ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-    displayName: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(50)]],
+    handle: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
+    displayName: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+        Validators.pattern(/^[^\s].*[^\s]$|^[^\s]$/),
+      ],
+    ],
     description: ['', [Validators.maxLength(255)]],
-    avatarUrl:   [''],
-    bannerUrl:   [''],
+    avatarUrl: [''],
+    bannerUrl: [''],
   });
 
   ngOnInit(): void {
-    this.channelService.getMe()
+    this.form.get('handle')?.disable();
+    this.channelService
+      .getMe()
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
         next: (ch) => {
@@ -60,13 +71,7 @@ export class EditChannel implements OnInit {
   }
 
   getErrorMessage(controlName: string): string {
-    const control = this.form.get(controlName);
-    if (control?.touched && control?.errors) {
-      if (control.errors['required']) return 'Este campo es obligatorio';
-      if (control.errors['minlength']) return `Mínimo ${control.errors['minlength'].requiredLength} caracteres`;
-      if (control.errors['maxlength']) return `Máximo ${control.errors['maxlength'].requiredLength} caracteres`;
-    }
-    return '';
+    return getFieldError(this.form.get(controlName));
   }
 
   onAvatarSelected(event: Event): void {
@@ -78,7 +83,8 @@ export class EditChannel implements OnInit {
     reader.readAsDataURL(file);
 
     this.uploadingAvatar.set(true);
-    this.storageService.uploadImage(file)
+    this.storageService
+      .uploadImage(file)
       .pipe(finalize(() => this.uploadingAvatar.set(false)))
       .subscribe({
         next: (url) => this.form.patchValue({ avatarUrl: url }),
@@ -95,7 +101,8 @@ export class EditChannel implements OnInit {
     reader.readAsDataURL(file);
 
     this.uploadingBanner.set(true);
-    this.storageService.uploadImage(file)
+    this.storageService
+      .uploadImage(file)
       .pipe(finalize(() => this.uploadingBanner.set(false)))
       .subscribe({
         next: (url) => this.form.patchValue({ bannerUrl: url }),
@@ -122,7 +129,8 @@ export class EditChannel implements OnInit {
       bannerUrl: bannerUrl || null,
     };
 
-    this.channelService.update(payload)
+    this.channelService
+      .update(payload)
       .pipe(finalize(() => this.saving.set(false)))
       .subscribe({
         next: (ch) => {

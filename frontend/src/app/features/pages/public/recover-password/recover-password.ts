@@ -10,6 +10,7 @@ import {
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../../services/auth/auth.service';
+import { getFieldError } from '../../../../shared/utils/form-error';
 
 function passwordsMatch(control: AbstractControl): ValidationErrors | null {
   const parent = control.parent;
@@ -40,7 +41,7 @@ export class RecoverPassword implements OnInit {
 
   form = this.fb.nonNullable.group({
     otp: ['', [Validators.required]],
-    newPassword: ['', [Validators.required, Validators.minLength(8)]],
+    newPassword: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(255)]],
     confirmPassword: ['', [Validators.required, passwordsMatch]],
   });
 
@@ -62,12 +63,7 @@ export class RecoverPassword implements OnInit {
   }
 
   getError(field: string): string {
-    const control = this.form.get(field);
-    if (!control?.invalid || !control.touched) return '';
-    if (control.hasError('required')) return 'Este campo es obligatorio';
-    if (control.hasError('minlength')) return 'Mínimo 8 caracteres';
-    if (control.hasError('mismatch')) return 'Las contraseñas no coinciden';
-    return '';
+    return getFieldError(this.form.get(field));
   }
 
   onSubmit(): void {

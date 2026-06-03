@@ -417,9 +417,32 @@
 }
 
 .input-wrapper {
-  position: relative;
-
   &.custom-material {
+    display: flex;
+    align-items: center;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    padding: 0 14px;
+    min-height: 42px;
+    transition: border-color 0.2s;
+
+    &:focus-within {
+      border-color: var(--color-primary);
+    }
+
+    // quitar la flecha CSS custom cuando hay mat-select
+    &:has(mat-select)::after {
+      display: none;
+    }
+
+    mat-select {
+      width: 100%;
+      font-size: 0.875rem;
+      color: var(--color-text);
+    }
+
+    // mantener el select nativo igual que antes
     select {
       width: 100%;
       padding: 10px 36px 10px 14px;
@@ -442,21 +465,6 @@
         color: var(--color-text);
       }
     }
-
-    // flecha personalizada
-    &::after {
-      content: '';
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 5px solid var(--color-text-muted);
-      pointer-events: none;
-    }
   }
 }
 
@@ -472,4 +480,9 @@
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
+}
+
+.modal {
+  position: relative;
+  z-index: 1001;
 }

@@ -121,11 +121,11 @@
           <div class="field-group">
             <label>Plan de membresía</label>
             <div class="input-wrapper custom-material">
-              <select [formControl]="editForm.controls.membershipPlanId">
+              <mat-select [formControl]="editForm.controls.membershipPlanId">
                 @for (plan of memberships(); track plan.membershipPlanId) {
-                  <option [value]="plan.membershipPlanId">{{ plan.displayName }}</option>
+                  <mat-option [value]="plan.membershipPlanId">{{ plan.displayName }}</mat-option>
                 }
-              </select>
+              </mat-select>
             </div>
           </div>
           @if (error()) {
@@ -164,11 +164,11 @@
           <div class="field-group">
             <label>Paquete de monedas</label>
             <div class="input-wrapper custom-material">
-              <select [formControl]="coinsForm.controls.coinPackageId">
+              <mat-select [formControl]="coinsForm.controls.coinPackageId">
                 @for (pkg of coinPackages; track pkg.id) {
-                  <option [value]="pkg.id">{{ pkg.label }}</option>
+                  <mat-option [value]="pkg.id">{{ pkg.label }}</mat-option>
                 }
-              </select>
+              </mat-select>
             </div>
           </div>
           @if (error()) {

@@ -5,11 +5,10 @@
   </header>
 
   <div class="create-channel-card">
-
     <!--subir banner-->
     <div class="banner-upload" (click)="bannerInput.click()">
       @if (bannerPreview()) {
-        <img class="banner-upload__img" [src]="bannerPreview()" alt="Banner preview">
+        <img class="banner-upload__img" [src]="bannerPreview()" alt="Banner preview" />
       } @else {
         <div class="banner-upload__placeholder">
           <mat-icon>add_photo_alternate</mat-icon>
@@ -19,31 +18,37 @@
       @if (uploadingBanner()) {
         <div class="upload-overlay"><span class="loader"></span></div>
       }
-      <input #bannerInput type="file" accept="image/*" (change)="onBannerSelected($event)" hidden>
+      <input #bannerInput type="file" accept="image/*" (change)="onBannerSelected($event)" hidden />
     </div>
 
     <!--subir avatar-->
     <div class="avatar-upload-row">
       <div class="avatar-upload" (click)="avatarInput.click()">
         @if (avatarPreview()) {
-          <img [src]="avatarPreview()" alt="Avatar preview">
+          <img [src]="avatarPreview()" alt="Avatar preview" />
         } @else {
           <mat-icon>add_a_photo</mat-icon>
         }
         @if (uploadingAvatar()) {
           <div class="upload-overlay"><span class="loader"></span></div>
         }
-        <input #avatarInput type="file" accept="image/*" (change)="onAvatarSelected($event)" hidden>
+        <input
+          #avatarInput
+          type="file"
+          accept="image/*"
+          (change)="onAvatarSelected($event)"
+          hidden
+        />
       </div>
     </div>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="create-channel-form">
-
       <div class="row-fields">
         <div class="field-group">
           <label>Handle</label>
-          <div class="input-wrapper">
-            <input type="text" formControlName="handle" placeholder="mi-canal">
+          <div class="input-wrapper input-wrapper--prefix">
+            <span class="input-prefix">@</span>
+            <input type="text" formControlName="handle" placeholder="mi-canal" />
           </div>
           @if (getErrorMessage('handle')) {
             <span class="field-error">{{ getErrorMessage('handle') }}</span>
@@ -53,7 +58,7 @@
         <div class="field-group">
           <label>Nombre para mostrar</label>
           <div class="input-wrapper">
-            <input type="text" formControlName="displayName" placeholder="Nombre de mi Canal">
+            <input type="text" formControlName="displayName" placeholder="Nombre de mi Canal" />
           </div>
           @if (getErrorMessage('displayName')) {
             <span class="field-error">{{ getErrorMessage('displayName') }}</span>
@@ -75,15 +80,17 @@
         <div class="alert-error">{{ error() }}</div>
       }
 
-      <button type="submit" class="submit-btn" [disabled]="loading() || uploadingAvatar() || uploadingBanner()">
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="loading() || uploadingAvatar() || uploadingBanner()"
+      >
         @if (loading()) {
           <span class="loader"></span>
         } @else {
           <span>Crear canal</span>
         }
       </button>
-
     </form>
   </div>
-
 </div>

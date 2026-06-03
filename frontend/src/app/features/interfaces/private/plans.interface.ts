@@ -1,33 +1,33 @@
 export interface MembershipPlanDto {
-    membershipPlanId: number;
-    displayName: string;
-    description: string | null;
-    monthlyPrice: number;
-    coinsReward: number;
-    maxCommunities: number;
-    maxVideosPerCommunity: number;
+  membershipPlanId: number;
+  displayName: string;
+  description: string | null;
+  monthlyPrice: number;
+  coinsReward: number;
+  maxCommunities: number;
+  maxVideosPerCommunity: number;
 }
 
 export interface MembershipPlanListResponse {
-    data: MembershipPlanDto[];
+  data: MembershipPlanDto[];
 }
 
 export interface MembershipPlanResponse {
-    data: MembershipPlanDto;
+  data: MembershipPlanDto;
 }
 
 export interface CoinPackageDto {
-    coinPackageId: number;
-    displayName: string;
-    description: string | null;
-    price: number;
-    coinsAmount: number;
+  coinPackageId: number;
+  displayName: string;
+  description: string | null;
+  price: number;
+  coinAmount: number;
 }
 
 export interface CoinPackageListResponse {
-    data: CoinPackageDto[];
+  data: CoinPackageDto[];
 }
 
 export interface CoinPackageResponse {
-    data: CoinPackageDto;
+  data: CoinPackageDto;
 }

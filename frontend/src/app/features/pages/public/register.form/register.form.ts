@@ -101,18 +101,60 @@ export class RegisterForm implements OnInit {
 
   readonly calendarDate = computed(() => new Date(this._year(), this._month() - 1, this._day()));
 
-  stepDate(unit: 'day' | 'month' | 'year', dir: 1 | -1): void {
-    if (unit === 'day') {
-      const max = new Date(this._year(), this._month(), 0).getDate();
-      this._day.set(((this._day() - 1 + dir + max) % max) + 1);
-    } else if (unit === 'month') {
-      this._month.set(((this._month() - 1 + dir + 12) % 12) + 1);
-      // corregir día si el mes nuevo tiene menos días
-      const max = new Date(this._year(), this._month(), 0).getDate();
-      if (this._day() > max) this._day.set(max);
-    } else {
-      this._year.set(this._year() + dir);
+  readonly maxYear = computed(() => new Date().getFullYear() - 13);
+
+  private maxDayForCurrentMonth(): number {
+    return new Date(this._year(), this._month(), 0).getDate();
+  }
+
+  private clampDay(day: number): number {
+    return Math.max(1, Math.min(day, this.maxDayForCurrentMonth()));
+  }
+
+  onDayInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length > 2) {
+      input.value = input.value.slice(0, 2);
     }
+    const val = parseInt(input.value, 10);
+    if (!isNaN(val)) this._day.set(val);
+  }
+
+  onDayBlur(): void {
+    this._day.set(this.clampDay(this._day()));
+    this.syncBirthday();
+  }
+
+  onMonthInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length > 2) {
+      input.value = input.value.slice(0, 2);
+    }
+    const val = parseInt(input.value, 10);
+    if (!isNaN(val)) this._month.set(Math.max(1, Math.min(val, 12)));
+  }
+
+  onMonthBlur(): void {
+    const clamped = Math.max(1, Math.min(this._month(), 12));
+    this._month.set(clamped);
+    this._day.set(this.clampDay(this._day()));
+    this.syncBirthday();
+  }
+
+  onYearInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length > 4) {
+      input.value = input.value.slice(0, 4);
+    }
+    const val = parseInt((event.target as HTMLInputElement).value, 10);
+    if (!isNaN(val)) this._year.set(val);
+  }
+
+  onYearBlur(): void {
+    const min = 1900;
+    const max = this.maxYear();
+    this._year.set(Math.max(min, Math.min(this._year(), max)));
+    this._day.set(this.clampDay(this._day()));
     this.syncBirthday();
   }
 

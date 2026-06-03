@@ -44,7 +44,11 @@
         <div class="coin-card">
           <div class="coin-card__icon-wrap">
             <mat-icon class="coin-card__icon">paid</mat-icon>
-            <span class="coin-card__coins-amount">{{ pack.coinsAmount | number }}</span>
+          </div>
+
+          <div class="coin-card__coins">
+            <span class="coin-card__coins-amount">{{ pack.coinAmount | number }}</span>
+            <span class="coin-card__coins-label">monedas</span>
           </div>
 
           <h3 class="coin-card__name">{{ pack.displayName }}</h3>
