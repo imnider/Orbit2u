@@ -39,6 +39,15 @@ export const routes: Routes = [
             (m) => m.RecoverPassword,
           ),
       },
+      {
+        path: 'about',
+        loadComponent: () => import('./features/pages/public/about-us/about').then((m) => m.About),
+      },
+      {
+        path: 'contact',
+        loadComponent: () =>
+          import('./features/pages/public/contact/contact').then((m) => m.Contact),
+      },
       // rutas privadas
       {
         path: 'profile',
