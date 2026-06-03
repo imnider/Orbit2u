@@ -110,6 +110,58 @@
     padding-top: 44px;
     flex-shrink: 0;
   }
+
+  // acceso privado
+  &__access-code {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 6px 12px;
+    background: var(--color-surface-alt);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-base);
+    width: fit-content;
+  }
+
+  &__access-code-icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    color: var(--color-primary);
+  }
+
+  &__access-code-label {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+  }
+
+  &__access-code-value {
+    font-family: monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-text);
+  }
+
+  &__access-code-copy {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover {
+      color: var(--color-primary);
+      background: var(--color-primary-soft);
+    }
+
+    mat-icon { font-size: 15px; width: 15px; height: 15px; }
+  }
 }
 
 .action-icon-btn {

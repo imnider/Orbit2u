@@ -10,12 +10,13 @@ import { finalize } from 'rxjs';
 import { CommunityService } from '../../../services/models/community.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { CommunityDto } from '../../../interfaces/private/community.interface';
-import {
-  CommunityForm,
-  CommunityDialogData,
-} from '../../private/community/community-form/community-form';
+import { CommunityForm, CommunityDialogData } from '../../private/community/community-form/community-form';
 import { UserService } from '../../../services/models/user.service';
 import { CurrentUser } from '../../../interfaces/public/user.interface';
+import { CommunityAccessCodeService } from '../../../services/priv-community/community-access.service';
+import { AccessDialogData, CommunityAccessDialog } from '../../private/community-access/community-access-dialog';
+
+
 
 type Tab = 'all' | 'member' | 'owned';
 
@@ -33,6 +34,8 @@ export class Communities implements OnInit {
   private readonly dialog = inject(MatDialog);
   private readonly userService = inject(UserService);
 
+  private readonly accessCodeService = inject(CommunityAccessCodeService);
+  
   readonly isLoggedIn = this.authService.isAuthenticated;
 
   activeTab = signal<Tab>('all');
@@ -108,6 +111,29 @@ export class Communities implements OnInit {
       this.router.navigate(['/login'], { queryParams: { returnUrl: `/communities/${id}` } });
       return;
     }
+
+    const community = this.currentList().find(c => c.communityId === id);
+
+    if (community?.isPrivate) {
+      const isOwner  = community.ownerUserId === this.currentUser()?.userId;
+      const isMember = this.memberCommunities().some(c => c.communityId === id);
+      const hasAccess = this.accessCodeService.hasAccess(id);
+
+      if (!isOwner && !isMember && !hasAccess) {
+        const ref = this.dialog.open(CommunityAccessDialog, {
+          width: '380px',
+          data: { communityId: id, communityName: community.name } satisfies AccessDialogData,
+        });
+        ref.afterClosed().subscribe(result => {
+          if (result?.granted) {
+            this.accessCodeService.grantAccess(id);
+            this.router.navigate(['/communities', id]);
+          }
+        });
+        return;
+      }
+    }
+
     this.router.navigate(['/communities', id]);
   }
 
@@ -126,7 +152,7 @@ export class Communities implements OnInit {
       const community: CommunityDto = result.saved;
       this.ownedCommunities.update((list) => [community, ...list]);
       this.allCommunities.update((list) => [community, ...list]);
-      this.router.navigate(['/communities', community.communityId]);
+      this.router.navigate(['/communities', community.communityId]);  // ← solo aquí
     });
   }
 

@@ -12,6 +12,7 @@ import { CommunityDto } from '../../../../interfaces/private/community.interface
 import { VideoDto } from '../../../../interfaces/private/video.interface';
 import { VideoCard } from '../../../../../shared/components/video-card/video-card';
 import { CommunityForm, CommunityDialogData } from '../community-form/community-form';
+import { CommunityAccessCodeService } from '../../../../services/priv-community/community-access.service';
 
 @Component({
   selector: 'app-community-view',
@@ -142,5 +143,26 @@ export class CommunityView implements OnInit {
 
   getInitial(name: string): string {
     return name.charAt(0).toUpperCase();
+  }
+
+  //comunidades privadas:
+  private readonly accessCodeService = inject(CommunityAccessCodeService);
+
+  readonly privateCode = computed(() => {
+    const c = this.community();
+    if (!c?.isPrivate) return null;
+    if (c.ownerUserId !== this.authService.userId()) return null;
+    return this.accessCodeService.getCode(c.communityId);
+  });
+
+  copied = signal(false);
+
+  copyCode(): void {
+    const code = this.privateCode();
+    if (!code) return;
+    navigator.clipboard.writeText(code).then(() => {
+      this.copied.set(true);
+      setTimeout(() => this.copied.set(false), 2000);
+    });
   }
 }

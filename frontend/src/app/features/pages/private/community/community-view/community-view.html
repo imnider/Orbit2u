@@ -62,6 +62,21 @@
           <mat-icon>group</mat-icon>
           {{ memberCount() }} miembro{{ memberCount() !== 1 ? 's' : '' }}
         </span>
+
+        @if (privateCode()) {
+        <div class="comm-header__access-code">
+          <mat-icon class="comm-header__access-code-icon">vpn_key</mat-icon>
+          <span class="comm-header__access-code-label">Código de acceso</span>
+          <code class="comm-header__access-code-value">{{ privateCode() }}</code>
+          <button
+            class="comm-header__access-code-copy"
+            (click)="copyCode()"
+            [matTooltip]="copied() ? '¡Copiado!' : 'Copiar código'"
+          >
+            <mat-icon>{{ copied() ? 'check' : 'content_copy' }}</mat-icon>
+          </button>
+        </div>
+      }
       </div>
 
       <div class="comm-header__actions">
